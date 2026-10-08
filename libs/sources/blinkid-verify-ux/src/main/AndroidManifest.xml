@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application>
         <activity
             android:name="com.microblink.blinkidverify.ux.activity.capture.BlinkIdVerifyCaptureActivity"
@@ -9,7 +11,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <activity
-            android:name="com.microblink.blinkid.ux.activity.BlinkIdScanActivity"
+            android:name="com.microblink.blinkidverify.ux.activity.BlinkIdScanActivity"
             android:exported="false"
             android:configChanges="screenSize|smallestScreenSize|orientation|screenLayout"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>

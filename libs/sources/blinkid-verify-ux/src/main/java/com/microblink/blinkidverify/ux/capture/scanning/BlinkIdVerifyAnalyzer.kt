@@ -11,19 +11,25 @@ import androidx.camera.core.ImageProxy
 import com.microblink.blinkidverify.core.BlinkIdVerifySdk
 import com.microblink.blinkidverify.core.capture.session.BlinkIdVerifyScanningSession
 import com.microblink.blinkidverify.core.capture.session.BlinkIdVerifySessionSettings
-import com.microblink.core.RemoteLicenseCheckException
-import com.microblink.core.image.InputImage
-import com.microblink.core.utils.MbLog
-import com.microblink.ux.ScanningUxEvent
-import com.microblink.ux.ScanningUxEventHandler
-import com.microblink.ux.camera.ImageAnalyzer
-import com.microblink.ux.state.UiScanningSide
-import com.microblink.ux.utils.ErrorReason
+import com.microblink.blinkidverify.ux.consent.CmsFlowLog
+import com.microblink.blinkidverify.core.consent.model.ExternalConsentObject
+import com.microblink.blinkidverify.core.RemoteLicenseCheckException
+import com.microblink.blinkidverify.core.image.InputImage
+import com.microblink.blinkidverify.core.utils.MbLog
+import com.microblink.blinkidverify.ux.ScanningUxEvent
+import com.microblink.blinkidverify.ux.ScanningUxEventHandler
+import com.microblink.blinkidverify.ux.camera.ImageAnalyzer
+import com.microblink.blinkidverify.ux.camera.TimeoutCause
+import com.microblink.blinkidverify.ux.state.UiScanningSide
+import com.microblink.blinkidverify.ux.utils.ErrorReason
+import com.microblink.blinkidverify.ux.utils.UxPingletTracker
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 private const val TAG = "BlinkIdVerifyAnalyzer"
 
@@ -51,6 +57,8 @@ class BlinkIdVerifyAnalyzer(
 
     private var session: BlinkIdVerifyScanningSession? =
         runBlocking { verifySdk.createScanningSession(sessionSettings) }
+
+    @Volatile
     private var analysisPaused = false
     private val verifyScanningUxTranslator = VerifyScanningUxTranslator()
 
@@ -60,6 +68,9 @@ class BlinkIdVerifyAnalyzer(
      * This function is called for each frame captured by the camera. It sends the
      * image to the BlinkID Verify SDK for processing and handles the results,
      * timeouts and cancellations.
+     *
+     * Timeout handling is driven by [com.microblink.blinkidverify.ux.capture.settings.VerifyUxSettings.stepTimeoutDuration]
+     * and [com.microblink.blinkidverify.ux.capture.settings.VerifyUxSettings.inactivityTimeoutDuration].
      *
      * @param image The [ImageProxy] containing the image to be analyzed.
      *
@@ -89,9 +100,24 @@ class BlinkIdVerifyAnalyzer(
                                 uxEventHandler?.onUxEvents(events)
 
                                 if (processResult.resultCompleteness.isComplete()) {
-                                    val sessionResult = session.getResult()
-                                    pauseAnalysis()
-                                    verifyScanningDoneHandler.onScanningFinished(sessionResult)
+                                    try {
+                                        MbLog.i(CmsFlowLog.TAG) {
+                                            "[CMS] Scan complete — invoking session.getResult() for v3 payload"
+                                        }
+                                        val sessionResult = session.getResult()
+                                        MbLog.i(CmsFlowLog.TAG) {
+                                            "[CMS] Capture result ready — serialized payload present=" +
+                                                "${sessionResult.serializedVerifyPayload != null}"
+                                        }
+                                        pauseAnalysis()
+                                        verifyScanningDoneHandler.onScanningFinished(sessionResult)
+                                    } catch (e: CancellationException) {
+                                        throw e
+                                    } catch (e: Exception) {
+                                        MbLog.e(TAG, e) { "getResult failed after scanning completed" }
+                                        pauseAnalysis()
+                                        verifyScanningDoneHandler.onError(ErrorReason.ErrorGetResultFailed)
+                                    }
                                 } else {
                                     MbLog.v(TAG) { "Neither complete nor timeout, continuing..." }
                                 }
@@ -113,18 +139,48 @@ class BlinkIdVerifyAnalyzer(
         analysisPaused = false
     }
 
-    override fun timeoutAnalysis() {
-        MbLog.e(TAG) { "processing timeout occurred" }
-        analysisPaused = true
+    override fun timeoutAnalysis(cause: TimeoutCause) {
+        MbLog.e(TAG) { "processing timeout occurred: $cause" }
 
         // TODO now that this is called in restartAnalysis, maybe we don't need it here?
         verifyScanningUxTranslator.resetSession()
 
-        verifyScanningDoneHandler.onError(ErrorReason.ErrorTimeoutExpired)
+        val timeoutEvent = when (cause) {
+            TimeoutCause.Step -> UxPingletTracker.UxEvent.SimpleUxEventType.StepTimeout
+            TimeoutCause.Inactivity -> UxPingletTracker.UxEvent.SimpleUxEventType.InactivityTimeout
+        }
+        getSessionNumber()?.let { sessionNumber ->
+            UxPingletTracker.UxEvent.trackSimpleEvent(timeoutEvent, sessionNumber)
+        }
+
+        onErrorAnalysis(
+            when (cause) {
+                TimeoutCause.Step -> ErrorReason.ErrorStepTimeoutExpired
+                TimeoutCause.Inactivity -> ErrorReason.ErrorInactivityTimeoutExpired
+            }
+        )
     }
 
     fun getSessionNumber(): Int? {
         return session?.sessionNumber
+    }
+
+    private fun onErrorAnalysis(errorReason: ErrorReason) {
+        pauseAnalysis()
+        verifyScanningDoneHandler.onError(errorReason)
+    }
+
+    /**
+     * Sets the end-user [consent] on the scanning session. Native `getResult` receives this
+     * consent when generating the request payload.
+     *
+     * @return `true` when consent has been accepted for later payload generation.
+     */
+    suspend fun setConsent(consent: ExternalConsentObject): Boolean {
+        MbLog.i(CmsFlowLog.TAG) {
+            "[CMS] Analyzer forwarding consent to session: ${CmsFlowLog.consentSummary(consent)}"
+        }
+        return session?.setConsent(consent) ?: false
     }
 
     override fun cancel() {
@@ -132,15 +188,17 @@ class BlinkIdVerifyAnalyzer(
         verifyScanningDoneHandler.onScanningCanceled()
     }
 
-    override fun restartAnalysis() {
-        CoroutineScope(Default).launch {
-            session?.restartSession()
-        }
-
+    override suspend fun restartAnalysis() {
+        analysisPaused = true
         // this was added for the Unsupported Dialog, so it can be reset properly
         verifyScanningUxTranslator.resetSession()
-
-        analysisPaused = false
+        try {
+            withContext(Default) {
+                session?.restartSession()
+            }
+        } finally {
+            analysisPaused = false
+        }
     }
 
     override fun close() {

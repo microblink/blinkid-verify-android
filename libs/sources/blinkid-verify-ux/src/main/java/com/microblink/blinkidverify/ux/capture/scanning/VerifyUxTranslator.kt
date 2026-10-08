@@ -6,8 +6,8 @@
 package com.microblink.blinkidverify.ux.capture.scanning
 
 import com.microblink.blinkidverify.core.capture.session.BlinkIdVerifyProcessResult
-import com.microblink.core.image.InputImage
-import com.microblink.ux.ScanningUxEvent
+import com.microblink.blinkidverify.core.image.InputImage
+import com.microblink.blinkidverify.ux.ScanningUxEvent
 
 /**
  * An interface that represents the translation process from [ScanningUxEvent] to the UX.

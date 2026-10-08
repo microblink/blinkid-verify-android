@@ -1,0 +1,569 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>BarcodeResult</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    BlinkIDVerify
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":blinkid-verify-core/productionRelease">productionRelease</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":blinkid-verify-core/productionRelease" data-filter=":blinkid-verify-core/productionRelease">
+                                <span class="checkbox--icon"></span>
+                                productionRelease
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    BlinkIDVerify
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="blinkid-verify-core::com.microblink.blinkidverify.core.result.barcode/BarcodeResult///PointingToDeclaration//-112883329">
+  <div class="breadcrumbs"><a href="../../index.html">blinkid-verify-core</a><span class="delimiter">/</span><a href="../index.html">com.microblink.blinkidverify.core.result.barcode</a><span class="delimiter">/</span><span class="current">BarcodeResult</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Barcode</span><wbr><span><span>Result</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">BarcodeResult</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>barcodeData<span class="token operator">: </span><a href="../-barcode-data/index.html">BarcodeData</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>parsed<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>firstName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>middleName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lastName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fullName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>additionalNameInformation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>address<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>placeOfBirth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>nationality<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>race<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>religion<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>profession<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>maritalStatus<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>residentialStatus<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>employer<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sex<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>dateOfBirth<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-date-result/index.html">DateResult</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>dateOfIssue<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-date-result/index.html">DateResult</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>dateOfExpiry<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-date-result/index.html">DateResult</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>documentNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>personalIdNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>documentAdditionalNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>issuingAuthority<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>addressDetailedInfo<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-address-detailed-info/index.html">AddressDetailedInfo</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>driverLicenseDetailedInfo<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-driver-license-detailed-info/index.html">DriverLicenseDetailedInfo</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>extendedElements<span class="token operator">: </span><a href="../-barcode-elements/index.html">BarcodeElements</a></span></span><span class="token punctuation">)</span></div><p class="paragraph">Represents the data extracted from the barcode.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="1647928935%2FConstructors%2F-112883329" anchor-label="BarcodeResult" id="1647928935%2FConstructors%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-barcode-result.html"><span>Barcode</span><wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1647928935%2FConstructors%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">barcodeData<span class="token operator">: </span><a href="../-barcode-data/index.html">BarcodeData</a><span class="token punctuation">, </span></span><span class="parameter ">parsed<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">firstName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">middleName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">lastName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">fullName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">additionalNameInformation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">address<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">placeOfBirth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">nationality<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">race<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">religion<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">profession<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">maritalStatus<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">residentialStatus<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">employer<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">sex<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">dateOfBirth<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-date-result/index.html">DateResult</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">dateOfIssue<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-date-result/index.html">DateResult</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">dateOfExpiry<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-date-result/index.html">DateResult</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">documentNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">personalIdNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">documentAdditionalNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">issuingAuthority<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">addressDetailedInfo<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-address-detailed-info/index.html">AddressDetailedInfo</a><span class="token punctuation">, </span></span><span class="parameter ">driverLicenseDetailedInfo<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-driver-license-detailed-info/index.html">DriverLicenseDetailedInfo</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">extendedElements<span class="token operator">: </span><a href="../-barcode-elements/index.html">BarcodeElements</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="-317513426%2FClasslikes%2F-112883329" anchor-label="Companion" id="-317513426%2FClasslikes%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-317513426%2FClasslikes%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="1648811693%2FProperties%2F-112883329" anchor-label="additionalNameInformation" id="1648811693%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="additional-name-information.html"><span>additional</span><wbr><span>Name</span><wbr><span><span>Information</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1648811693%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="additional-name-information.html">additionalNameInformation</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The additional name information of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1501081357%2FProperties%2F-112883329" anchor-label="address" id="-1501081357%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="address.html"><span><span>address</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1501081357%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="address.html">address</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The address of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1175909397%2FProperties%2F-112883329" anchor-label="addressDetailedInfo" id="1175909397%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="address-detailed-info.html"><span>address</span><wbr><span>Detailed</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1175909397%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="address-detailed-info.html">addressDetailedInfo</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-address-detailed-info/index.html">AddressDetailedInfo</a></div><div class="brief "><p class="paragraph">The details about the address of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1794992221%2FProperties%2F-112883329" anchor-label="barcodeData" id="1794992221%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="barcode-data.html"><span>barcode</span><wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1794992221%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="barcode-data.html">barcodeData</a><span class="token operator">: </span><a href="../-barcode-data/index.html">BarcodeData</a></div><div class="brief "><p class="paragraph">The raw, unparsed barcode data.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-654851827%2FProperties%2F-112883329" anchor-label="dateOfBirth" id="-654851827%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="date-of-birth.html"><span>date</span><wbr><span>Of</span><wbr><span><span>Birth</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-654851827%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="date-of-birth.html">dateOfBirth</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-date-result/index.html">DateResult</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">The date of birth of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1998885221%2FProperties%2F-112883329" anchor-label="dateOfExpiry" id="-1998885221%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="date-of-expiry.html"><span>date</span><wbr><span>Of</span><wbr><span><span>Expiry</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1998885221%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="date-of-expiry.html">dateOfExpiry</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-date-result/index.html">DateResult</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">The date of expiry of the document.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1620738509%2FProperties%2F-112883329" anchor-label="dateOfIssue" id="-1620738509%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="date-of-issue.html"><span>date</span><wbr><span>Of</span><wbr><span><span>Issue</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1620738509%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="date-of-issue.html">dateOfIssue</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-date-result/index.html">DateResult</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">The date of issue of the document.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="528505640%2FProperties%2F-112883329" anchor-label="documentAdditionalNumber" id="528505640%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="document-additional-number.html"><span>document</span><wbr><span>Additional</span><wbr><span><span>Number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="528505640%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="document-additional-number.html">documentAdditionalNumber</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The additional number of the document.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="907214351%2FProperties%2F-112883329" anchor-label="documentNumber" id="907214351%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="document-number.html"><span>document</span><wbr><span><span>Number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="907214351%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="document-number.html">documentNumber</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The document number.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1234833584%2FProperties%2F-112883329" anchor-label="driverLicenseDetailedInfo" id="1234833584%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="driver-license-detailed-info.html"><span>driver</span><wbr><span>License</span><wbr><span>Detailed</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1234833584%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="driver-license-detailed-info.html">driverLicenseDetailedInfo</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.result/-driver-license-detailed-info/index.html">DriverLicenseDetailedInfo</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">The driver license detailed info.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1567185912%2FProperties%2F-112883329" anchor-label="employer" id="1567185912%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="employer.html"><span><span>employer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1567185912%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="employer.html">employer</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The employer of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1492952323%2FProperties%2F-112883329" anchor-label="extendedElements" id="1492952323%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="extended-elements.html"><span>extended</span><wbr><span><span>Elements</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1492952323%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="extended-elements.html">extendedElements</a><span class="token operator">: </span><a href="../-barcode-elements/index.html">BarcodeElements</a></div><div class="brief "><p class="paragraph">Document specific extended elements that contain all barcode fields</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1395387668%2FProperties%2F-112883329" anchor-label="firstName" id="-1395387668%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="first-name.html"><span>first</span><wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1395387668%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="first-name.html">firstName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The first name of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1799741991%2FProperties%2F-112883329" anchor-label="fullName" id="-1799741991%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="full-name.html"><span>full</span><wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1799741991%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="full-name.html">fullName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The full name of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1219856486%2FProperties%2F-112883329" anchor-label="issuingAuthority" id="1219856486%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="issuing-authority.html"><span>issuing</span><wbr><span><span>Authority</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1219856486%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="issuing-authority.html">issuingAuthority</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The issuing authority of the document.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2076598066%2FProperties%2F-112883329" anchor-label="lastName" id="2076598066%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="last-name.html"><span>last</span><wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2076598066%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="last-name.html">lastName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The last name of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-580884575%2FProperties%2F-112883329" anchor-label="maritalStatus" id="-580884575%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="marital-status.html"><span>marital</span><wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-580884575%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="marital-status.html">maritalStatus</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The marital status of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-58753261%2FProperties%2F-112883329" anchor-label="middleName" id="-58753261%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="middle-name.html"><span>middle</span><wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-58753261%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="middle-name.html">middleName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The middle name of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1091230507%2FProperties%2F-112883329" anchor-label="nationality" id="1091230507%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="nationality.html"><span><span>nationality</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1091230507%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="nationality.html">nationality</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The nationality of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="534855906%2FProperties%2F-112883329" anchor-label="parsed" id="534855906%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="parsed.html"><span><span>parsed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="534855906%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="parsed.html">parsed</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="374683183%2FProperties%2F-112883329" anchor-label="personalIdNumber" id="374683183%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="personal-id-number.html"><span>personal</span><wbr><span>Id</span><wbr><span><span>Number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="374683183%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="personal-id-number.html">personalIdNumber</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The personal identification number.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="574793810%2FProperties%2F-112883329" anchor-label="placeOfBirth" id="574793810%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="place-of-birth.html"><span>place</span><wbr><span>Of</span><wbr><span><span>Birth</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="574793810%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="place-of-birth.html">placeOfBirth</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The place of birth of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1228631895%2FProperties%2F-112883329" anchor-label="profession" id="1228631895%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="profession.html"><span><span>profession</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1228631895%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="profession.html">profession</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The profession of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="752048034%2FProperties%2F-112883329" anchor-label="race" id="752048034%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="race.html"><span><span>race</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="752048034%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="race.html">race</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The race of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="141067842%2FProperties%2F-112883329" anchor-label="religion" id="141067842%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="religion.html"><span><span>religion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="141067842%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="religion.html">religion</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The religion of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-656557423%2FProperties%2F-112883329" anchor-label="residentialStatus" id="-656557423%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="residential-status.html"><span>residential</span><wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-656557423%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="residential-status.html">residentialStatus</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The residential status of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-64087615%2FProperties%2F-112883329" anchor-label="sex" id="-64087615%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sex.html"><span><span>sex</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-64087615%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="sex.html">sex</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The sex of the document owner.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

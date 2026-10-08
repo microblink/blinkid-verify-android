@@ -14,6 +14,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,28 +35,32 @@ import com.microblink.blinkidverify.core.BlinkIdVerifySdk
 import com.microblink.blinkidverify.core.capture.session.BlinkIdVerifySessionSettings
 import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyCaptureResult
 import com.microblink.blinkidverify.ux.capture.settings.VerifyUxSettings
+import com.microblink.blinkidverify.ux.consent.BlinkIdVerifyConsentUxConfig
+import com.microblink.blinkidverify.ux.consent.ConsentScreenContent
+import com.microblink.blinkidverify.ux.consent.ConsentUxState
+import com.microblink.blinkidverify.ux.consent.MicroblinkConsentScreen
 import com.microblink.blinkidverify.ux.theme.BlinkIdVerifySdkTheme
 import com.microblink.blinkidverify.ux.theme.VerifyTheme
-import com.microblink.blinkidverify.ux.utils.fillErrorDialogs
-import com.microblink.blinkidverify.ux.utils.fillHelpScreens
-import com.microblink.blinkidverify.ux.utils.onAppMovedToBackground
-import com.microblink.blinkidverify.ux.utils.onCameraPermissionCheck
-import com.microblink.blinkidverify.ux.utils.onCameraPermissionRequest
-import com.microblink.blinkidverify.ux.utils.onCameraPermissionUserResponse
-import com.microblink.blinkidverify.ux.utils.onCameraPreviewStarted
-import com.microblink.blinkidverify.ux.utils.onCameraPreviewStopped
-import com.microblink.blinkidverify.ux.utils.onCloseButtonClicked
-import com.microblink.ux.ScanningUx
-import com.microblink.ux.UiSettings
-import com.microblink.ux.camera.CameraInputDetails
-import com.microblink.ux.camera.CameraSettings
-import com.microblink.ux.camera.compose.CameraInputDetailsCallback
-import com.microblink.ux.camera.compose.CameraPermissionCallbacks
-import com.microblink.ux.camera.compose.CameraPreviewCallbacks
-import com.microblink.ux.camera.compose.CameraScreen
-import com.microblink.ux.state.MbTorchState
-import com.microblink.ux.state.ProcessingState
-import com.microblink.ux.utils.DeviceOrientationListener
+import com.microblink.blinkidverify.ux.verifyutils.fillErrorDialogs
+import com.microblink.blinkidverify.ux.verifyutils.fillHelpScreens
+import com.microblink.blinkidverify.ux.verifyutils.onAppMovedToBackground
+import com.microblink.blinkidverify.ux.verifyutils.onCameraPermissionCheck
+import com.microblink.blinkidverify.ux.verifyutils.onCameraPermissionRequest
+import com.microblink.blinkidverify.ux.verifyutils.onCameraPermissionUserResponse
+import com.microblink.blinkidverify.ux.verifyutils.onCameraPreviewStarted
+import com.microblink.blinkidverify.ux.verifyutils.onCameraPreviewStopped
+import com.microblink.blinkidverify.ux.verifyutils.onCloseButtonClicked
+import com.microblink.blinkidverify.ux.ScanningUx
+import com.microblink.blinkidverify.ux.UiSettings
+import com.microblink.blinkidverify.ux.camera.CameraInputDetails
+import com.microblink.blinkidverify.ux.camera.CameraSettings
+import com.microblink.blinkidverify.ux.camera.compose.CameraInputDetailsCallback
+import com.microblink.blinkidverify.ux.camera.compose.CameraPermissionCallbacks
+import com.microblink.blinkidverify.ux.camera.compose.CameraPreviewCallbacks
+import com.microblink.blinkidverify.ux.camera.compose.CameraScreen
+import com.microblink.blinkidverify.ux.state.MbTorchState
+import com.microblink.blinkidverify.ux.state.ProcessingState
+import com.microblink.blinkidverify.ux.utils.DeviceOrientationListener
 import kotlinx.coroutines.launch
 
 private const val TAG = "VerifyCameraScanningScreen"
@@ -74,8 +79,11 @@ private const val TAG = "VerifyCameraScanningScreen"
  * @param uiSettings The [UiSettings] used to customize the UI. Defaults to [UiSettings] with default values.
  * @param cameraSettings The [CameraSettings] used for document scanning. Defaults to [CameraSettings] with default values.
  * @param sessionSettings The [BlinkIdVerifySessionSettings] used to configure the capture session. Defaults to [BlinkIdVerifySessionSettings] with default values.
+ * @param consentUxConfig The [BlinkIdVerifyConsentUxConfig] that defines how end-user consent for
+ *                        cloud processing is obtained.
  * @param onCaptureSuccess A callback function invoked when a document is successfully captured. Receives the [BlinkIdVerifyCaptureResult] as a parameter.
- * @param onCaptureCanceled A callback function invoked when the user cancels the scanning process.
+ * @param onCaptureCanceled A callback function invoked when the user cancels the scanning process,
+ *                          which also happens when the user declines the consent.
  */
 @Composable
 fun VerifyCameraScanningScreen(
@@ -84,9 +92,12 @@ fun VerifyCameraScanningScreen(
     uiSettings: UiSettings = UiSettings(),
     cameraSettings: CameraSettings = CameraSettings(),
     sessionSettings: BlinkIdVerifySessionSettings = BlinkIdVerifySessionSettings(),
+    consentUxConfig: BlinkIdVerifyConsentUxConfig,
     onCaptureSuccess: (BlinkIdVerifyCaptureResult) -> Unit,
     onCaptureCanceled: () -> Unit,
 ) {
+    val applicationContext = LocalContext.current.applicationContext
+
     val viewModel: BlinkIdVerifyUxViewModel = viewModel(
         factory = BlinkIdVerifyUxViewModel.Factory,
         extras = MutableCreationExtras().apply {
@@ -102,10 +113,16 @@ fun VerifyCameraScanningScreen(
                 BlinkIdVerifyUxViewModel.BLINK_ID_VERIFY_UX_SETTINGS,
                 uxSettings
             )
+            set(
+                BlinkIdVerifyUxViewModel.BLINK_ID_VERIFY_CONSENT_UX_CONFIG,
+                consentUxConfig
+            )
+            set(
+                BlinkIdVerifyUxViewModel.BLINK_ID_VERIFY_APPLICATION_CONTEXT,
+                applicationContext
+            )
         }
     )
-
-    val applicationContext = LocalContext.current.applicationContext
 
     DeviceOrientationListener(applicationContext) {
         viewModel.setScreenOrientation(it)
@@ -157,6 +174,13 @@ fun VerifyCameraScanningScreen(
                 BackHandler {
                     onCaptureCanceled()
                 }
+                ConsentUx(
+                    consentUxConfig = consentUxConfig,
+                    consentUxState = overlayUiState.value.consentUxState,
+                    onConsentAccepted = viewModel::onConsentAccepted,
+                    onConsentDeclined = viewModel::onConsentDeclined,
+                    onConsentUnavailable = onCaptureCanceled
+                )
                 ScanningUx(
                     modifier = Modifier.padding(paddingValues),
                     uiState = overlayUiState.value,
@@ -168,6 +192,7 @@ fun VerifyCameraScanningScreen(
                     helpScreens = fillHelpScreens(),
                     errorStateDialogs = fillErrorDialogs(viewModel::onRetryTimeout, onCaptureCanceled),
                     allowHapticFeedback = uxSettings.allowHapticFeedback,
+                    allowScanSound = uxSettings.allowScanSound,
                     showProductionOverlay = !blinkIdVerifySdk.getLicenseToken().licenseRights.allowRemoveProductionOverlay,
                     showDemoOverlay = !blinkIdVerifySdk.getLicenseToken().licenseRights.allowRemoveDemoOverlay,
                     onTorchStateChange = {
@@ -186,13 +211,44 @@ fun VerifyCameraScanningScreen(
                     onFlipDocumentAnimationCompleted = viewModel::onFlipAnimationCompleted,
                     onReticleSuccessAnimationCompleted = viewModel::onReticleSuccessAnimationCompleted,
                     onHapticFeedbackCompleted = viewModel::onHapticFeedbackCompleted,
+                    onScanSoundCompleted = viewModel::onScanSoundCompleted,
                     onChangeOnboardingDialogVisibility = viewModel::changeOnboardingDialogVisibility,
                     onHelpScreensDisplayRequested = viewModel::onHelpScreensDisplayRequested,
                     onHelpScreensCloseRequested = viewModel::onHelpScreensCloseRequested,
-                    onChangeHelpTooltipVisibility = viewModel::changeHelpTooltipVisibility
+                    onChangeHelpTooltipVisibility = viewModel::changeHelpTooltipVisibility,
+                    helpTooltipHideDelay = uxSettings.helpTooltipHideDelay
                 )
             }
         }
+    }
+}
+
+/**
+ * Displays the built-in consent UI while consent is being collected and translates a declined
+ * consent into scanning screen cancellation.
+ */
+@Composable
+private fun ConsentUx(
+    consentUxConfig: BlinkIdVerifyConsentUxConfig,
+    consentUxState: ConsentUxState,
+    onConsentAccepted: (consentNote: String) -> Unit,
+    onConsentDeclined: () -> Unit,
+    onConsentUnavailable: () -> Unit,
+) {
+    val customConsentNote = (consentUxConfig as? BlinkIdVerifyConsentUxConfig.RequireConsent)?.note
+    when (consentUxState) {
+        ConsentUxState.ConsentRequired -> MicroblinkConsentScreen(
+            onConsentAccepted = onConsentAccepted,
+            onConsentDeclined = onConsentDeclined,
+            content = ConsentScreenContent(customMessage = customConsentNote),
+        )
+
+        ConsentUxState.ConsentDeclined -> LaunchedEffect(consentUxState) {
+            onConsentUnavailable()
+        }
+
+        ConsentUxState.ConsentGranted,
+        ConsentUxState.ConsentNotRequired -> Unit
     }
 }
 

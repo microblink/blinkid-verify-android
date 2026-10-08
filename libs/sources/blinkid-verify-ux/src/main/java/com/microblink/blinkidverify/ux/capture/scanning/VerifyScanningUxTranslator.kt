@@ -5,19 +5,19 @@
 
 package com.microblink.blinkidverify.ux.capture.scanning
 
-import com.microblink.blinkid.core.result.ProcessingStatus
-import com.microblink.blinkid.core.result.classinfo.Country
-import com.microblink.blinkid.core.result.classinfo.Type
-import com.microblink.blinkid.ux.scanning.RequestPassportPage
-import com.microblink.blinkid.ux.scanning.ScanningWrongPassportPage
-import com.microblink.blinkid.ux.state.PassportPage
-import com.microblink.blinkid.ux.state.PassportType
+import com.microblink.blinkidverify.core.result.ProcessingStatus
+import com.microblink.blinkidverify.core.result.classinfo.CountryId
+import com.microblink.blinkidverify.core.result.classinfo.DocumentTypeId
+import com.microblink.blinkidverify.ux.scanning.RequestPassportPage
+import com.microblink.blinkidverify.ux.scanning.ScanningWrongPassportPage
+import com.microblink.blinkidverify.ux.state.PassportPage
+import com.microblink.blinkidverify.ux.state.PassportType
 import com.microblink.blinkidverify.core.capture.session.BlinkIdVerifyProcessResult
 import com.microblink.blinkidverify.core.data.model.result.VerifyScanningStatus
-import com.microblink.core.image.InputImage
-import com.microblink.core.session.DetectionStatus
-import com.microblink.ux.ScanningUxEvent
-import com.microblink.ux.state.UiScanningSide
+import com.microblink.blinkidverify.core.image.InputImage
+import com.microblink.blinkidverify.core.session.DetectionStatus
+import com.microblink.blinkidverify.ux.ScanningUxEvent
+import com.microblink.blinkidverify.ux.state.UiScanningSide
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.Duration.Companion.seconds
 
@@ -72,16 +72,18 @@ class VerifyScanningUxTranslator : VerifyUxTranslator {
             return events
         }
 
-        extractionImageAnalysisResult.documentClassInfo.type?.takeIf { it == Type.Passport }?.let {
-            passportType = if (
-                extractionImageAnalysisResult.documentClassInfo.country == Country.Usa ||
-                extractionImageAnalysisResult.documentClassInfo.country == Country.India
-            ) {
-                PassportType.BackSideBarcode
-            } else {
-                PassportType.Regular
+        extractionImageAnalysisResult.documentClassInfo?.documentType?.id
+            ?.takeIf { it == DocumentTypeId.Passport }
+            ?.let {
+                passportType = if (
+                    extractionImageAnalysisResult.documentClassInfo?.country?.id == CountryId.Usa ||
+                    extractionImageAnalysisResult.documentClassInfo?.country?.id == CountryId.India
+                ) {
+                    PassportType.BackSideBarcode
+                } else {
+                    PassportType.Regular
+                }
             }
-        }
 
         if (currentSide == UiScanningSide.First) {
             if (processResult.resultCompleteness.scanningStatus == VerifyScanningStatus.ScannedFirst) {
@@ -217,7 +219,13 @@ class VerifyScanningUxTranslator : VerifyUxTranslator {
 
         hasEvents = true
 
-        if (inputImageAnalysisResult.glareDetected) events.add(ScanningUxEvent.GlareDetected)
+        if (
+            inputImageAnalysisResult.screenPresenceDetected &&
+            extractionImageAnalysisResult.documentDetectionStatus == DetectionStatus.Success &&
+            currentSide != UiScanningSide.Barcode
+        ) {
+            events.add(ScreenPresenceDetected)
+        } else if (inputImageAnalysisResult.glareDetected) events.add(ScanningUxEvent.GlareDetected)
         else if (inputImageAnalysisResult.blurDetected) events.add(ScanningUxEvent.BlurDetected)
         else if (inputImageAnalysisResult.occlusionDetected) events.add(ScanningUxEvent.DocumentNotFullyVisible)
         else if (inputImageAnalysisResult.tiltDetected) events.add(ScanningUxEvent.DocumentTooTilted)

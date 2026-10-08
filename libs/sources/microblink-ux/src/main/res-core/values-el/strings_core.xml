@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="mb_camera_permission_required">Απαιτείται άδεια για την κάμερα.</string>
-  <string name="mb_close">Κλείσιμο</string>
-  <string name="mb_dialog_back_button">Πίσω</string>
-  <string name="mb_dialog_done_button">Τέλος</string>
-  <string name="mb_dialog_next_button">Επόμενο</string>
-  <string name="mb_dialog_skip_button">Παράλειψη</string>
-  <string name="mb_enable_camera">Ενεργοποίηση κάμερας</string>
-  <string name="mb_enable_permission_help">Θα μεταφερθείτε τώρα στις ρυθμίσεις αδειών όπου θα πρέπει να δώσετε άδεια στην κάμερα στην εφαρμογή.</string>
-  <string name="mb_enable_permission_help_instant_app">Δώστε άδεια στην κάμερα στις ρυθμίσεις αδειών της εφαρμογής.</string>
-  <string name="mb_license_locked">Η σάρωση δεν είναι διαθέσιμη</string>
-  <string name="mb_loading">Φόρτωση…</string>
-  <string name="mb_move_closer">Πλησιάστε</string>
-  <string name="mb_move_farther">Απομακρυνθείτε</string>
-  <string name="mb_need_help_tooltip">Χρειάζεστε βοήθεια;</string>
-  <string name="mb_ok">Εντάξει</string>
-  <string name="mb_retry">Επανάληψη</string>
-  <string name="mb_warning">Προειδοποίηση</string>
+    <string name="mb_camera_permission_required">Απαιτείται άδεια για την κάμερα.</string>
+    <string name="mb_close">Κλείσιμο</string>
+    <string name="mb_consent_description">Την αποθήκευση ή/και την πρόσβαση σε προσωπικές πληροφορίες με σκοπό την επαλήθευση της ταυτότητάς σας.</string>
+    <string name="mb_consent_no">Δεν συναινώ</string>
+    <string name="mb_consent_privacy_link">Δήλωση απορρήτου</string>
+    <string name="mb_consent_privacy_notice">Οι επιλογές σας μάς βοηθούν να προστατεύουμε τις προσωπικές σας πληροφορίες και να βελτιώνουμε την τεχνολογία μας, διατηρώντας παράλληλα τα υψηλότερα πρότυπα προστασίας δεδομένων, όπως περιγράφεται στη %1$s.</string>
+    <string name="mb_consent_privacy_switch">Συναινώ στη χρήση των προσωπικών μου δεδομένων από τον πάροχο για τη βελτιστοποίηση της τεχνολογίας του.</string>
+    <string name="mb_consent_title">Χρειαζόμαστε τη συγκατάθεσή σας για:</string>
+    <string name="mb_consent_yes">Συναινώ</string>
+    <string name="mb_dialog_back_button">Πίσω</string>
+    <string name="mb_dialog_done_button">Τέλος</string>
+    <string name="mb_dialog_next_button">Επόμενο</string>
+    <string name="mb_dialog_skip_button">Παράλειψη</string>
+    <string name="mb_enable_camera">Ενεργοποίηση κάμερας</string>
+    <string name="mb_enable_permission_help">Θα μεταφερθείτε τώρα στις ρυθμίσεις αδειών όπου θα πρέπει να δώσετε άδεια στην κάμερα στην εφαρμογή.</string>
+    <string name="mb_enable_permission_help_instant_app">Δώστε άδεια στην κάμερα στις ρυθμίσεις αδειών της εφαρμογής.</string>
+    <string name="mb_license_locked">Η σάρωση δεν είναι διαθέσιμη</string>
+    <string name="mb_loading">Φόρτωση…</string>
+    <string name="mb_move_closer">Πλησιάστε</string>
+    <string name="mb_move_farther">Απομακρυνθείτε</string>
+    <string name="mb_need_help_tooltip">Χρειάζεστε βοήθεια;</string>
+    <string name="mb_ok">Εντάξει</string>
+    <string name="mb_optional">Προαιρετικό</string>
+    <string name="mb_privacy_notice">Δήλωση απορρήτου</string>
+    <string name="mb_retry">Επανάληψη</string>
+    <string name="mb_warning">Προειδοποίηση</string>
 </resources>

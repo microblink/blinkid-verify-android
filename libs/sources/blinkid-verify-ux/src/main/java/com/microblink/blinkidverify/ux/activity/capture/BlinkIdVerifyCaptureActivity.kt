@@ -19,10 +19,10 @@ import com.microblink.blinkidverify.ux.result.contract.BlinkIdVerifyActivitySett
 import com.microblink.blinkidverify.ux.result.contract.BlinkIdVerifyCaptureResultHolder
 import com.microblink.blinkidverify.ux.result.contract.MbBlinkIdVerifyCapture
 import com.microblink.blinkidverify.ux.theme.BlinkIdVerifySdkTheme
-import com.microblink.core.ping.util.PingletTracker
-import com.microblink.ux.components.LoadingScreen
-import com.microblink.ux.contract.CancelReason
-import com.microblink.ux.createUiSettings
+import com.microblink.blinkidverify.core.ping.util.PingletTracker
+import com.microblink.blinkidverify.ux.components.LoadingScreen
+import com.microblink.blinkidverify.ux.contract.CancelReason
+import com.microblink.blinkidverify.ux.createUiSettings
 import kotlinx.coroutines.launch
 
 internal class BlinkIdVerifyCaptureActivity : AppCompatActivity() {
@@ -72,6 +72,7 @@ internal class BlinkIdVerifyCaptureActivity : AppCompatActivity() {
                             uiSettings = verifyUiSettings,
                             cameraSettings = verifyActivitySettings.cameraSettings,
                             sessionSettings = verifyActivitySettings.sessionSettings,
+                            consentUxConfig = verifyActivitySettings.consentUxConfig,
                             onCaptureSuccess = { result ->
                                 BlinkIdVerifyCaptureResultHolder.blinkIdVerifyCaptureResult = result
                                 this.setResult(RESULT_OK)

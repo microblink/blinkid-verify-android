@@ -34,8 +34,6 @@ abstract class CameraViewModel: ViewModel() {
      * This method is called once for each image from the camera, and called at the
      * frame rate of the camera. Each analyze call is executed sequentially.
      *
-     * It is the responsibility of the application to close the image once done with it.
-     *
      * @see [androidx.camera.core.ImageAnalysis.Analyzer.analyze]
      *
      * @param image input image to process.

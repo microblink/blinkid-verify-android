@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="mb_camera_permission_required">Nepieciešama kameras atļauja.</string>
-  <string name="mb_close">Aizvērt</string>
-  <string name="mb_dialog_back_button">Atpakaļ</string>
-  <string name="mb_dialog_done_button">Gatavs</string>
-  <string name="mb_dialog_next_button">Nākamais</string>
-  <string name="mb_dialog_skip_button">Izlaist</string>
-  <string name="mb_enable_camera">Iespējot kameru</string>
-  <string name="mb_enable_permission_help">Tagad jūs novirzīs uz atļauju iestatījumiem, kur lietotnei ir jāpiešķir kameras atļauja.</string>
-  <string name="mb_enable_permission_help_instant_app">Lūdzu, piešķiriet kameras atļauju lietotnes atļauju iestatījumos.</string>
-  <string name="mb_license_locked">Skenēšana nav pieejama</string>
-  <string name="mb_loading">Notiek ielāde…</string>
-  <string name="mb_move_closer">Pārvietot tuvāk</string>
-  <string name="mb_move_farther">Pārvietot tālāk</string>
-  <string name="mb_need_help_tooltip">Vai vajadzīga palīdzība?</string>
-  <string name="mb_ok">Labi</string>
-  <string name="mb_retry">Mēģināt no jauna</string>
-  <string name="mb_warning">Brīdinājums</string>
+    <string name="mb_camera_permission_required">Nepieciešama kameras atļauja.</string>
+    <string name="mb_close">Aizvērt</string>
+    <string name="mb_consent_description">Saglabātu personas informāciju un/vai piekļūtu tai, lai verificētu jūsu identitāti.</string>
+    <string name="mb_consent_no">Nepiekrītu</string>
+    <string name="mb_consent_privacy_link">Privātuma paziņojumā</string>
+    <string name="mb_consent_privacy_notice">Jūsu izvēles palīdz mums aizsargāt jūsu personas informāciju un uzlabot mūsu tehnoloģiju, vienlaikus ievērojot augstākos datu privātuma standartus, kā aprakstīts %1$s.</string>
+    <string name="mb_consent_privacy_switch">Es piekrītu, ka pakalpojuma sniedzējs izmanto manus personas datus savas tehnoloģijas optimizēšanai.</string>
+    <string name="mb_consent_title">Mums ir nepieciešama jūsu piekrišana, lai:</string>
+    <string name="mb_consent_yes">Piekrītu</string>
+    <string name="mb_dialog_back_button">Atpakaļ</string>
+    <string name="mb_dialog_done_button">Gatavs</string>
+    <string name="mb_dialog_next_button">Nākamais</string>
+    <string name="mb_dialog_skip_button">Izlaist</string>
+    <string name="mb_enable_camera">Iespējot kameru</string>
+    <string name="mb_enable_permission_help">Tagad jūs novirzīs uz atļauju iestatījumiem, kur lietotnei ir jāpiešķir kameras atļauja.</string>
+    <string name="mb_enable_permission_help_instant_app">Lūdzu, piešķiriet kameras atļauju lietotnes atļauju iestatījumos.</string>
+    <string name="mb_license_locked">Skenēšana nav pieejama</string>
+    <string name="mb_loading">Notiek ielāde…</string>
+    <string name="mb_move_closer">Pārvietot tuvāk</string>
+    <string name="mb_move_farther">Pārvietot tālāk</string>
+    <string name="mb_need_help_tooltip">Vai vajadzīga palīdzība?</string>
+    <string name="mb_ok">Labi</string>
+    <string name="mb_optional">Neobligāti</string>
+    <string name="mb_privacy_notice">Privātuma paziņojums</string>
+    <string name="mb_retry">Mēģināt no jauna</string>
+    <string name="mb_warning">Brīdinājums</string>
 </resources>

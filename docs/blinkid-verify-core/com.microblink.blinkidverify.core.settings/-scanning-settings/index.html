@@ -1,0 +1,273 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>ScanningSettings</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    BlinkIDVerify
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":blinkid-verify-core/productionRelease">productionRelease</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":blinkid-verify-core/productionRelease" data-filter=":blinkid-verify-core/productionRelease">
+                                <span class="checkbox--icon"></span>
+                                productionRelease
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    BlinkIDVerify
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="blinkid-verify-core::com.microblink.blinkidverify.core.settings/ScanningSettings///PointingToDeclaration//-112883329">
+  <div class="breadcrumbs"><a href="../../index.html">blinkid-verify-core</a><span class="delimiter">/</span><a href="../index.html">com.microblink.blinkidverify.core.settings</a><span class="delimiter">/</span><span class="current">ScanningSettings</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Scanning</span><wbr><span><span>Settings</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">ScanningSettings</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>documentCaptureModule<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-document-capture-module-settings/index.html">DocumentCaptureModuleSettings</a><span class="token operator">?</span><span class="token operator"> = </span>DocumentCaptureModuleSettings()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>barcodeModule<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-barcode-module-settings/index.html">BarcodeModuleSettings</a><span class="token operator">?</span><span class="token operator"> = </span>BarcodeModuleSettings()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>mrzModule<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-mrz-module-settings/index.html">MrzModuleSettings</a><span class="token operator">?</span><span class="token operator"> = </span>MrzModuleSettings()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>vizModule<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-viz-module-settings/index.html">VizModuleSettings</a><span class="token operator">?</span><span class="token operator"> = </span>VizModuleSettings()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>maxAllowedMismatchesPerField<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a></div><p class="paragraph">Represents the configurable settings for scanning a document.</p><p class="paragraph">This structure allows for the granular configuration of different extraction modules, enabling or disabling specific features based on the scanning use case.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-254705840%2FConstructors%2F-112883329" anchor-label="ScanningSettings" id="-254705840%2FConstructors%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-scanning-settings.html"><span>Scanning</span><wbr><span><span>Settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-254705840%2FConstructors%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">documentCaptureModule<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-document-capture-module-settings/index.html">DocumentCaptureModuleSettings</a><span class="token operator">?</span><span class="token operator"> = </span>DocumentCaptureModuleSettings()<span class="token punctuation">, </span></span><span class="parameter ">barcodeModule<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-barcode-module-settings/index.html">BarcodeModuleSettings</a><span class="token operator">?</span><span class="token operator"> = </span>BarcodeModuleSettings()<span class="token punctuation">, </span></span><span class="parameter ">mrzModule<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-mrz-module-settings/index.html">MrzModuleSettings</a><span class="token operator">?</span><span class="token operator"> = </span>MrzModuleSettings()<span class="token punctuation">, </span></span><span class="parameter ">vizModule<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-viz-module-settings/index.html">VizModuleSettings</a><span class="token operator">?</span><span class="token operator"> = </span>VizModuleSettings()<span class="token punctuation">, </span></span><span class="parameter ">maxAllowedMismatchesPerField<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="-364833573%2FClasslikes%2F-112883329" anchor-label="Companion" id="-364833573%2FClasslikes%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-364833573%2FClasslikes%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-1425495416%2FProperties%2F-112883329" anchor-label="barcodeModule" id="-1425495416%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="barcode-module.html"><span>barcode</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1425495416%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="barcode-module.html">barcodeModule</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-barcode-module-settings/index.html">BarcodeModuleSettings</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Settings for the barcode extraction module. This module manages the detection and data extraction from various 1D and 2D barcode formats (such as PDF417, QR codes, and various retail codes). It can operate as a standalone module or in combination with document capture.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="577813757%2FProperties%2F-112883329" anchor-label="documentCaptureModule" id="577813757%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="document-capture-module.html"><span>document</span><wbr><span>Capture</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="577813757%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="document-capture-module.html">documentCaptureModule</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-document-capture-module-settings/index.html">DocumentCaptureModuleSettings</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Settings for the document capture module. This module is responsible for the initial document detection, image extraction (such as face and document images), and image quality validation (blur, glare, and lighting checks).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2053423465%2FProperties%2F-112883329" anchor-label="maxAllowedMismatchesPerField" id="2053423465%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-allowed-mismatches-per-field.html"><span>max</span><wbr><span>Allowed</span><wbr><span>Mismatches</span><wbr><span>Per</span><wbr><span><span>Field</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2053423465%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-allowed-mismatches-per-field.html">maxAllowedMismatchesPerField</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div><div class="brief "><p class="paragraph">The maximum allowed mismatches per field during data matching. Configures the maximum number of characters per field that can be inconsistent during data matching. By default, no mismatches are allowed.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="166465651%2FProperties%2F-112883329" anchor-label="mrzModule" id="166465651%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="mrz-module.html"><span>mrz</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="166465651%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="mrz-module.html">mrzModule</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-mrz-module-settings/index.html">MrzModuleSettings</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Settings for the MRZ (Machine Readable Zone) extraction module. This module is dedicated to the detection and parsing of machine-readable zone typically found on passports, visas, and identity cards.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1015785087%2FProperties%2F-112883329" anchor-label="vizModule" id="-1015785087%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="viz-module.html"><span>viz</span><wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1015785087%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="viz-module.html">vizModule</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings.scanning/-viz-module-settings/index.html">VizModuleSettings</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Settings for the VIZ (Visual Inspection Zone) extraction module. This module is responsible for extracting data from the document's visual fields. It supports features such as character validation for increased accuracy, signature image extraction, and data aggregation across multiple video frames.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1578325224%2FFunctions%2F-112883329" anchor-label="describeContents" id="-1578325224%2FFunctions%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-use-case/index.html#-1578325224%2FFunctions%2F-112883329"><span>describe</span><wbr><span><span>Contents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1578325224%2FFunctions%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-use-case/index.html#-1578325224%2FFunctions%2F-112883329"><span class="token function">describeContents</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1754457655%2FFunctions%2F-112883329" anchor-label="writeToParcel" id="-1754457655%2FFunctions%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-use-case/index.html#-1754457655%2FFunctions%2F-112883329"><span>write</span><wbr><span>To</span><wbr><span><span>Parcel</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1754457655%2FFunctions%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-use-case/index.html#-1754457655%2FFunctions%2F-112883329"><span class="token function">writeToParcel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/os/Parcel.html">Parcel</a><span class="token punctuation">, </span></span><span class="parameter ">p1<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -36,6 +36,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.heading
@@ -67,8 +69,8 @@ fun OnboardingDialog(
         onDismissRequest = onDismissOnboardingDialog,
         properties = DialogProperties(usePlatformDefaultWidth = orientation == Configuration.ORIENTATION_PORTRAIT)
     ) {
-        val configuration = LocalConfiguration.current
-        val maxHeight = (configuration.screenHeightDp * 0.8).dp
+        val density = LocalResources.current.displayMetrics.density
+        val maxHeight = (LocalWindowInfo.current.containerSize.height / density * 0.8).dp
         Card(
             modifier = Modifier
                 .width(600.dp)
@@ -149,14 +151,17 @@ fun OnboardingDialogContent(
                 style = SdkTheme.sdkTypography.onboardingText
             )
         }
+        val (interactionSource, isFocused) = rememberFocusInteraction()
         Button(
             modifier = Modifier
                 .weight(0.15f)
-                .align(Alignment.End),
+                .align(Alignment.End)
+                .doubleFocusBorder(focused = isFocused.value, shape = ButtonDefaults.shape),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Transparent,
                 contentColor = MaterialTheme.colorScheme.primary
             ),
+            interactionSource = interactionSource,
             onClick = {
                 onDismissOnboardingDialog()
             }) {

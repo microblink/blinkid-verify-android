@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="mb_camera_permission_required">Vyžaduje sa povolenie fotoaparátu.</string>
-  <string name="mb_close">Zavrieť</string>
-  <string name="mb_dialog_back_button">Späť</string>
-  <string name="mb_dialog_done_button">Hotovo</string>
-  <string name="mb_dialog_next_button">Ďalej</string>
-  <string name="mb_dialog_skip_button">Preskočiť</string>
-  <string name="mb_enable_camera">Povoliť fotoaparát</string>
-  <string name="mb_enable_permission_help">Teraz budete presmerovaný na nastavenia povolení, kde je nutné udeliť fotoaparátu prístup k aplikácii.</string>
-  <string name="mb_enable_permission_help_instant_app">Prosím, udeľte fotoaparátu povolenie v prístupových nastaveniach aplikácie.</string>
-  <string name="mb_license_locked">Skenovanie nie je dostupné</string>
-  <string name="mb_loading">Načítava sa…</string>
-  <string name="mb_move_closer">Posuňte sa bližšie</string>
-  <string name="mb_move_farther">Posuňte sa ďalej</string>
-  <string name="mb_need_help_tooltip">Potrebujete pomoc?</string>
-  <string name="mb_ok">OK</string>
-  <string name="mb_retry">Skúsiť znova</string>
-  <string name="mb_warning">Varovanie</string>
+    <string name="mb_camera_permission_required">Vyžaduje sa povolenie fotoaparátu.</string>
+    <string name="mb_close">Zavrieť</string>
+    <string name="mb_consent_description">Ukladaním a/alebo prístupom k osobným údajom na účely overenia vašej identity.</string>
+    <string name="mb_consent_no">Nesúhlasím</string>
+    <string name="mb_consent_privacy_link">Oznámení o ochrane súkromia</string>
+    <string name="mb_consent_privacy_notice">Vaše voľby nám pomáhajú chrániť vaše osobné údaje a zlepšovať našu technológiu pri zachovaní najvyšších štandardov ochrany súkromia, ako je uvedené v %1$s.</string>
+    <string name="mb_consent_privacy_switch">Súhlasím s používaním mojich osobných údajov poskytovateľom na účely optimalizácie jeho technológie.</string>
+    <string name="mb_consent_title">Potrebujeme váš súhlas s:</string>
+    <string name="mb_consent_yes">Súhlasím</string>
+    <string name="mb_dialog_back_button">Späť</string>
+    <string name="mb_dialog_done_button">Hotovo</string>
+    <string name="mb_dialog_next_button">Ďalej</string>
+    <string name="mb_dialog_skip_button">Preskočiť</string>
+    <string name="mb_enable_camera">Povoliť fotoaparát</string>
+    <string name="mb_enable_permission_help">Teraz budete presmerovaný na nastavenia povolení, kde je nutné udeliť fotoaparátu prístup k aplikácii.</string>
+    <string name="mb_enable_permission_help_instant_app">Prosím, udeľte fotoaparátu povolenie v prístupových nastaveniach aplikácie.</string>
+    <string name="mb_license_locked">Skenovanie nie je dostupné</string>
+    <string name="mb_loading">Načítava sa…</string>
+    <string name="mb_move_closer">Posuňte sa bližšie</string>
+    <string name="mb_move_farther">Posuňte sa ďalej</string>
+    <string name="mb_need_help_tooltip">Potrebujete pomoc?</string>
+    <string name="mb_ok">OK</string>
+    <string name="mb_optional">Voliteľné</string>
+    <string name="mb_privacy_notice">Oznámenie o ochrane súkromia</string>
+    <string name="mb_retry">Skúsiť znova</string>
+    <string name="mb_warning">Varovanie</string>
 </resources>

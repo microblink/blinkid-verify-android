@@ -77,7 +77,7 @@ data class ParcelableTextStyle @JvmOverloads constructor(
  */
 @Parcelize
 data class ParcelableFont @JvmOverloads constructor(
-    @FontRes val resId: Int,
+    @param:FontRes val resId: Int,
     val weight: FontWeight = FontWeight.Normal,
     val style: FontStyle = FontStyle.Normal,
 ) : Parcelable {

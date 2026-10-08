@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="mb_camera_permission_required">El permiso para acceder a la cámara es obligatorio.</string>
-  <string name="mb_close">Cerrar</string>
-  <string name="mb_dialog_back_button">Anterior</string>
-  <string name="mb_dialog_done_button">Finalizar</string>
-  <string name="mb_dialog_next_button">Siguiente</string>
-  <string name="mb_dialog_skip_button">Omitir</string>
-  <string name="mb_enable_camera">Habilitar cámara</string>
-  <string name="mb_enable_permission_help">Ahora se te redirigirá a la configuración de los permisos para que autorices el acceso de la aplicación a la cámara.</string>
-  <string name="mb_enable_permission_help_instant_app">Autoriza el acceso a la cámara en la configuración de los permisos de la aplicación.</string>
-  <string name="mb_license_locked">Escaneo no disponible</string>
-  <string name="mb_loading">Cargando…</string>
-  <string name="mb_move_closer">Acercar más</string>
-  <string name="mb_move_farther">Alejar más</string>
-  <string name="mb_need_help_tooltip">¿Necesitas ayuda?</string>
-  <string name="mb_ok">Bien</string>
-  <string name="mb_retry">Reintentar</string>
-  <string name="mb_warning">Atención</string>
+    <string name="mb_camera_permission_required">El permiso para acceder a la cámara es obligatorio.</string>
+    <string name="mb_close">Cerrar</string>
+    <string name="mb_consent_description">Almacenar y/o acceder a información personal para verificar tu identidad.</string>
+    <string name="mb_consent_no">No dar consentimiento</string>
+    <string name="mb_consent_privacy_link">Aviso de privacidad</string>
+    <string name="mb_consent_privacy_notice">Tus decisiones nos ayudan a proteger tu información personal y a mejorar nuestra tecnología, al tiempo que mantenemos los más altos estándares de privacidad de datos, como se describe en el %1$s.</string>
+    <string name="mb_consent_privacy_switch">Doy mi consentimiento para que el proveedor use mis datos personales con el fin de optimizar su tecnología.</string>
+    <string name="mb_consent_title">Necesitamos tu consentimiento para:</string>
+    <string name="mb_consent_yes">Dar consentimiento</string>
+    <string name="mb_dialog_back_button">Anterior</string>
+    <string name="mb_dialog_done_button">Finalizar</string>
+    <string name="mb_dialog_next_button">Siguiente</string>
+    <string name="mb_dialog_skip_button">Omitir</string>
+    <string name="mb_enable_camera">Habilitar cámara</string>
+    <string name="mb_enable_permission_help">Ahora se te redirigirá a la configuración de los permisos para que autorices el acceso de la aplicación a la cámara.</string>
+    <string name="mb_enable_permission_help_instant_app">Autoriza el acceso a la cámara en la configuración de los permisos de la aplicación.</string>
+    <string name="mb_license_locked">Escaneo no disponible</string>
+    <string name="mb_loading">Cargando…</string>
+    <string name="mb_move_closer">Acercar más</string>
+    <string name="mb_move_farther">Alejar más</string>
+    <string name="mb_need_help_tooltip">¿Necesitas ayuda?</string>
+    <string name="mb_ok">Bien</string>
+    <string name="mb_optional">Opcional</string>
+    <string name="mb_privacy_notice">Aviso de privacidad</string>
+    <string name="mb_retry">Reintentar</string>
+    <string name="mb_warning">Atención</string>
 </resources>

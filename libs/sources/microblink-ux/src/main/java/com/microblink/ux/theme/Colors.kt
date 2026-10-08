@@ -17,9 +17,19 @@ val CobaltLight = Color(0xFF6FA9FF)
 val CobaltDark = Color(0xFF142641)
 val Gray = Color(0xFF666666)
 val DarkGray = Color(0xFF1E1E1E)
+val ElevatedDarkGray = Color(0xFF3B3B3B)
 val White = Color(0xFFFFFFFF)
 val Black = Color(0xFF000000)
 val ErrorRed = Color(0x99FB7185)
+
+val BrandGray50 = Color(0xFFF9FAFB)
+val BrandGray200 = Color(0xFFE5E7EB)
+val BrandGray400 = Color(0xFF9CA3AF)
+val BrandGray500 = Color(0xFF6B7280)
+val BrandGray600 = Color(0xFF4B5563)
+val BrandGray700 = Color(0xFF374151)
+val BrandGray800 = Color(0xFF1F2937)
+val BrandGray900 = Color(0xFF111827)
 
 /**
  * Data class contains all the text, button, and background colors used
@@ -58,13 +68,27 @@ data class UiColors(
 val LightColorScheme = lightColorScheme(
     primary = Cobalt,
     onBackground = Color.Black,
-    background = Color.White
+    background = Color.White,
+    onSurface = BrandGray900,
+    onSurfaceVariant = BrandGray600,
+    surfaceContainerLowest = BrandGray50,
+    surfaceContainerHigh = BrandGray50,
+    surfaceContainerHighest = BrandGray200,
+    outline = BrandGray400,
+    outlineVariant = BrandGray200
 )
 
 val DarkColorScheme = darkColorScheme(
     primary = CobaltLight,
     onBackground = Color.White,
-    background = DarkGray
+    background = DarkGray,
+    onSurface = Color.White,
+    onSurfaceVariant = BrandGray200,
+    surfaceContainerLowest = BrandGray900,
+    surfaceContainerHigh = ElevatedDarkGray,
+    surfaceContainerHighest = BrandGray700,
+    outline = BrandGray500,
+    outlineVariant = BrandGray700
 )
 
 var LocalTheme = staticCompositionLocalOf {

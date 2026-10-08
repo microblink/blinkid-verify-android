@@ -16,15 +16,16 @@ import com.microblink.blinkidverify.core.capture.session.BlinkIdVerifySessionSet
 import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyCaptureResult
 import com.microblink.blinkidverify.ux.activity.capture.BlinkIdVerifyCaptureActivity
 import com.microblink.blinkidverify.ux.capture.settings.VerifyUxSettings
-import com.microblink.ux.DefaultShowHelpButton
-import com.microblink.ux.DefaultShowOnboardingDialog
-import com.microblink.ux.camera.CameraSettings
-import com.microblink.ux.contract.CancelReason
-import com.microblink.ux.contract.ScanActivityColors
-import com.microblink.ux.contract.ScanActivityResultStatus
-import com.microblink.ux.contract.ScanActivitySettings
-import com.microblink.ux.theme.SdkStrings
-import com.microblink.ux.utils.ParcelableUiTypography
+import com.microblink.blinkidverify.ux.consent.BlinkIdVerifyConsentUxConfig
+import com.microblink.blinkidverify.ux.DefaultShowHelpButton
+import com.microblink.blinkidverify.ux.DefaultShowOnboardingDialog
+import com.microblink.blinkidverify.ux.camera.CameraSettings
+import com.microblink.blinkidverify.ux.contract.CancelReason
+import com.microblink.blinkidverify.ux.contract.ScanActivityColors
+import com.microblink.blinkidverify.ux.contract.ScanActivityResultStatus
+import com.microblink.blinkidverify.ux.contract.ScanActivitySettings
+import com.microblink.blinkidverify.ux.theme.SdkStrings
+import com.microblink.blinkidverify.ux.utils.ParcelableUiTypography
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -99,6 +100,9 @@ class MbBlinkIdVerifyCapture :
  *           allows you to customize aspects of the capture process, such as certain visual check strictness
  *           and timeout duration. Defaults to `CaptureSessionSettings()`.
  * @property uxSettings The [com.microblink.blinkidverify.ux.capture.settings.VerifyUxSettings] used to customize the UX.
+ * @property consentUxConfig The [BlinkIdVerifyConsentUxConfig] that defines how end-user consent for
+ *           cloud processing is obtained. Declining the consent cancels the activity with
+ *           [CancelReason.UserRequested].
  * @property scanActivityUiColors Custom colors for the `BlinkIdVerifyActivity` user interface.
  *           If set to `null`, the default colors will be used. Defaults to `null`.
  * @property scanActivityUiStrings Custom strings for the `BlinkIdVerifyActivity` user
@@ -127,6 +131,7 @@ data class BlinkIdVerifyActivitySettings @JvmOverloads constructor(
     val blinkIdVerifySdkSettings: BlinkIdVerifySdkSettings,
     val sessionSettings: BlinkIdVerifySessionSettings = BlinkIdVerifySessionSettings(),
     val uxSettings: VerifyUxSettings = VerifyUxSettings(),
+    val consentUxConfig: BlinkIdVerifyConsentUxConfig,
     override val cameraSettings: CameraSettings = CameraSettings(),
     override val scanActivityUiColors: ScanActivityColors? = null,
     override val scanActivityUiStrings: SdkStrings = SdkStrings.Default,

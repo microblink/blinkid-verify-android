@@ -36,16 +36,20 @@ The list of all supported documents and result fields can be found [here](#suppo
 
 # <a name="quick-start"></a> Quick Start
 
-## <a name="quick-sample"></a> Quick start with the sample apps
+## <a name="quick-sample"></a> Quick start with the sample app
 
 1. Open Android Studio.
-2. In `Quick Start` dialog choose _Open project_.
-3. In `File` dialog select _BlinkIDVerify_ folder.
-4. Wait for the project to load. If Android Studio asks you to reload the project on startup, select `Yes`.
+2. In the `Quick Start` dialog, choose _Open project_.
+3. In the file dialog, select the **`BlinkIDVerifySample`** folder in this repository (not the repo root).
+4. Wait for Gradle sync to finish. If Android Studio asks to reload the project, select `Yes`.
+5. Before running, set your credentials in [`BlinkIdVerifyConfig`](BlinkIDVerifySample/lib-common/src/main/java/com/microblink/blinkidverify/sample/config/Config.kt):
+   - `licenseKey` — trial or production license for your app ID (`com.microblink.blinkidverify.sample` for the sample).
+   - `verificationServiceBaseUrl` — Verify Cloud **v3** base URL (default: `https://us-east.verify.microblink.com/api/v3`).
+   - `verificationServiceToken` — Basic auth token for Verify Cloud.
 
-#### Included sample apps:
+The **`app`** module demonstrates capture with `VerifyCameraScanningScreen`, submits the native v3 multipart payload to Verify Cloud, and shows a `BlinkIdVerifyV3EndpointResponse` result screen.
 
-- **_app_** demonstrates quick and straightforward integration of the BlinkID Verify SDK using the provided UX in Jetpack Compose to verify a document and display the results.
+The sample consumes **`blinkid-verify-ux`** from Maven Central (see `BlinkIDVerifySample/gradle/libs.versions.toml`). An optional local `:blinkid-verify-ux` module (UX sources under `libs/sources/`) is included for advanced UX customization; switch dependencies in `app/build.gradle.kts` if you want to build UX from source instead of Maven.
 
 
 ## <a name="sdk-integration"></a> SDK integration
@@ -67,7 +71,7 @@ Add _BlinkID Verify_ as a dependency in module level `build.gradle(.kts)`:
 
 ```
 dependencies {
-    implementation("com.microblink:blinkid-verify-ux:3.21.0")
+    implementation("com.microblink:blinkid-verify-ux:4000.0.0")
 }
 ```
 
@@ -79,8 +83,8 @@ dependencies {
 2. You first need to initialize the SDK and obtain the `BlinkIdVerifySdk` instance:
 ```kotlin
 val maybeInstance = BlinkIdVerifySdk.initializeSdk(
+    context = context,
     BlinkIdVerifySdkSettings(
-        context = context,
         licenseKey = "your_license_key",
     )
 )
@@ -106,6 +110,7 @@ VerifyCameraScanningScreen(
     uiSettings = UiSettings(),
     cameraSettings = CameraSettings(),
     sessionSettings = BlinkIdVerifySessionSettings(),
+    consentUxConfig = BlinkIdVerifyConsentUxConfig.NoConsentNeeded,
     onCaptureSuccess = { captureResult ->
         // captureResult is BlinkIdVerifyCaptureResult
     },
@@ -114,6 +119,8 @@ VerifyCameraScanningScreen(
     }
 )
 ```
+
+Configure verification-related options on `BlinkIdVerifySessionSettings.scanningSettings` (match levels, return images, redaction, use case, and so on). Those settings are embedded in `captureResult.serializedVerifyPayload` for Verify Cloud v3.
 
 ### Document capture session result
 
@@ -144,7 +151,7 @@ If you don't already have the API token, contact us at [help.microblink.com](htt
 
 3. Submit the payload with `client.verify(payload)`:
 ```kotlin
-CoroutineScope(IO).launch {
+CoroutineScope(Dispatchers.IO).launch {
     when (val response = client.verify(payload)) {
         is Response.Error -> {
             // check `response.errorReason` to check why the request failed
@@ -156,9 +163,11 @@ CoroutineScope(IO).launch {
 }
 ```
 
+> **Note:** `BlinkIdVerifyClient.verify(BlinkIdVerifyRequest)` (legacy v2 JSON `/docver`) and [BlinkIdVerifyEndpointResponse](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core.data.model.result/-blink-id-verify-endpoint-response/index.html) are deprecated. New integrations must use the v3 multipart flow above.
+
 ### Document verification results
 
-The final result from Verify Cloud v3 is of type [BlinkIdVerifyV3EndpointResponse](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core.data.model.result/-blink-id-verify-v3-endpoint-response/index.html), and it contains pipeline status, verification verdict, extraction JSON, and related metadata.
+The final result from Verify Cloud v3 is of type [BlinkIdVerifyV3EndpointResponse](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core.data.model.result/-blink-id-verify-v3-endpoint-response/index.html), and it contains pipeline status, verification verdict, extraction JSON, and related metadata. Helper extensions such as `verifyVerdictOrRaw()` and `extractionProcessingStatus()` are available on this type.
 
 
 # <a name="device-requirements"></a> Device requirements
@@ -201,13 +210,15 @@ If you want to reduce the SDK startup time and network traffic, you have the opt
 Use `BlinkIdVerifySdkSettings` to set the following options when instantiating the SDK:
 
 ```kotlin
-BlinkIdVerifySdkSettings(
+BlinkIdVerifySdk.initializeSdk(
     context = context,
-    licenseKey = "your_license_key",
-    // disable resource download
-    downloadResources = false,
-    // define path if you are not using a default one: "microblink/blinkidverify"
-    // resourceLocalFolder = "path_within_app_assets"
+    BlinkIdVerifySdkSettings(
+        licenseKey = "your_license_key",
+        // disable resource download when assets are pre-bundled
+        downloadResources = false,
+        // define path if you are not using the default: "microblink/blinkidverify"
+        // resourceLocalFolder = "path_within_app_assets"
+    )
 )
 ```
 
@@ -232,6 +243,7 @@ VerifyCameraScanningScreen(
     ),
     cameraSettings = CameraSettings(),
     sessionSettings = BlinkIdVerifySessionSettings(),
+    consentUxConfig = BlinkIdVerifyConsentUxConfig.NoConsentNeeded,
     onCaptureSuccess = { captureResult ->
         // result is BlinkIdVerifyCaptureResult
     },
@@ -433,7 +445,7 @@ Add _blinkid-verify-core_ library as a dependency in module level `build.gradle(
 
 ```
 dependencies {
-    implementation("com.microblink:blinkid-verify-core:3.21.0")
+    implementation("com.microblink:blinkid-verify-core:4000.0.0")
 }
 ```
 
@@ -450,8 +462,8 @@ Once you obtain an instance of the `BlinkIdVerifySdk` class after SDK initializa
 1. First initialize the SDK to obtain `BlinkIdVerifySdk` instance by calling `BlinkIdVerifySdk.initializeSdk` suspend function from a Coroutine:
 ```kotlin
 val maybeInstance = BlinkIdVerifySdk.initializeSdk(
+    context = context,
     BlinkIdVerifySdkSettings(
-        context = context,
         licenseKey = "your_license_key",
     )
 )
@@ -502,7 +514,7 @@ if (processResult.resultCompleteness.isComplete()) {
 }
 ```
 
-You will get [BlinkIdVerifyCaptureResult](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core.data.model.result/-blink-id-verify-capture-result/index.html) with document images.
+You will get [BlinkIdVerifyCaptureResult](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core.data.model.result/-blink-id-verify-capture-result/index.html) with document images and `serializedVerifyPayload` for Verify Cloud v3. Submit that payload with [BlinkIdVerifyClient](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core/-blink-id-verify-client/index.html) as described in [Launching the document verification API call](#launching-the-document-verification-api-call-and-obtaining-the-results).
 
 **After scanning is completed, it is important to terminate the scanning session**
 
@@ -550,12 +562,13 @@ To determine what is supported in a specific Verify SDK version:
 Version mapping:
 
 | Verify SDK | BlinkID SDK |
-| :--------: |:-----------:|
-| v3.21.0    |    v7.8     |
-| v3.20.0    |    v7.7     |
-| v3.14.1    |    v7.4     |
-| v3.14.0    |    v7.4     |
-| v3.9.0     |    v7.0     |
+|:----------:|:-----------:|
+| v4000.0.0  |  v8002.0.0  |
+|  v3.21.0   |    v7.8     |
+|  v3.20.0   |    v7.7     |
+|  v3.14.1   |    v7.4     |
+|  v3.14.0   |    v7.4     |
+|   v3.9.0   |    v7.0     |
 
 
 ## <a name="api-documentation"></a> API documentation

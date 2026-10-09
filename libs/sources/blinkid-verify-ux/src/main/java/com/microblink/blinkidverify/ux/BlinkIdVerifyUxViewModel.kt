@@ -13,20 +13,24 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.microblink.blinkid.ux.scanning.RequestPassportPage
-import com.microblink.blinkid.ux.scanning.ScanningWrongPassportPage
-import com.microblink.blinkid.ux.state.BlinkIdStatusMessage
-import com.microblink.blinkid.ux.state.PassportPage
-import com.microblink.blinkid.ux.state.ShowPassportMoveToBarcode
-import com.microblink.blinkid.ux.state.ShowPassportMoveToLeft
-import com.microblink.blinkid.ux.state.ShowPassportMoveToRight
-import com.microblink.blinkid.ux.state.ShowPassportMoveToTop
-import com.microblink.blinkid.ux.utils.UxPingletTracker
-import com.microblink.blinkid.ux.utils.getCorrectedDocumentRotation
-import com.microblink.blinkid.ux.utils.getPassportPageFromRotation
+import com.microblink.blinkidverify.ux.scanning.RequestPassportPage
+import com.microblink.blinkidverify.ux.scanning.ScanningWrongPassportPage
+import com.microblink.blinkidverify.ux.state.BlinkIdStatusMessage
+import com.microblink.blinkidverify.ux.state.PassportPage
+import com.microblink.blinkidverify.ux.state.ShowPassportMoveToBarcode
+import com.microblink.blinkidverify.ux.state.ShowPassportMoveToLeft
+import com.microblink.blinkidverify.ux.state.ShowPassportMoveToRight
+import com.microblink.blinkidverify.ux.state.ShowPassportMoveToTop
+import com.microblink.blinkidverify.ux.utils.UxPingletTracker
+import com.microblink.blinkidverify.ux.utils.getCorrectedDocumentRotation
+import com.microblink.blinkidverify.ux.utils.getPassportPageFromRotation
 import com.microblink.blinkidverify.core.BlinkIdVerifySdk
 import com.microblink.blinkidverify.core.capture.session.BlinkIdVerifySessionSettings
 import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyCaptureResult
+import com.microblink.blinkidverify.ux.consent.CmsFlowLog
+import com.microblink.blinkidverify.ux.consent.BlinkIdVerifyConsentUxConfig
+import com.microblink.blinkidverify.ux.consent.ConsentManager
+import com.microblink.blinkidverify.ux.consent.ConsentUxState
 import com.microblink.blinkidverify.core.utils.ping.sendPingletsIfAllowed
 import com.microblink.blinkidverify.ux.capture.scanning.BlinkIdVerifyDocumentLocatedLocation
 import com.microblink.blinkidverify.ux.capture.scanning.BlinkIdVerifyAnalyzer
@@ -34,32 +38,35 @@ import com.microblink.blinkidverify.ux.capture.scanning.VerifyDocumentImageAnaly
 import com.microblink.blinkidverify.ux.capture.scanning.VerifyScanningDoneHandler
 import com.microblink.blinkidverify.ux.capture.settings.VerifyUxSettings
 import com.microblink.blinkidverify.ux.state.VerifyUiState
-import com.microblink.ux.ScanningUxEvent
-import com.microblink.ux.ScanningUxEventHandler
-import com.microblink.ux.R
-import com.microblink.ux.UiSettings
-import com.microblink.ux.camera.CameraHardwareInfoHelper
-import com.microblink.ux.camera.CameraInputDetails
-import com.microblink.ux.camera.CameraViewModel
-import com.microblink.ux.components.needHelpTooltipDefaultTimeToAppearMs
-import com.microblink.ux.components.uiCountingWindowDurationMs
-import com.microblink.ux.state.CardAnimationState
-import com.microblink.ux.state.CardAnimationState.ShowFlipLandscape
-import com.microblink.ux.state.CommonStatusMessage
-import com.microblink.ux.state.ErrorState
-import com.microblink.ux.state.HapticFeedbackState
-import com.microblink.ux.state.MbTorchState
-import com.microblink.ux.state.ProcessingState
-import com.microblink.ux.state.ReticleState
-import com.microblink.ux.state.StatusMessage
-import com.microblink.ux.state.StatusMessageCounter
-import com.microblink.ux.utils.ErrorReason
-import com.microblink.core.ping.config.PingSendTriggerPoint
-import com.microblink.core.ping.pinglets.UxEvent
-import com.microblink.ux.state.UiScanningSide
-import com.microblink.core.utils.MbLog
-import com.microblink.ux.utils.ScreenOrientation
-import com.microblink.ux.utils.toErrorState
+import com.microblink.blinkidverify.ux.ScanningUxEvent
+import com.microblink.blinkidverify.ux.ScanningUxEventHandler
+import com.microblink.blinkidverify.ux.R
+import com.microblink.blinkidverify.ux.UiSettings
+import com.microblink.blinkidverify.ux.camera.CameraHardwareInfoHelper
+import com.microblink.blinkidverify.ux.camera.CameraInputDetails
+import com.microblink.blinkidverify.ux.camera.CameraViewModel
+import com.microblink.blinkidverify.ux.camera.TimeoutCause
+import com.microblink.blinkidverify.ux.components.uiCountingWindowDurationMs
+import com.microblink.blinkidverify.ux.state.CardAnimationState
+import com.microblink.blinkidverify.ux.state.CardAnimationState.ShowFlipLandscape
+import com.microblink.blinkidverify.ux.capture.scanning.ScreenPresenceDetected
+import com.microblink.blinkidverify.ux.state.CommonStatusMessage
+import com.microblink.blinkidverify.ux.state.VerifyStatusMessage
+import com.microblink.blinkidverify.ux.state.ErrorState
+import com.microblink.blinkidverify.ux.state.HapticFeedbackState
+import com.microblink.blinkidverify.ux.state.ScanSoundState
+import com.microblink.blinkidverify.ux.state.MbTorchState
+import com.microblink.blinkidverify.ux.state.ProcessingState
+import com.microblink.blinkidverify.ux.state.ReticleState
+import com.microblink.blinkidverify.ux.state.StatusMessage
+import com.microblink.blinkidverify.ux.state.StatusMessageCounter
+import com.microblink.blinkidverify.ux.utils.ErrorReason
+import com.microblink.blinkidverify.core.ping.config.PingSendTriggerPoint
+import com.microblink.blinkidverify.core.ping.pinglets.UxEvent
+import com.microblink.blinkidverify.ux.state.UiScanningSide
+import com.microblink.blinkidverify.core.utils.MbLog
+import com.microblink.blinkidverify.ux.utils.ScreenOrientation
+import com.microblink.blinkidverify.ux.utils.toErrorState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -80,15 +87,44 @@ private const val pingletOrientationDelayMs = 1000L
 internal class BlinkIdVerifyUxViewModel(
     blinkIdVerifySdkInstance: BlinkIdVerifySdk,
     sessionSettings: BlinkIdVerifySessionSettings,
-    uxSettings: VerifyUxSettings
+    uxSettings: VerifyUxSettings,
+    consentUxConfig: BlinkIdVerifyConsentUxConfig,
+    applicationContext: Context
 ) : CameraViewModel() {
     private var imageAnalyzer: BlinkIdVerifyAnalyzer? = null
 
+    private val consentManager = ConsentManager(consentUxConfig)
+
+    /**
+     * Onboarding is deferred until consent is resolved, so the end user is not presented with two
+     * dialogs at the same time.
+     */
+    private var showOnboardingDialogAfterConsent = false
+
     private var firstImageTimestamp: Long? = null
+    /**
+     * Monotonic timestamp from which inactivity is measured. It is cleared whenever the scanning
+     * makes progress, so the inactivity timeout starts again on the next UX event.
+     *
+     * Progress means either a change of the processing state or status message, or a UX event
+     * reporting that the document is being located and processed. The latter matters because this UI
+     * implementation does not surface a distinct state while the document is located, so relying on
+     * UI state changes alone would time out a scan that is actually advancing.
+     */
+    private var inactivityTimeoutStartTimestamp: Long? = null
+
+    private var stepTimeoutDurationBeforePause: Long? = null
+
     private val stepTimeoutDuration: Duration? =
         if (uxSettings.stepTimeoutDuration == Duration.ZERO) null else uxSettings.stepTimeoutDuration
+    private val inactivityTimeoutDuration: Duration? =
+        if (uxSettings.inactivityTimeoutDuration == Duration.ZERO) null else uxSettings.inactivityTimeoutDuration
 
-    private val _uiState = MutableStateFlow(VerifyUiState())
+    private var isStateTimeoutActive: Boolean = true
+    private var isAnalysisPaused: Boolean = false
+
+    private val _uiState =
+        MutableStateFlow(VerifyUiState(consentUxState = consentManager.initialConsentUxState))
     val uiState: StateFlow<VerifyUiState> = _uiState.asStateFlow()
 
     var uiStateStartTime: Duration = Duration.ZERO
@@ -98,22 +134,16 @@ internal class BlinkIdVerifyUxViewModel(
     private val statusCounter: StatusMessageCounter = StatusMessageCounter()
     private val appearanceCounter: StatusMessageCounter = StatusMessageCounter()
 
-    private var isCountingActive: Boolean = true
-
     private var currentScreenOrientation: ScreenOrientation? = null
 
     private var lastTrackedErrorType: UxEvent.ErrorMessageType? = null
 
     private var cameraHardwareInfoReported = false
 
-    val helpTooltipTimeToDisplayInMs =
-        if (stepTimeoutDuration == null) {
-            needHelpTooltipDefaultTimeToAppearMs
-        } else {
-            uxSettings.stepTimeoutDuration.inWholeMilliseconds / 2
-        }
+    val helpTooltipTimeToDisplayInMs = uxSettings.helpTooltipShowDelay.inWholeMilliseconds
 
-    private val helpTooltipTimer =
+    // the help tooltip is never shown automatically if the show delay is not positive
+    private val helpTooltipTimer = if (!uxSettings.helpTooltipShowDelay.isPositive()) null else
         object : CountDownTimer(helpTooltipTimeToDisplayInMs, helpTooltipTimeToDisplayInMs) {
             override fun onTick(millisUntilFinished: Long) {
             }
@@ -129,9 +159,12 @@ internal class BlinkIdVerifyUxViewModel(
         }
 
     init {
+        MbLog.i(CmsFlowLog.TAG) {
+            "[CMS] Starting scanning session UX with consentUxState=${consentManager.initialConsentUxState}"
+        }
         imageAnalyzer = BlinkIdVerifyAnalyzer(
             verifySdk = blinkIdVerifySdkInstance,
-            sessionSettings = sessionSettings,
+            sessionSettings = consentManager.applyTo(sessionSettings),
             verifyScanningDoneHandler = object : VerifyScanningDoneHandler {
                 override fun onScanningFinished(result: BlinkIdVerifyCaptureResult) {
                     MbLog.d(TAG) { "Scanning finished successfully" }
@@ -145,9 +178,13 @@ internal class BlinkIdVerifyUxViewModel(
                     showErrorDialog(
                         alertType = when (error) {
                             ErrorReason.ErrorInvalidLicense -> UxEvent.AlertType.INVALIDLICENSEKEY
-                            ErrorReason.ErrorTimeoutExpired -> UxEvent.AlertType.STEPTIMEOUT
+                            ErrorReason.ErrorStepTimeoutExpired -> UxEvent.AlertType.STEPTIMEOUT
+                            ErrorReason.ErrorInactivityTimeoutExpired -> UxEvent.AlertType.INACTIVITYTIMEOUT
                             ErrorReason.ErrorNetworkError -> UxEvent.AlertType.NETWORKERROR
                             ErrorReason.ErrorDocumentClassFiltered -> UxEvent.AlertType.DOCUMENTCLASSNOTALLOWED
+                            // TODO: add new AlertTypes
+                            ErrorReason.ErrorSettingsValidationFailed -> UxEvent.AlertType.NETWORKERROR
+                            ErrorReason.ErrorGetResultFailed -> UxEvent.AlertType.NETWORKERROR
                         },
                         errorState = error.toErrorState()
                     )
@@ -161,17 +198,33 @@ internal class BlinkIdVerifyUxViewModel(
                     var newProcessingState: ProcessingState? = null
                     var newActivePassportPage: PassportPage? = null
                     var newCurrentSide: UiScanningSide? = null
+                    var scanningProgressed = false
                     stepTimeoutDuration?.let {
-                        if (isCountingActive) {
-                            if (firstImageTimestamp == null) {
-                                firstImageTimestamp = System.nanoTime()
+                        if (firstImageTimestamp == null) {
+                            firstImageTimestamp = System.nanoTime()
+                        }
+                        firstImageTimestamp?.let { timestamp ->
+                            val currentDuration =
+                                (System.nanoTime() - timestamp).toDuration(DurationUnit.NANOSECONDS)
+                            if (currentDuration > stepTimeoutDuration) {
+                                imageAnalyzer?.timeoutAnalysis(TimeoutCause.Step)
+                                firstImageTimestamp = null
+                                inactivityTimeoutStartTimestamp = null
                             }
-                            firstImageTimestamp?.let { timestamp ->
+                        }
+                    }
+                    inactivityTimeoutDuration?.let {
+                        if (isStateTimeoutActive) {
+                            if (inactivityTimeoutStartTimestamp == null) {
+                                inactivityTimeoutStartTimestamp = System.nanoTime()
+                            }
+                            inactivityTimeoutStartTimestamp?.let { timestamp ->
                                 val currentDuration =
                                     (System.nanoTime() - timestamp).toDuration(DurationUnit.NANOSECONDS)
-                                if (currentDuration > stepTimeoutDuration) {
-                                    imageAnalyzer?.timeoutAnalysis()
+                                if (currentDuration > inactivityTimeoutDuration) {
+                                    imageAnalyzer?.timeoutAnalysis(TimeoutCause.Inactivity)
                                     firstImageTimestamp = null
+                                    inactivityTimeoutStartTimestamp = null
                                 }
                             }
                         }
@@ -180,6 +233,7 @@ internal class BlinkIdVerifyUxViewModel(
                         MbLog.d(TAG) { "Received UX event: $event" }
                         when (event) {
                             is ScanningUxEvent.ScanningDone -> {
+                                firstImageTimestamp = null
                                 lifecyclePauseAnalysis()
                                 newStatusMessage = CommonStatusMessage.Empty
                                 newProcessingState = ProcessingState.SuccessAnimation(false)
@@ -210,6 +264,9 @@ internal class BlinkIdVerifyUxViewModel(
                                 // newProcessingState = ProcessingState.Processing
                                 // Not used in this UI implementation.
                                 // Can be used for processing state.
+                                // The document is located and being processed, so the scanning is
+                                // advancing even though the UI state stays the same.
+                                scanningProgressed = true
                             }
 
 
@@ -241,6 +298,11 @@ internal class BlinkIdVerifyUxViewModel(
                             is ScanningUxEvent.GlareDetected -> {
                                 newProcessingState = ProcessingState.Error
                                 newStatusMessage = BlinkIdStatusMessage.EliminateGlare
+                            }
+
+                            is ScreenPresenceDetected -> {
+                                newProcessingState = ProcessingState.Error
+                                newStatusMessage = VerifyStatusMessage.MoveToPlainBackground
                             }
 
                             is ScanningUxEvent.ScanningWrongSide -> {
@@ -303,6 +365,7 @@ internal class BlinkIdVerifyUxViewModel(
                                                 newProcessingState =
                                                     ProcessingState.SuccessAnimation(true)
                                                 newStatusMessage = CommonStatusMessage.Empty
+                                                firstImageTimestamp = null
                                                 lifecyclePauseAnalysis()
                                             }
 
@@ -311,7 +374,8 @@ internal class BlinkIdVerifyUxViewModel(
                                                 newStatusMessage =
                                                     BlinkIdStatusMessage.ScanBarcode
                                                 newCurrentSide = UiScanningSide.Barcode
-                                                isCountingActive = false
+                                                firstImageTimestamp = null
+                                                isStateTimeoutActive = false
                                                 imageAnalyzer?.pauseAnalysis()
                                                 imageAnalyzer?.resumeAnalysis()
                                             }
@@ -329,7 +393,8 @@ internal class BlinkIdVerifyUxViewModel(
                                                 newStatusMessage =
                                                     BlinkIdStatusMessage.ScanBarcode
                                                 newCurrentSide = UiScanningSide.Barcode
-                                                isCountingActive = false
+                                                firstImageTimestamp = null
+                                                isStateTimeoutActive = false
                                                 imageAnalyzer?.pauseAnalysis()
                                                 imageAnalyzer?.resumeAnalysis()
                                             }
@@ -358,15 +423,29 @@ internal class BlinkIdVerifyUxViewModel(
                             }
                         }
                     }
+
+                    val processingStateBeforeUpdate = _uiState.value.processingState
+                    val statusMessageBeforeUpdate = _uiState.value.statusMessage
                     updateUiState(
                         newProcessingState,
                         newStatusMessage,
                         newActivePassportPage,
                         newCurrentSide
                     )
+                    if (scanningProgressed ||
+                        processingStateBeforeUpdate != _uiState.value.processingState ||
+                        statusMessageBeforeUpdate != _uiState.value.statusMessage
+                    ) {
+                        inactivityTimeoutStartTimestamp = null
+                    }
                 }
             }
         )
+
+        if (isConsentPending()) {
+            // No frame may be processed before consent is resolved.
+            lifecyclePauseAnalysis()
+        }
 
         viewModelScope.launch {
             isTorchSupported.collect { isTorchSupported ->
@@ -387,11 +466,11 @@ internal class BlinkIdVerifyUxViewModel(
     ) {
         newProcessingState?.let {
             if (newProcessingState is ProcessingState.SuccessAnimation || newStatusMessage == BlinkIdStatusMessage.ScanBarcode) {
-                isCountingActive = false
+                isStateTimeoutActive = false
                 runBlocking {
                     waitForMinimumStateDuration(newProcessingState)
                 }
-            } else if (isCountingActive || shouldStartCounting(uiState.value.processingState)) {
+            } else if (isStateTimeoutActive || shouldStartCounting(uiState.value.processingState)) {
                 newStatusMessage?.let {
                     statusCounter.increment(it)
                 }
@@ -429,6 +508,10 @@ internal class BlinkIdVerifyUxViewModel(
 
                             else -> null
                         }
+                        val newScanSoundState = when (selectedProcessingState) {
+                            is ProcessingState.SuccessAnimation -> ScanSoundState.PlayScanBeep
+                            else -> null
+                        }
                         selectedStatusMessage?.let {
                             if (selectedProcessingState == ProcessingState.Error) {
                                 val errorType: UxEvent.ErrorMessageType? =
@@ -449,6 +532,11 @@ internal class BlinkIdVerifyUxViewModel(
                                             BlinkIdStatusMessage.DecreaseLightingIntensity -> UxEvent.ErrorMessageType.DECREASELIGHTING
                                             BlinkIdStatusMessage.EliminateGlare -> UxEvent.ErrorMessageType.ELIMINATEGLARE
                                             else -> null
+                                        }
+
+                                        is VerifyStatusMessage -> when (selectedStatusMessage) {
+                                            VerifyStatusMessage.MoveToPlainBackground ->
+                                                UxEvent.ErrorMessageType.KEEPVISIBLE
                                         }
 
                                         else -> null
@@ -472,6 +560,8 @@ internal class BlinkIdVerifyUxViewModel(
                                     statusMessage = selectedStatusMessage,
                                     hapticFeedbackState = newHapticFeedbackState
                                         ?: it.hapticFeedbackState,
+                                    scanSoundState = newScanSoundState
+                                        ?: it.scanSoundState,
                                     activePassportPage = newActivePassportPage ?: it.activePassportPage,
                                     currentSide = newCurrentSide ?: it.currentSide
                                 )
@@ -486,10 +576,12 @@ internal class BlinkIdVerifyUxViewModel(
     }
 
     fun setInitialUiStateFromUiSettings(uiSettings: UiSettings) {
+        val deferOnboardingDialog = isConsentPending()
+        showOnboardingDialogAfterConsent = deferOnboardingDialog && uiSettings.showOnboardingDialog
         _uiState.update {
             it.copy(
                 helpButtonDisplayed = uiSettings.showHelpButton,
-                onboardingDialogDisplayed = uiSettings.showOnboardingDialog
+                onboardingDialogDisplayed = uiSettings.showOnboardingDialog && !deferOnboardingDialog
             )
         }
         if (_uiState.value.onboardingDialogDisplayed) {
@@ -497,6 +589,64 @@ internal class BlinkIdVerifyUxViewModel(
         } else {
             changeOnboardingDialogVisibility(false)
         }
+    }
+
+    /**
+     * Called when the end user accepts the consent on [com.microblink.blinkidverify.ux.consent.MicroblinkConsentScreen].
+     *
+     * Builds the consent object, stores it for native `getResult`, and only then allows scanning to
+     * start.
+     *
+     * @param consentNote Legal text the end user agreed to, recorded with the consent.
+     */
+    fun onConsentAccepted(consentNote: String?) {
+        viewModelScope.launch {
+            val consent = consentManager.consentFromUserAcceptance(consentNote) ?: return@launch
+            val consentSet = imageAnalyzer?.setConsent(consent) == true
+            if (consentSet) {
+                MbLog.i(CmsFlowLog.TAG) {
+                    "[CMS] End-user consent accepted — scanning may proceed: " +
+                        CmsFlowLog.consentSummary(consent)
+                }
+                _uiState.update { it.copy(consentUxState = ConsentUxState.ConsentGranted) }
+                onConsentResolved()
+            } else {
+                MbLog.e(CmsFlowLog.TAG) {
+                    "[CMS] Consent could not be applied to the scanning session"
+                }
+                onConsentDeclined()
+            }
+        }
+    }
+
+    /**
+     * Called when the end user declines the consent. Scanning cannot proceed, so the scanning screen
+     * reports cancellation to the integrator.
+     */
+    fun onConsentDeclined() {
+        MbLog.i(CmsFlowLog.TAG) { "[CMS] End-user consent declined — scanning canceled" }
+        lifecyclePauseAnalysis()
+        _uiState.update { it.copy(consentUxState = ConsentUxState.ConsentDeclined) }
+    }
+
+    private fun onConsentResolved() {
+        if (showOnboardingDialogAfterConsent) {
+            showOnboardingDialogAfterConsent = false
+            changeOnboardingDialogVisibility(true)
+        } else {
+            lifecycleResumeAnalysis()
+        }
+    }
+
+    private fun isConsentPending(): Boolean =
+        _uiState.value.consentUxState == ConsentUxState.ConsentRequired
+
+    private fun isConsentBlockingScanning(): Boolean = when (_uiState.value.consentUxState) {
+        ConsentUxState.ConsentRequired,
+        ConsentUxState.ConsentDeclined -> true
+
+        ConsentUxState.ConsentGranted,
+        ConsentUxState.ConsentNotRequired -> false
     }
 
     fun pickNewState(): Pair<ProcessingState?, StatusMessage?> {
@@ -545,6 +695,7 @@ internal class BlinkIdVerifyUxViewModel(
     }
 
     private fun showErrorDialog(alertType: UxEvent.AlertType, errorState: ErrorState) {
+        firstImageTimestamp = null
         lifecyclePauseAnalysis()
         appearanceCounter.reset()
         UxPingletTracker.UxEvent.trackAlertDisplayedEvent(
@@ -562,17 +713,36 @@ internal class BlinkIdVerifyUxViewModel(
     }
 
     fun lifecyclePauseAnalysis() {
+        if (!isAnalysisPaused) {
+            stepTimeoutDurationBeforePause =
+                firstImageTimestamp?.let { System.nanoTime() - it }
+            isAnalysisPaused = true
+        }
         imageAnalyzer?.pauseAnalysis()
+        inactivityTimeoutStartTimestamp = null
         firstImageTimestamp = null
-        helpTooltipTimer.cancel()
+        helpTooltipTimer?.cancel()
         statusCounter.reset()
-        isCountingActive = false
+        isStateTimeoutActive = false
     }
 
     fun lifecycleResumeAnalysis() {
+        if (isConsentBlockingScanning()) {
+            MbLog.d(TAG) { "Analysis stays paused until consent is granted" }
+            return
+        }
         if (!_uiState.value.onboardingDialogDisplayed && !_uiState.value.helpDisplayed && _uiState.value.errorState == ErrorState.NoError) {
             imageAnalyzer?.resumeAnalysis()
-            helpTooltipTimer.start()
+            helpTooltipTimer?.start()
+            if (isAnalysisPaused) {
+                stepTimeoutDurationBeforePause?.let { elapsedDuration ->
+                    firstImageTimestamp = System.nanoTime() - elapsedDuration
+                }
+                stepTimeoutDurationBeforePause = null
+                isAnalysisPaused = false
+            }
+            inactivityTimeoutStartTimestamp = null
+            isStateTimeoutActive = true
         }
     }
 
@@ -610,8 +780,7 @@ internal class BlinkIdVerifyUxViewModel(
 
     fun shouldStartCounting(currentState: ProcessingState): Boolean {
         if ((System.nanoTime().nanoseconds - uiStateStartTime + countingWindowDuration) >= currentState.duration) {
-            isCountingActive =
-                true
+            isStateTimeoutActive = true
             return true
         } else {
             return false
@@ -675,9 +844,9 @@ internal class BlinkIdVerifyUxViewModel(
     fun changeHelpTooltipVisibility(show: Boolean) {
         if (_uiState.value.helpButtonDisplayed) {
             if (show) {
-                helpTooltipTimer.cancel()
+                helpTooltipTimer?.cancel()
             } else {
-                helpTooltipTimer.start()
+                helpTooltipTimer?.start()
             }
             _uiState.update {
                 it.copy(helpTooltipDisplayed = show)
@@ -727,7 +896,12 @@ internal class BlinkIdVerifyUxViewModel(
     }
 
     fun onRetryTimeout() {
-        helpTooltipTimer.cancel()
+        helpTooltipTimer?.cancel()
+        firstImageTimestamp = null
+        stepTimeoutDurationBeforePause = null
+        inactivityTimeoutStartTimestamp = null
+        isAnalysisPaused = false
+        isStateTimeoutActive = true
         _uiState.update {
             it.copy(
                 errorState = ErrorState.NoError,
@@ -738,14 +912,24 @@ internal class BlinkIdVerifyUxViewModel(
             )
         }
         updateStateStartTime()
-        imageAnalyzer?.restartAnalysis()
-        helpTooltipTimer.start()
+        viewModelScope.launch {
+            imageAnalyzer?.restartAnalysis()
+        }
+        helpTooltipTimer?.start()
     }
 
     fun onHapticFeedbackCompleted() {
         _uiState.update {
             it.copy(
                 hapticFeedbackState = HapticFeedbackState.VibrationOff
+            )
+        }
+    }
+
+    fun onScanSoundCompleted() {
+        _uiState.update {
+            it.copy(
+                scanSoundState = ScanSoundState.SoundOff
             )
         }
     }
@@ -782,8 +966,8 @@ internal class BlinkIdVerifyUxViewModel(
                         statusMessage = CommonStatusMessage.Flip,
                         currentSide = UiScanningSide.Second,
                         cardAnimationState = ShowFlipLandscape(
-                            firstSideDrawable = R.drawable.mb_card_front,
-                            secondSideDrawable = R.drawable.mb_card_back
+                            firstSideDrawable = R.drawable.mb_blinkidverify_card_front,
+                            secondSideDrawable = R.drawable.mb_blinkidverify_card_back
                         )
                     )
                 }
@@ -801,17 +985,25 @@ internal class BlinkIdVerifyUxViewModel(
         context: Context,
         cameraInputDetails: CameraInputDetails
     ) {
-        UxPingletTracker.CameraInfo.trackCameraInputInfo(cameraInputDetails, getSessionNumber())
-        if (!cameraHardwareInfoReported) {
-            cameraHardwareInfoReported = true
-            viewModelScope.launch {
-                withContext(Dispatchers.IO) {
-                    val cameraDetailsList = CameraHardwareInfoHelper.getCameraHardwareInfo(context)
-                    UxPingletTracker.CameraInfo.trackCameraHardwareInfo(cameraDetailsList)
+        getSessionNumber().takeIf { it > 0 }
+            ?.let { sessionNumber ->
+                UxPingletTracker.CameraInfo.trackCameraInputInfo(
+                    cameraInputDetails,
+                    sessionNumber
+                )
+                if (!cameraHardwareInfoReported) {
+                    cameraHardwareInfoReported = true
+                    viewModelScope.launch {
+                        withContext(Dispatchers.IO) {
+                            val cameraDetailsList = CameraHardwareInfoHelper.getCameraHardwareInfo(context)
+                            UxPingletTracker.CameraInfo.trackCameraHardwareInfo(
+                                cameraDetailsList,
+                                sessionNumber
+                            )
+                        }
+                    }
                 }
             }
-        }
-
     }
 
     fun getSessionNumber(): Int = imageAnalyzer?.getSessionNumber() ?: 0
@@ -819,6 +1011,7 @@ internal class BlinkIdVerifyUxViewModel(
     override fun onCleared() {
         super.onCleared()
         BlinkIdVerifySdk.sendPingletsIfAllowed(PingSendTriggerPoint.CameraScreenClosed)
+        firstImageTimestamp = null
         lifecyclePauseAnalysis()
         imageAnalyzer?.cancel()
         imageAnalyzer?.close()
@@ -835,12 +1028,18 @@ internal class BlinkIdVerifyUxViewModel(
             object : CreationExtras.Key<BlinkIdVerifySessionSettings> {}
         val BLINK_ID_VERIFY_UX_SETTINGS =
             object : CreationExtras.Key<VerifyUxSettings> {}
+        val BLINK_ID_VERIFY_CONSENT_UX_CONFIG =
+            object : CreationExtras.Key<BlinkIdVerifyConsentUxConfig> {}
+        val BLINK_ID_VERIFY_APPLICATION_CONTEXT =
+            object : CreationExtras.Key<Context> {}
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 BlinkIdVerifyUxViewModel(
                     this[BLINK_ID_VERIFY_SDK] as BlinkIdVerifySdk,
                     this[BLINK_ID_VERIFY_CAPTURE_SETTINGS] as BlinkIdVerifySessionSettings,
-                    this[BLINK_ID_VERIFY_UX_SETTINGS] as VerifyUxSettings
+                    this[BLINK_ID_VERIFY_UX_SETTINGS] as VerifyUxSettings,
+                    this[BLINK_ID_VERIFY_CONSENT_UX_CONFIG] as BlinkIdVerifyConsentUxConfig,
+                    this[BLINK_ID_VERIFY_APPLICATION_CONTEXT] as Context
                 )
             }
         }

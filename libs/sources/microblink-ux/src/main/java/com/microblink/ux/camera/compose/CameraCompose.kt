@@ -53,6 +53,7 @@ import com.microblink.ux.camera.CameraInputDetails
 import com.microblink.ux.camera.CameraLensFacing
 import com.microblink.ux.camera.CameraSettings
 import com.microblink.ux.camera.CameraViewModel
+import com.microblink.ux.camera.DesiredAspectRatio
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
@@ -216,7 +217,12 @@ private fun CameraPreview(
                     ResolutionStrategy.FALLBACK_RULE_CLOSEST_HIGHER_THEN_LOWER
                 )
             )
-            .setAspectRatioStrategy(AspectRatioStrategy.RATIO_16_9_FALLBACK_AUTO_STRATEGY)
+            .setAspectRatioStrategy(
+                when (cameraSettings.desiredAspectRatio) {
+                    DesiredAspectRatio.RATIO_16_9 -> AspectRatioStrategy.RATIO_16_9_FALLBACK_AUTO_STRATEGY
+                    DesiredAspectRatio.RATIO_4_3 -> AspectRatioStrategy.RATIO_4_3_FALLBACK_AUTO_STRATEGY
+                }
+            )
             .build()
 
         val cameraProvider = context.getCameraProvider()

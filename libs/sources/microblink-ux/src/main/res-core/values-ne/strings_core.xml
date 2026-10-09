@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="mb_camera_permission_required">क्यामेरा अनुमति आवश्यक छ।</string>
-  <string name="mb_close">बन्द गर्नुहोस्</string>
-  <string name="mb_dialog_back_button">पछाडि</string>
-  <string name="mb_dialog_done_button">भयो</string>
-  <string name="mb_dialog_next_button">अर्को</string>
-  <string name="mb_dialog_skip_button">स्किप गर्नुहोस्</string>
-  <string name="mb_enable_camera">क्यामेरा इनेबल गर्नुहोस्</string>
-  <string name="mb_enable_permission_help">तपाईंलाई अनुमति सेटिङमा लगिने छ जहाँ तपाईंले एपमा क्यामेरा अनुमति दिन आवश्यक छ।</string>
-  <string name="mb_enable_permission_help_instant_app">कृपया एप अनुमति सेटिङमा क्यामेरा अनुमति दिनुहोस्।</string>
-  <string name="mb_license_locked">स्क्यानिङ उपलब्ध छैन</string>
-  <string name="mb_loading">लोड हुँदैछ…</string>
-  <string name="mb_move_closer">नजिक जानुहोस्</string>
-  <string name="mb_move_farther">पर जानुहोस्</string>
-  <string name="mb_need_help_tooltip">सहयोग चाहिन्छ?</string>
-  <string name="mb_ok">ओके</string>
-  <string name="mb_retry">पुन: प्रयास गर्नुहोस्</string>
-  <string name="mb_warning">चेतावनी</string>
+    <string name="mb_camera_permission_required">क्यामेरा अनुमति आवश्यक छ।</string>
+    <string name="mb_close">बन्द गर्नुहोस्</string>
+    <string name="mb_consent_description">तपाईंको पहिचान प्रमाणित गर्ने उद्देश्यले व्यक्तिगत जानकारी भण्डारण गर्न र/वा त्यसमा पहुँच राख्न।</string>
+    <string name="mb_consent_no">सहमति नदिनुहोस्</string>
+    <string name="mb_consent_privacy_link">गोपनीयता सूचनामा</string>
+    <string name="mb_consent_privacy_notice">तपाईंका छनोटहरूले %1$s वर्णन गरिएअनुसार डेटा गोपनीयताका उच्चतम मापदण्डहरू कायम राख्दै तपाईंको व्यक्तिगत जानकारी सुरक्षित गर्न र हाम्रो प्रविधि सुधार गर्न मद्दत गर्छन्।</string>
+    <string name="mb_consent_privacy_switch">प्रदायकले मेरो व्यक्तिगत डेटा आफ्नो प्रविधि अनुकूलन गर्न प्रयोग गर्न म सहमति दिन्छु।</string>
+    <string name="mb_consent_title">हामीलाई तपाईंको सहमति आवश्यक छ:</string>
+    <string name="mb_consent_yes">सहमति दिनुहोस्</string>
+    <string name="mb_dialog_back_button">पछाडि</string>
+    <string name="mb_dialog_done_button">भयो</string>
+    <string name="mb_dialog_next_button">अर्को</string>
+    <string name="mb_dialog_skip_button">स्किप गर्नुहोस्</string>
+    <string name="mb_enable_camera">क्यामेरा इनेबल गर्नुहोस्</string>
+    <string name="mb_enable_permission_help">तपाईंलाई अनुमति सेटिङमा लगिने छ जहाँ तपाईंले एपमा क्यामेरा अनुमति दिन आवश्यक छ।</string>
+    <string name="mb_enable_permission_help_instant_app">कृपया एप अनुमति सेटिङमा क्यामेरा अनुमति दिनुहोस्।</string>
+    <string name="mb_license_locked">स्क्यानिङ उपलब्ध छैन</string>
+    <string name="mb_loading">लोड हुँदैछ…</string>
+    <string name="mb_move_closer">नजिक जानुहोस्</string>
+    <string name="mb_move_farther">पर जानुहोस्</string>
+    <string name="mb_need_help_tooltip">सहयोग चाहिन्छ?</string>
+    <string name="mb_ok">ओके</string>
+    <string name="mb_optional">वैकल्पिक</string>
+    <string name="mb_privacy_notice">गोपनीयता सूचना</string>
+    <string name="mb_retry">पुन: प्रयास गर्नुहोस्</string>
+    <string name="mb_warning">चेतावनी</string>
 </resources>

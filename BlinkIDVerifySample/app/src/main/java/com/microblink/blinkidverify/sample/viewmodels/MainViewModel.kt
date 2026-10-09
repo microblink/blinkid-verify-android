@@ -15,15 +15,17 @@ import com.microblink.blinkidverify.core.capture.session.BlinkIdVerifySessionSet
 import com.microblink.blinkidverify.core.capture.session.ImageQualitySettings
 import com.microblink.blinkidverify.core.data.model.request.BlinkIdVerifyProcessingRequestOptions
 import com.microblink.blinkidverify.core.data.model.request.BlinkIdVerifyProcessingUseCase
-import com.microblink.blinkidverify.core.data.model.request.BlinkIdVerifyRequest
 import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyCaptureResult
-import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyEndpointResponse
+import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyV3EndpointResponse
+import com.microblink.blinkidverify.core.data.model.result.extractionProcessingStatus
+import com.microblink.blinkidverify.core.data.model.result.verifyVerdictOrRaw
 import com.microblink.blinkidverify.core.settings.BlinkIdVerifyServiceSettings
 import com.microblink.blinkidverify.sample.config.BlinkIdVerifyConfig
+import com.microblink.blinkidverify.core.session.InputImageSource
+import com.microblink.blinkidverify.ux.UiSettings
+import com.microblink.blinkidverify.ux.camera.CameraSettings
 import com.microblink.blinkidverify.ux.capture.settings.VerifyUxSettings
-import com.microblink.core.session.InputImageSource
-import com.microblink.ux.UiSettings
-import com.microblink.ux.camera.CameraSettings
+import com.microblink.blinkidverify.ux.consent.BlinkIdVerifyConsentUxConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -37,7 +39,7 @@ private const val TAG = "MainViewModel"
 
 @Serializable
 data class MainState(
-    val blinkidVerifyResult: BlinkIdVerifyEndpointResponse? = null,
+    val blinkidVerifyResult: BlinkIdVerifyV3EndpointResponse? = null,
     val error: String? = null,
 )
 
@@ -70,6 +72,11 @@ class MainViewModel : ViewModel() {
         stepTimeoutDuration = stepTimeoutDuration.value
     )
 
+    val consentUxConfig = BlinkIdVerifyConsentUxConfig.RequireConsent(
+        userId = "sample-user-id",
+        durationDays = 365,
+    )
+
     var localSdk: BlinkIdVerifySdk? = null
         private set
 
@@ -81,6 +88,13 @@ class MainViewModel : ViewModel() {
             barcodeAnomalyMatchLevel = blinkIDVerifyRequestOptionsConfig.barcodeAnomalyMatchLevel,
             staticSecurityFeaturesMatchLevel = blinkIDVerifyRequestOptionsConfig.staticSecurityFeaturesMatchLevel,
             dataMatchMatchLevel = blinkIDVerifyRequestOptionsConfig.dataMatchMatchLevel,
+            photocopyMatchLevel = blinkIDVerifyRequestOptionsConfig.photocopyMatchLevel,
+            photoForgeryMatchLevel = blinkIDVerifyRequestOptionsConfig.photoForgeryMatchLevel,
+            generativeAiMatchLevel = blinkIDVerifyRequestOptionsConfig.generativeAiMatchLevel,
+            returnFullDocumentImage = blinkIDVerifyRequestOptionsConfig.returnFullDocumentImage,
+            returnFaceImage = blinkIDVerifyRequestOptionsConfig.returnFaceImage,
+            returnSignatureImage = blinkIDVerifyRequestOptionsConfig.returnSignatureImage,
+            redactionMode = blinkIDVerifyRequestOptionsConfig.redactionMode,
             imageQualitySettings = ImageQualitySettings(
                 blurMatchLevel = blinkIDVerifyRequestOptionsConfig.blurMatchLevel,
                 glareMatchLevel = blinkIDVerifyRequestOptionsConfig.glareMatchLevel,
@@ -100,32 +114,35 @@ class MainViewModel : ViewModel() {
             it.copy(displayLoading = true)
         }
         viewModelScope.launch {
-            invokeServerProcessing(
-                captureResult.toBlinkIdVerifyRequest(
-                    returnFullDocumentImage = blinkIDVerifyRequestOptionsConfig.returnFullDocumentImage,
-                    returnFaceImage = blinkIDVerifyRequestOptionsConfig.returnFaceImage,
-                    returnSignatureImage = blinkIDVerifyRequestOptionsConfig.returnSignatureImage,
-                    photocopyMatchLevel = blinkIDVerifyRequestOptionsConfig.photocopyMatchLevel,
-                    photoForgeryMatchLevel = blinkIDVerifyRequestOptionsConfig.photoForgeryMatchLevel,
-                    generativeAiMatchLevel = blinkIDVerifyRequestOptionsConfig.generativeAiMatchLevel,
-                    returnImageFormat = blinkIDVerifyRequestOptionsConfig.returnImageFormat,
-                    anonymizationMode = blinkIDVerifyRequestOptionsConfig.anonymizationMode
-                )
-            )
+            invokeServerProcessing(captureResult)
         }
     }
 
-    private suspend fun invokeServerProcessing(documentVerificationRequest: BlinkIdVerifyRequest) {
+    private suspend fun invokeServerProcessing(captureResult: BlinkIdVerifyCaptureResult) {
         _uiState.update {
             it.copy(displayLoading = true)
         }
+        val payload = captureResult.serializedVerifyPayload
+        if (payload == null) {
+            Log.e(
+                TAG,
+                "Native verify payload missing from capture result. " +
+                    "Check logcat for getResult / NativeSerializedVerifyPayload errors.",
+            )
+            _mainState.update {
+                it.copy(error = "Native verify payload missing from capture result")
+            }
+            _uiState.update { it.copy(displayLoading = false) }
+            return
+        }
+
         val client = BlinkIdVerifyClient(
             BlinkIdVerifyServiceSettings(
                 verificationServiceBaseUrl = BlinkIdVerifyConfig.verificationServiceBaseUrl,
                 token = BlinkIdVerifyConfig.verificationServiceToken,
             )
         )
-        when (val response = client.verify(documentVerificationRequest)) {
+        when (val response = client.verify(payload)) {
             is Response.Error -> {
                 Log.w(TAG, "Response is error: ${response.errorReason.name}")
                 response.exception?.printStackTrace()
@@ -135,20 +152,20 @@ class MainViewModel : ViewModel() {
             }
 
             is Response.Success -> {
+                val endpoint = response.endpointResponse
                 Log.i(
                     TAG,
-                    "Response is success: processingStatus -> ${response.endpointResponse.processingStatus}"
+                    "Verify complete: verdict=${endpoint.verification.verifyVerdictOrRaw()}, " +
+                        "extractionStatus=${endpoint.extractionProcessingStatus()}, " +
+                        "pipeline=${endpoint.pipeline.extraction?.status}/" +
+                        "${endpoint.pipeline.verification?.status}",
                 )
-                Log.i(
-                    TAG,
-                    "recognitionStatus -> ${response.endpointResponse.extraction?.recognitionStatus}"
-                )
-                Log.i(TAG, "Recognition data: ${response.endpointResponse.checks.toString()}")
                 _mainState.update {
-                    it.copy(blinkidVerifyResult = response.endpointResponse)
+                    it.copy(blinkidVerifyResult = endpoint)
                 }
             }
         }
+        _uiState.update { it.copy(displayLoading = false) }
     }
 
     suspend fun initializeLocalSdk(context: Context) {

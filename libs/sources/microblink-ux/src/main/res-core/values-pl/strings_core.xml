@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="mb_camera_permission_required">Wymagane uprawnienie do korzystania z aparatu.</string>
-  <string name="mb_close">Zamknij</string>
-  <string name="mb_dialog_back_button">Wstecz</string>
-  <string name="mb_dialog_done_button">Gotowe</string>
-  <string name="mb_dialog_next_button">Dalej</string>
-  <string name="mb_dialog_skip_button">Pomiń</string>
-  <string name="mb_enable_camera">Włącz aparat</string>
-  <string name="mb_enable_permission_help">Zostaniesz teraz przeniesiony do ustawień uprawnień, gdzie należy udzielić aplikacji dostępu do aparatu.</string>
-  <string name="mb_enable_permission_help_instant_app">Udziel dostępu do aparatu w ustawieniach uprawnień aplikacji.</string>
-  <string name="mb_license_locked">Skanowanie niedostępne</string>
-  <string name="mb_loading">Ładowanie…</string>
-  <string name="mb_move_closer">Przesuń bliżej</string>
-  <string name="mb_move_farther">Przesuń dalej</string>
-  <string name="mb_need_help_tooltip">Potrzebujesz pomocy?</string>
-  <string name="mb_ok">OK</string>
-  <string name="mb_retry">Spróbuj ponownie</string>
-  <string name="mb_warning">Ostrzeżenie</string>
+    <string name="mb_camera_permission_required">Wymagane uprawnienie do korzystania z aparatu.</string>
+    <string name="mb_close">Zamknij</string>
+    <string name="mb_consent_description">Przechowywanie danych osobowych i/lub dostęp do nich w celu weryfikacji Twojej tożsamości.</string>
+    <string name="mb_consent_no">Nie wyrażam zgody</string>
+    <string name="mb_consent_privacy_link">Informacji o ochronie prywatności</string>
+    <string name="mb_consent_privacy_notice">Twoje wybory pomagają nam chronić Twoje dane osobowe i ulepszać naszą technologię przy zachowaniu najwyższych standardów prywatności danych, opisanych w %1$s.</string>
+    <string name="mb_consent_privacy_switch">Wyrażam zgodę na wykorzystanie moich danych osobowych przez usługodawcę w celu optymalizacji jego technologii.</string>
+    <string name="mb_consent_title">Potrzebujemy Twojej zgody na:</string>
+    <string name="mb_consent_yes">Wyrażam zgodę</string>
+    <string name="mb_dialog_back_button">Wstecz</string>
+    <string name="mb_dialog_done_button">Gotowe</string>
+    <string name="mb_dialog_next_button">Dalej</string>
+    <string name="mb_dialog_skip_button">Pomiń</string>
+    <string name="mb_enable_camera">Włącz aparat</string>
+    <string name="mb_enable_permission_help">Zostaniesz teraz przeniesiony do ustawień uprawnień, gdzie należy udzielić aplikacji dostępu do aparatu.</string>
+    <string name="mb_enable_permission_help_instant_app">Udziel dostępu do aparatu w ustawieniach uprawnień aplikacji.</string>
+    <string name="mb_license_locked">Skanowanie niedostępne</string>
+    <string name="mb_loading">Ładowanie…</string>
+    <string name="mb_move_closer">Przesuń bliżej</string>
+    <string name="mb_move_farther">Przesuń dalej</string>
+    <string name="mb_need_help_tooltip">Potrzebujesz pomocy?</string>
+    <string name="mb_ok">OK</string>
+    <string name="mb_optional">Opcjonalne</string>
+    <string name="mb_privacy_notice">Informacja o ochronie prywatności</string>
+    <string name="mb_retry">Spróbuj ponownie</string>
+    <string name="mb_warning">Ostrzeżenie</string>
 </resources>

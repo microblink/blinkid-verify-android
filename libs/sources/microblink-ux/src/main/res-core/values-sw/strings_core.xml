@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="mb_camera_permission_required">Unahitaji kuruhusu kamera.</string>
-  <string name="mb_close">Funga</string>
-  <string name="mb_dialog_back_button">Nyuma</string>
-  <string name="mb_dialog_done_button">Umemaliza</string>
-  <string name="mb_dialog_next_button">Endelea</string>
-  <string name="mb_dialog_skip_button">Ruka</string>
-  <string name="mb_enable_camera">Washa kamera</string>
-  <string name="mb_enable_permission_help">Sasa utaelekezwa kwenye mipangilio ya programu ambapo unahitaji kuiruhusu kamera kwenye programu.</string>
-  <string name="mb_enable_permission_help_instant_app">Tafadhali iruhusu kamera kwenye mipangilio ya ruhusa ya programu.</string>
-  <string name="mb_license_locked">Huduma ya kuskani haipatikani</string>
-  <string name="mb_loading">Inapakia…</string>
-  <string name="mb_move_closer">Songa karibu</string>
-  <string name="mb_move_farther">Songa mbali</string>
-  <string name="mb_need_help_tooltip">Unahitaji usaidizi?</string>
-  <string name="mb_ok">Sawa</string>
-  <string name="mb_retry">Jaribu tena</string>
-  <string name="mb_warning">Onyo</string>
+    <string name="mb_camera_permission_required">Unahitaji kuruhusu kamera.</string>
+    <string name="mb_close">Funga</string>
+    <string name="mb_consent_description">Kuhifadhi na/au kufikia taarifa za kibinafsi ili kuthibitisha utambulisho wako.</string>
+    <string name="mb_consent_no">Usikubali</string>
+    <string name="mb_consent_privacy_link">Taarifa ya Faragha</string>
+    <string name="mb_consent_privacy_notice">Chaguo zako hutusaidia kulinda taarifa zako za kibinafsi na kuboresha teknolojia yetu huku tukidumisha viwango vya juu zaidi vya faragha ya data, kama ilivyoelezwa katika %1$s.</string>
+    <string name="mb_consent_privacy_switch">Ninakubali mtoa huduma atumie data yangu ya kibinafsi kuboresha teknolojia yake.</string>
+    <string name="mb_consent_title">Tunahitaji idhini yako ili:</string>
+    <string name="mb_consent_yes">Kubali</string>
+    <string name="mb_dialog_back_button">Nyuma</string>
+    <string name="mb_dialog_done_button">Umemaliza</string>
+    <string name="mb_dialog_next_button">Endelea</string>
+    <string name="mb_dialog_skip_button">Ruka</string>
+    <string name="mb_enable_camera">Washa kamera</string>
+    <string name="mb_enable_permission_help">Sasa utaelekezwa kwenye mipangilio ya programu ambapo unahitaji kuiruhusu kamera kwenye programu.</string>
+    <string name="mb_enable_permission_help_instant_app">Tafadhali iruhusu kamera kwenye mipangilio ya ruhusa ya programu.</string>
+    <string name="mb_license_locked">Huduma ya kuskani haipatikani</string>
+    <string name="mb_loading">Inapakia…</string>
+    <string name="mb_move_closer">Songa karibu</string>
+    <string name="mb_move_farther">Songa mbali</string>
+    <string name="mb_need_help_tooltip">Unahitaji usaidizi?</string>
+    <string name="mb_ok">Sawa</string>
+    <string name="mb_optional">Hiari</string>
+    <string name="mb_privacy_notice">Taarifa ya faragha</string>
+    <string name="mb_retry">Jaribu tena</string>
+    <string name="mb_warning">Onyo</string>
 </resources>

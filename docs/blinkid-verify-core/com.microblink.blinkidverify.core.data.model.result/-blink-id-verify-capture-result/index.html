@@ -1,42 +1,39 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>BlinkIdVerifyCaptureResult</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
-<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
                     BlinkIDVerify
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
@@ -44,74 +41,76 @@
         <div class="library-version" id="library-version">
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":blinkid-verify-core:dokkaHtmlPartial/release">androidJvm</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":blinkid-verify-core/productionRelease">productionRelease</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
                         <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
                             <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":blinkid-verify-core:dokkaHtmlPartial/release" data-filter=":blinkid-verify-core:dokkaHtmlPartial/release">
+                                <input type="checkbox" class="checkbox--input" id=":blinkid-verify-core/productionRelease" data-filter=":blinkid-verify-core/productionRelease">
                                 <span class="checkbox--icon"></span>
-                                androidJvm
+                                productionRelease
                             </label>
                         </li>
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     BlinkIDVerify
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageids="blinkid-verify-core::com.microblink.blinkidverify.core.data.model.result/BlinkIdVerifyCaptureResult///PointingToDeclaration//-1004863576">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="blinkid-verify-core::com.microblink.blinkidverify.core.data.model.result/BlinkIdVerifyCaptureResult///PointingToDeclaration//-112883329">
   <div class="breadcrumbs"><a href="../../index.html">blinkid-verify-core</a><span class="delimiter">/</span><a href="../index.html">com.microblink.blinkidverify.core.data.model.result</a><span class="delimiter">/</span><span class="current">BlinkIdVerifyCaptureResult</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Blink</span><wbr><span>Id</span><wbr><span>Verify</span><wbr><span>Capture</span><wbr><span><span>Result</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">BlinkIdVerifyCaptureResult</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>frontCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>backCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>barcodeCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">sessionSettings<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.capture.session/-blink-id-verify-session-settings/index.html">BlinkIdVerifySessionSettings</a><span class="token punctuation">, </span></span><span class="parameter ">sessionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">BlinkIdVerifyCaptureResult</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>frontCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>backCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>barcodeCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">sessionSettings<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.capture.session/-blink-id-verify-session-settings/index.html">BlinkIdVerifySessionSettings</a><span class="token punctuation">, </span></span><span class="parameter ">sessionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>serializedVerifyPayload<span class="token operator">: </span><a href="../-native-serialized-verify-payload/index.html">NativeSerializedVerifyPayload</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
-        <h2 class="">Constructors</h2>
-        <div class="table"><a data-name="1543253456%2FConstructors%2F-1004863576" anchor-label="BlinkIdVerifyCaptureResult" id="1543253456%2FConstructors%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-1217580806%2FConstructors%2F-112883329" anchor-label="BlinkIdVerifyCaptureResult" id="-1217580806%2FConstructors%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-blink-id-verify-capture-result.html"><span>Blink</span><wbr><span>Id</span><wbr><span>Verify</span><wbr><span>Capture</span><wbr><span><span>Result</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1543253456%2FConstructors%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1217580806%2FConstructors%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">frontCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">backCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">barcodeCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">sessionSettings<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.capture.session/-blink-id-verify-session-settings/index.html">BlinkIdVerifySessionSettings</a><span class="token punctuation">, </span></span><span class="parameter ">sessionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">frontCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">backCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">barcodeCameraFrame<span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">sessionSettings<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.capture.session/-blink-id-verify-session-settings/index.html">BlinkIdVerifySessionSettings</a><span class="token punctuation">, </span></span><span class="parameter ">sessionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">serializedVerifyPayload<span class="token operator">: </span><a href="../-native-serialized-verify-payload/index.html">NativeSerializedVerifyPayload</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -119,18 +118,18 @@
         </div>
       </div>
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
-        <div class="table"><a data-name="-1227343473%2FClasslikes%2F-1004863576" anchor-label="Companion" id="-1227343473%2FClasslikes%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="-1227343473%2FClasslikes%2F-112883329" anchor-label="Companion" id="-1227343473%2FClasslikes%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1227343473%2FClasslikes%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1227343473%2FClasslikes%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -138,48 +137,78 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
-        <div class="table"><a data-name="1957118279%2FProperties%2F-1004863576" anchor-label="backCameraFrame" id="1957118279%2FProperties%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="1957118279%2FProperties%2F-112883329" anchor-label="backCameraFrame" id="1957118279%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="back-camera-frame.html"><span>back</span><wbr><span>Camera</span><wbr><span><span>Frame</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1957118279%2FProperties%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1957118279%2FProperties%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="back-camera-frame.html">backCameraFrame</a><span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">The camera frame containing the back side of the document.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="back-camera-frame.html">backCameraFrame</a><span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">The camera frame containing the back side of the document.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1034241002%2FProperties%2F-1004863576" anchor-label="barcodeCameraFrame" id="1034241002%2FProperties%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+<a data-name="1034241002%2FProperties%2F-112883329" anchor-label="barcodeCameraFrame" id="1034241002%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="barcode-camera-frame.html"><span>barcode</span><wbr><span>Camera</span><wbr><span><span>Frame</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1034241002%2FProperties%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1034241002%2FProperties%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="barcode-camera-frame.html">barcodeCameraFrame</a><span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">The camera frame containing the clearly visible barcode on the document, if any.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="barcode-camera-frame.html">barcodeCameraFrame</a><span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">The camera frame containing the clearly visible barcode on the document, if any.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="653281875%2FProperties%2F-1004863576" anchor-label="frontCameraFrame" id="653281875%2FProperties%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+<a data-name="1132249134%2FProperties%2F-112883329" anchor-label="consent" id="1132249134%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="front-camera-frame.html"><span>front</span><wbr><span>Camera</span><wbr><span><span>Frame</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="653281875%2FProperties%2F-1004863576"></span>
+                  <div><a href="consent.html"><span><span>consent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1132249134%2FProperties%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="front-camera-frame.html">frontCameraFrame</a><span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">The camera frame containing the front side of the document.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="consent.html">consent</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.consent.model/-external-consent-object/index.html">ExternalConsentObject</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">End-user consent that was in effect for the capture session, either provided by the integrator or collected by the built-in consent screen. <code class="lang-kotlin">null</code> when the session ran without consent.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="653281875%2FProperties%2F-112883329" anchor-label="frontCameraFrame" id="653281875%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="front-camera-frame.html"><span>front</span><wbr><span>Camera</span><wbr><span><span>Frame</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="653281875%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="front-camera-frame.html">frontCameraFrame</a><span class="token operator">: </span><a href="../-encoded-image/index.html">EncodedImage</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">The camera frame containing the front side of the document.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2075032183%2FProperties%2F-112883329" anchor-label="serializedVerifyPayload" id="2075032183%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="serialized-verify-payload.html"><span>serialized</span><wbr><span>Verify</span><wbr><span><span>Payload</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2075032183%2FProperties%2F-112883329"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Transient///PointingToDeclaration/"><span class="token annotation builtin">Transient</span></span></div></div><span class="token keyword">val </span><a href="serialized-verify-payload.html">serializedVerifyPayload</a><span class="token operator">: </span><a href="../-native-serialized-verify-payload/index.html">NativeSerializedVerifyPayload</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Native Verify v3 multipart parts, generated at result retrieval time. Submit with <a href="../../com.microblink.blinkidverify.core/-blink-id-verify-client/verify.html">com.microblink.blinkidverify.core.BlinkIdVerifyClient.verify</a>. Not part of the kotlinx serialization surface.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -187,18 +216,18 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
-        <div class="table"><a data-name="-1007769984%2FFunctions%2F-1004863576" anchor-label="toBlinkIdVerifyRequest" id="-1007769984%2FFunctions%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="775379077%2FFunctions%2F-112883329" anchor-label="toBlinkIdVerifyRequest" id="775379077%2FFunctions%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="to-blink-id-verify-request.html"><span>to</span><wbr><span>Blink</span><wbr><span>Id</span><wbr><span>Verify</span><wbr><span><span>Request</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1007769984%2FFunctions%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="775379077%2FFunctions%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="to-blink-id-verify-request.html"><span class="token function"><strike>toBlinkIdVerifyRequest</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">blinkIdVerifyProcessingOptions<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-request-options/index.html">BlinkIdVerifyProcessingRequestOptions</a><span class="token punctuation">, </span></span><span class="parameter ">blinkIdVerifyUseCase<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-use-case/index.html">BlinkIdVerifyProcessingUseCase</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-request/index.html">BlinkIdVerifyRequest</a></div><div class="brief "><p class="paragraph">Converts capture result into <a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-request/index.html">BlinkIdVerifyRequest</a> using caller-provided options.</p></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="to-blink-id-verify-request.html"><span class="token function">toBlinkIdVerifyRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">returnFullDocumentImage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">returnFaceImage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">returnSignatureImage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">photocopyMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">photoForgeryMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">generativeAiMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">returnImageFormat<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-image-format/index.html">ImageFormat</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">anonymizationMode<span class="token operator">: </span><a href="../../com.microblink.core.settings/-anonymization-mode/index.html">AnonymizationMode</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-request/index.html">BlinkIdVerifyRequest</a></div><div class="brief "><p class="paragraph">Converts this capture result into <a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-request/index.html">BlinkIdVerifyRequest</a> using <a href="../../com.microblink.blinkidverify.core.capture.session/-blink-id-verify-session-settings/index.html">BlinkIdVerifySessionSettings</a> settings as the source of truth for all shared on-device and backend processing options.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">fun </span><a href="to-blink-id-verify-request.html"><span class="token function"><strike>toBlinkIdVerifyRequest</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">blinkIdVerifyProcessingOptions<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-request-options/index.html">BlinkIdVerifyProcessingRequestOptions</a><span class="token punctuation">, </span></span><span class="parameter ">blinkIdVerifyUseCase<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-use-case/index.html">BlinkIdVerifyProcessingUseCase</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-request/index.html">BlinkIdVerifyRequest</a></div><div class="brief "><p class="paragraph">Converts capture result into <a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-request/index.html">BlinkIdVerifyRequest</a> using caller-provided options.</p></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="to-blink-id-verify-request.html"><span class="token function">toBlinkIdVerifyRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">returnFullDocumentImage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">returnFaceImage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">returnSignatureImage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">photocopyMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">photoForgeryMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">generativeAiMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">returnImageFormat<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-image-format/index.html">ImageFormat</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">redactionMode<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.settings/-redaction-mode/index.html">RedactionMode</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-request/index.html">BlinkIdVerifyRequest</a></div><div class="brief "><p class="paragraph">Converts this capture result into <a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-request/index.html">BlinkIdVerifyRequest</a> using <a href="../../com.microblink.blinkidverify.core.capture.session/-blink-id-verify-session-settings/index.html">BlinkIdVerifySessionSettings</a> settings as the source of truth for all shared on-device and backend processing options.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -209,17 +238,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2026 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

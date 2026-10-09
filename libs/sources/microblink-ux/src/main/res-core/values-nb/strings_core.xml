@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="mb_camera_permission_required">Kameratillatelse er nødvendig.</string>
-  <string name="mb_close">Lukk</string>
-  <string name="mb_dialog_back_button">Tilbake</string>
-  <string name="mb_dialog_done_button">Ferdig</string>
-  <string name="mb_dialog_next_button">Neste</string>
-  <string name="mb_dialog_skip_button">Hopp over</string>
-  <string name="mb_enable_camera">Aktiver kamera</string>
-  <string name="mb_enable_permission_help">Du blir nå ført til tillatelsesinnstillinger der du må gi kameratillatelse til appen.</string>
-  <string name="mb_enable_permission_help_instant_app">Gi kameratillatelse i appens tillatelsesinnstillinger.</string>
-  <string name="mb_license_locked">Skanning er ikke tilgjengelig</string>
-  <string name="mb_loading">Laster …</string>
-  <string name="mb_move_closer">Flytt nærmere</string>
-  <string name="mb_move_farther">Flytt lenger bort</string>
-  <string name="mb_need_help_tooltip">Trenger du hjelp?</string>
-  <string name="mb_ok">OK</string>
-  <string name="mb_retry">Prøv på nytt</string>
-  <string name="mb_warning">Advarsel</string>
+    <string name="mb_camera_permission_required">Kameratillatelse er nødvendig.</string>
+    <string name="mb_close">Lukk</string>
+    <string name="mb_consent_description">Å lagre og/eller få tilgang til personopplysninger for å bekrefte identiteten din.</string>
+    <string name="mb_consent_no">Ikke samtykk</string>
+    <string name="mb_consent_privacy_link">personvernerklæringen</string>
+    <string name="mb_consent_privacy_notice">Valgene dine hjelper oss med å beskytte personopplysningene dine og forbedre teknologien vår, samtidig som vi opprettholder de høyeste standardene for personvern, slik det er beskrevet i %1$s.</string>
+    <string name="mb_consent_privacy_switch">Jeg samtykker til at leverandøren bruker personopplysningene mine til å optimalisere teknologien sin.</string>
+    <string name="mb_consent_title">Vi trenger samtykket ditt til:</string>
+    <string name="mb_consent_yes">Samtykk</string>
+    <string name="mb_dialog_back_button">Tilbake</string>
+    <string name="mb_dialog_done_button">Ferdig</string>
+    <string name="mb_dialog_next_button">Neste</string>
+    <string name="mb_dialog_skip_button">Hopp over</string>
+    <string name="mb_enable_camera">Aktiver kamera</string>
+    <string name="mb_enable_permission_help">Du blir nå ført til tillatelsesinnstillinger der du må gi kameratillatelse til appen.</string>
+    <string name="mb_enable_permission_help_instant_app">Gi kameratillatelse i appens tillatelsesinnstillinger.</string>
+    <string name="mb_license_locked">Skanning er ikke tilgjengelig</string>
+    <string name="mb_loading">Laster …</string>
+    <string name="mb_move_closer">Flytt nærmere</string>
+    <string name="mb_move_farther">Flytt lenger bort</string>
+    <string name="mb_need_help_tooltip">Trenger du hjelp?</string>
+    <string name="mb_ok">OK</string>
+    <string name="mb_optional">Valgfritt</string>
+    <string name="mb_privacy_notice">Personvernerklæring</string>
+    <string name="mb_retry">Prøv på nytt</string>
+    <string name="mb_warning">Advarsel</string>
 </resources>

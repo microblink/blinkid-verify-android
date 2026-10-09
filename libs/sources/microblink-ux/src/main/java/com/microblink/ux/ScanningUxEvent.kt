@@ -80,6 +80,19 @@ interface ScanningUxEvent {
      */
     object UnsupportedDocument: ScanningUxEvent
 
+    /**
+     * Barcode was detected but its content could not be parsed.
+     *
+     * This is an internal signal consumed by the analyzer to advance the
+     * scanning session
+     */
+    object UnparsableBarcode: ScanningUxEvent
+
+    /**
+     * Barcode was not detected on the document, even though it is expected to be present.
+     */
+    object BarcodeNotDetected: ScanningUxEvent
+
 }
 
 interface ScanningUxEventHandler {

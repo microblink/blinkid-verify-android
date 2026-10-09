@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
@@ -25,8 +26,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Gray
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.isTraversalGroup
@@ -45,6 +47,10 @@ import com.microblink.ux.components.Reticle
 import com.microblink.ux.components.TorchButton
 import com.microblink.ux.components.longHapticFeedback
 import com.microblink.ux.components.longHapticFeedbackDurationMs
+import com.microblink.ux.components.needHelpTooltipDefaultDurationMs
+import com.microblink.ux.components.playScanBeep
+import com.microblink.ux.components.preloadScanBeep
+import com.microblink.ux.components.releaseScanBeep
 import com.microblink.ux.components.shortHapticFeedback
 import com.microblink.ux.components.shortHapticFeedbackDurationMs
 import com.microblink.ux.state.BaseUiState
@@ -52,9 +58,12 @@ import com.microblink.ux.state.CardAnimationState
 import com.microblink.ux.state.CommonStatusMessage
 import com.microblink.ux.state.ErrorState
 import com.microblink.ux.state.HapticFeedbackState
+import com.microblink.ux.state.ScanSoundState
 import com.microblink.ux.state.ProcessingState
 import com.microblink.ux.state.ReticleState
 import com.microblink.ux.state.StatusMessage
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Composable function that provides the user interface for the scanning screen,
@@ -71,31 +80,24 @@ import com.microblink.ux.state.StatusMessage
  * @param onExitScanning A callback function invoked when the user wants to
  *                       exit the scanning process.
  * @param uiSettings The [UiSettings] used to configure the UI.
+ * @param helpScreens The [HelpScreens] containing onboarding and help dialog content.
+ * @param errorStateDialogs A map of [ErrorState] to composable error dialogs.
+ * @param allowHapticFeedback Whether haptic feedback is allowed during the scanning process.
+ * @param allowScanSound Whether scan success sounds are allowed during the scanning process.
  * @param showProductionOverlay A [Boolean] defining whether a `Microblink` logo overlay will be shown during scanning.
- *                              The setting value is defined by license and shouldn't be modified
+ *                              The setting value is defined by license and shouldn't be modified.
  * @param showDemoOverlay A [Boolean] defining whether a `Powered by Microblink` text overlay will be shown during scanning.
- *  *                     The setting value is defined by license and shouldn't be modified
- * @param onTorchStateChange A callback function invoked when the user wants to
- *                           change the torch state.
- * @param onFlipDocumentAnimationCompleted A callback function invoked when the
- *                                         flip document animation is completed.
- * @param onReticleSuccessAnimationCompleted A callback function invoked when
- *                                           the reticle success animation is
- *                                           completed.
+ *                        The setting value is defined by license and shouldn't be modified.
+ * @param onTorchStateChange A callback function invoked when the user wants to change the torch state.
+ * @param onFlipDocumentAnimationCompleted A callback function invoked when the flip document animation is completed.
+ * @param onReticleSuccessAnimationCompleted A callback function invoked when the reticle success animation is completed.
  * @param onHapticFeedbackCompleted A callback function invoked when the haptic feedback is completed.
- * @param onChangeOnboardingDialogVisibility A callback function invoked when
- *                                           the visibility of the onboarding
- *                                           dialog should change.
- * @param onChangeHelpScreensVisibility A callback function invoked when the
- *                                      visibility of the help screens should
- *                                      change.
- * @param onChangeHelpTooltipVisibility A callback function invoked when the
- *                                       visibility of the help tooltip should
- *                                       change.
- * @param onRetry A callback function invoked when retry button is pressed (e.g on timeout or
- * document class filtered dialog)
- * @param onDoneError A callback function invoked when the unrecoverable error occurs and cancel
- * button is pressed on error dialog.
+ * @param onScanSoundCompleted A callback function invoked when the scan sound playback is completed.
+ * @param onChangeOnboardingDialogVisibility A callback function invoked when the visibility of the onboarding dialog should change.
+ * @param onHelpScreensDisplayRequested A callback function invoked when help screens should be displayed.
+ * @param onHelpScreensCloseRequested A callback function invoked when help screens should be closed.
+ * @param onChangeHelpTooltipVisibility A callback function invoked when the visibility of the help tooltip should change.
+ * @param helpTooltipHideDelay How long the help tooltip stays displayed before it is hidden.
  *
  */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -108,16 +110,19 @@ fun ScanningUx(
     helpScreens: HelpScreens,
     errorStateDialogs: Map<ErrorState, @Composable () -> Unit>,
     allowHapticFeedback: Boolean,
+    allowScanSound: Boolean = true,
     showProductionOverlay: Boolean,
     showDemoOverlay: Boolean,
     onTorchStateChange: () -> Unit,
     onFlipDocumentAnimationCompleted: () -> Unit,
     onReticleSuccessAnimationCompleted: () -> Unit,
     onHapticFeedbackCompleted: () -> Unit,
+    onScanSoundCompleted: () -> Unit = {},
     onChangeOnboardingDialogVisibility: (Boolean) -> Unit,
     onHelpScreensDisplayRequested: () -> Unit,
     onHelpScreensCloseRequested: (allPagesDisplayed: Boolean) -> Unit,
-    onChangeHelpTooltipVisibility: (Boolean) -> Unit
+    onChangeHelpTooltipVisibility: (Boolean) -> Unit,
+    helpTooltipHideDelay: Duration = needHelpTooltipDefaultDurationMs.milliseconds
 ) {
     Box(
         Modifier
@@ -129,11 +134,14 @@ fun ScanningUx(
             instructionMessage = uiState.statusMessage,
             cardAnimationState = uiState.cardAnimationState,
             hapticFeedbackState = uiState.hapticFeedbackState,
+            scanSoundState = uiState.scanSoundState,
             allowHapticFeedback = allowHapticFeedback,
+            allowScanSound = allowScanSound,
             showDemoOverlay = showDemoOverlay,
             onFlipDocumentAnimationCompleted = onFlipDocumentAnimationCompleted,
             onReticleSuccessAnimationCompleted = onReticleSuccessAnimationCompleted,
-            onHapticFeedbackCompleted = onHapticFeedbackCompleted
+            onHapticFeedbackCompleted = onHapticFeedbackCompleted,
+            onScanSoundCompleted = onScanSoundCompleted
         )
         Box(
             modifier
@@ -163,7 +171,8 @@ fun ScanningUx(
                     uiState.helpButtonDisplayed,
                     uiState.helpTooltipDisplayed,
                     onHelpScreensDisplayRequested,
-                    onChangeHelpTooltipVisibility
+                    onChangeHelpTooltipVisibility,
+                    helpTooltipHideDelay
                 )
             }
             if (showProductionOverlay) ProductionOverlay(
@@ -194,11 +203,14 @@ internal fun ScanningScreenCentralElements(
     instructionMessage: StatusMessage,
     cardAnimationState: CardAnimationState,
     hapticFeedbackState: HapticFeedbackState,
+    scanSoundState: ScanSoundState,
     allowHapticFeedback: Boolean,
+    allowScanSound: Boolean,
     showDemoOverlay: Boolean,
     onFlipDocumentAnimationCompleted: () -> Unit,
     onReticleSuccessAnimationCompleted: () -> Unit,
-    onHapticFeedbackCompleted: () -> Unit
+    onHapticFeedbackCompleted: () -> Unit,
+    onScanSoundCompleted: () -> Unit
 ) {
 
     var _reticleState by remember { mutableStateOf(ReticleState.Sensing) }
@@ -209,6 +221,15 @@ internal fun ScanningScreenCentralElements(
     var lastHapticFeedbackTime by remember { mutableLongStateOf(0L) }
 
     val context = LocalContext.current
+
+    DisposableEffect(allowScanSound) {
+        if (allowScanSound) {
+            preloadScanBeep(context.applicationContext)
+        }
+        onDispose {
+            releaseScanBeep()
+        }
+    }
 
     LaunchedEffect(hapticFeedbackState) {
         if (allowHapticFeedback) {
@@ -243,6 +264,13 @@ internal fun ScanningScreenCentralElements(
         }
     }
 
+    LaunchedEffect(scanSoundState) {
+        if (allowScanSound && scanSoundState == ScanSoundState.PlayScanBeep) {
+            playScanBeep(context.applicationContext)
+            onScanSoundCompleted()
+        }
+    }
+
     LaunchedEffect(reticleState) {
         _reticleState = reticleState.reticleState
     }
@@ -259,9 +287,9 @@ internal fun ScanningScreenCentralElements(
 
     Column(modifier.fillMaxSize()) {
 
-        val configuration = LocalConfiguration.current
-        val screenHeight = configuration.screenHeightDp
-        val screenWidth = configuration.screenWidthDp
+        val density = LocalResources.current.displayMetrics.density
+        val screenHeight = LocalWindowInfo.current.containerSize.height / density
+        val screenWidth = LocalWindowInfo.current.containerSize.width / density
         val screenDimensionMinDp =
             if (screenWidth < screenHeight) screenWidth.dp else screenHeight.dp
         Column(

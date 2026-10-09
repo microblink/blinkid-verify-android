@@ -7,11 +7,11 @@ package com.microblink.blinkidverify.ux.capture.scanning
 
 import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyCaptureResult
 import com.microblink.blinkidverify.core.data.imageanalysis.ExtractionImageAnalysisResult
-import com.microblink.core.image.InputImage
-import com.microblink.ux.ScanningUxEvent
-import com.microblink.ux.ScanningUxEventHandler
-import com.microblink.core.geometry.Quadrilateral
-import com.microblink.ux.utils.ErrorReason
+import com.microblink.blinkidverify.core.image.InputImage
+import com.microblink.blinkidverify.ux.ScanningUxEvent
+import com.microblink.blinkidverify.ux.ScanningUxEventHandler
+import com.microblink.blinkidverify.core.geometry.Quadrilateral
+import com.microblink.blinkidverify.ux.utils.ErrorReason
 
 interface VerifyScanningDoneHandler {
     fun onScanningFinished(result: BlinkIdVerifyCaptureResult)
@@ -29,6 +29,11 @@ interface VerifyScanningDoneHandler {
 data class VerifyDocumentImageAnalysisResult(
     val extractionImageAnalysisResult: ExtractionImageAnalysisResult
 ) : ScanningUxEvent
+
+/**
+ * A screen or screen-like surface was detected in the background of the capture.
+ */
+object ScreenPresenceDetected : ScanningUxEvent
 
 /**
  * The document has been located by the recognizer.

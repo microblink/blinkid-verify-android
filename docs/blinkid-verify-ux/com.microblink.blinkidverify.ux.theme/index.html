@@ -1,42 +1,39 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>com.microblink.blinkidverify.ux.theme</title>
-<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
-<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../styles/style.css" rel="Stylesheet">
 <link href="../../styles/main.css" rel="Stylesheet">
 <link href="../../styles/prism.css" rel="Stylesheet">
 <link href="../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../index.html" tabindex="1">
                     BlinkIDVerify
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
@@ -44,53 +41,55 @@
         <div class="library-version" id="library-version">
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":blinkid-verify-ux:dokkaHtmlPartial/release">androidJvm</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":blinkid-verify-ux/productionRelease">productionRelease</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
                         <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
                             <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":blinkid-verify-ux:dokkaHtmlPartial/release" data-filter=":blinkid-verify-ux:dokkaHtmlPartial/release">
+                                <input type="checkbox" class="checkbox--input" id=":blinkid-verify-ux/productionRelease" data-filter=":blinkid-verify-ux/productionRelease">
                                 <span class="checkbox--icon"></span>
-                                androidJvm
+                                productionRelease
                             </label>
                         </li>
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     BlinkIDVerify
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
-<div class="main-content" data-page-type="package" id="content" pageids="blinkid-verify-ux::com.microblink.blinkidverify.ux.theme////PointingToDeclaration//1050654948">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="package" id="content" pageids="blinkid-verify-ux::com.microblink.blinkidverify.ux.theme////PointingToDeclaration//1942635195">
   <div class="breadcrumbs"><a href="../index.html">blinkid-verify-ux</a><span class="delimiter">/</span><span class="current">com.microblink.blinkidverify.ux.theme</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
@@ -99,18 +98,153 @@
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button><button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">Properties</button></div>
     <div class="tabs-section-body">
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
-        <div class="table"><a data-name="966444550%2FClasslikes%2F1050654948" anchor-label="VerifySdkStrings" id="966444550%2FClasslikes%2F1050654948" data-filterable-set=":blinkid-verify-ux:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-ux:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-ux:dokkaHtmlPartial/release">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="102427475%2FClasslikes%2F1942635195" anchor-label="AccessibilityStrings" id="102427475%2FClasslikes%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-verify-sdk-strings/index.html"><span>Verify</span><wbr><span>Sdk</span><wbr><span><span>Strings</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="966444550%2FClasslikes%2F1050654948"></span>
+                  <div><a href="-accessibility-strings/index.html"><span>Accessibility</span><wbr><span><span>Strings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="102427475%2FClasslikes%2F1942635195"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-verify-sdk-strings/index.html">VerifySdkStrings</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>verifyScanningStrings<span class="token operator">: </span><a href="../../microblink-ux/com.microblink.ux.theme/-scanning-strings/index.html">ScanningStrings</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>verifyHelpDialogsStrings<span class="token operator">: </span><a href="../../microblink-ux/com.microblink.ux.theme/-help-dialogs-strings/index.html">HelpDialogsStrings</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>verifyAccessibilityStrings<span class="token operator">: </span><a href="../../microblink-ux/com.microblink.ux.theme/-accessibility-strings/index.html">AccessibilityStrings</a></span></span><span class="token punctuation">)</span> : <a href="../../microblink-ux/com.microblink.ux.theme/-sdk-strings/index.html">SdkStrings</a>, <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a></div><div class="brief "><p class="paragraph">Data class contains all the strings used throughout the SDK. <a href="-verify-sdk-strings/-companion/-default.html">Default</a> can be used to keep the original strings if only some of the elements are to be changed.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-accessibility-strings/index.html">AccessibilityStrings</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>scanCompleted<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>firstSideScanned<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>previousPage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>nextPage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>showHelpScreens<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>turnFlashlightOff<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>turnFlashlightOn<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>exitScanning<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>flashlightOff<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>flashlightOn<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1228612589%2FClasslikes%2F1942635195" anchor-label="BlinkIdScanningStrings" id="1228612589%2FClasslikes%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-blink-id-scanning-strings/index.html"><span>Blink</span><wbr><span>Id</span><wbr><span>Scanning</span><wbr><span><span>Strings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1228612589%2FClasslikes%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-blink-id-scanning-strings/index.html">BlinkIdScanningStrings</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsFirstSide<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsSecondSide<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsBarcode<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsFlip<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsBarcodeOnlyModule<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsBarcodeIdModule<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsMrzModule<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsNotFullyVisible<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsTilted<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsFacePhotoNotFullyVisible<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsScanningWrongSide<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsBlurDetected<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsGlareDetected<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsMoveFarther<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsMoveCloser<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsIncreaseLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsDecreaseLight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>snackbarFlashlightWarning<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportDataPage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportMoveToTopPage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportMoveToRightPage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportMoveToLeftPage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportMoveToBarcodePage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportWrongPageTop<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportWrongPageRight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportWrongPageLeft<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportWrongPageBarcode<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportScanTopPage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportScanRightPage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportScanLeftPage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsPassportScanBarcodePage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsBarcodeWrongSide<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a>, <a href="-scanning-strings/index.html">ScanningStrings</a></div><div class="brief "><p class="paragraph">Includes common SDK strings from <a href="-scanning-strings/index.html">ScanningStrings</a> and BlinkID specific strings.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="179149052%2FClasslikes%2F1942635195" anchor-label="BlinkIdSdkStrings" id="179149052%2FClasslikes%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-blink-id-sdk-strings/index.html"><span>Blink</span><wbr><span>Id</span><wbr><span>Sdk</span><wbr><span><span>Strings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="179149052%2FClasslikes%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-blink-id-sdk-strings/index.html">BlinkIdSdkStrings</a>&nbsp;<span><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a>&nbsp;</span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>blinkIdScanningStrings<span class="token operator">: </span><a href="-blink-id-scanning-strings/index.html">BlinkIdScanningStrings</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>blinkIdDocumentHelpDialogsStrings<span class="token operator">: </span><a href="-help-dialogs-strings/index.html">HelpDialogsStrings</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>blinkIdBarcodeHelpDialogsStrings<span class="token operator">: </span><a href="-help-dialogs-strings/index.html">HelpDialogsStrings</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>blinkIdBarcodeIdHelpDialogsStrings<span class="token operator">: </span><a href="-help-dialogs-strings/index.html">HelpDialogsStrings</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>blinkIdMrzHelpDialogsStrings<span class="token operator">: </span><a href="-help-dialogs-strings/index.html">HelpDialogsStrings</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>blinkIdAccessibilityStrings<span class="token operator">: </span><a href="-accessibility-strings/index.html">AccessibilityStrings</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>blinkIdPassportHelpDialogsStrings<span class="token operator">: </span><a href="-help-dialogs-strings/index.html">HelpDialogsStrings</a><span class="token operator"> = </span>PassportHelpDialogsDefaults</span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a>, <a href="-sdk-strings/index.html">SdkStrings</a></div><div class="brief "><p class="paragraph">Data class contains all the strings used throughout the SDK. <a href="-blink-id-sdk-strings/-companion/-default.html">Default</a> can be used to keep the original strings if only some of the elements are to be changed.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1531066671%2FClasslikes%2F1942635195" anchor-label="HelpDialogsStrings" id="1531066671%2FClasslikes%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-help-dialogs-strings/index.html"><span>Help</span><wbr><span>Dialogs</span><wbr><span><span>Strings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1531066671%2FClasslikes%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-help-dialogs-strings/index.html">HelpDialogsStrings</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>onboardingTitle<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>onboardingMessage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>helpTitles<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>helpMessages<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a></div><div class="brief "><p class="paragraph">SDK-specific onboarding and help dialog strings.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="396242186%2FClasslikes%2F1942635195" anchor-label="ScanningStrings" id="396242186%2FClasslikes%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-scanning-strings/index.html"><span>Scanning</span><wbr><span><span>Strings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="396242186%2FClasslikes%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">open </span><span class="token keyword">class </span><a href="-scanning-strings/index.html">ScanningStrings</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsFirstSide<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsSecondSide<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsFlip<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsNotFullyVisible<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsTilted<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsScanningWrongSide<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsBlurDetected<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsMoveFarther<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>instructionsMoveCloser<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation builtin">StringRes</span></a>&nbsp;</span><span class="token keyword">val </span>snackbarFlashlightWarning<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-35221057%2FClasslikes%2F1942635195" anchor-label="SdkStrings" id="-35221057%2FClasslikes%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-sdk-strings/index.html"><span>Sdk</span><wbr><span><span>Strings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-35221057%2FClasslikes%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">open </span><span class="token keyword">class </span><a href="-sdk-strings/index.html">SdkStrings</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>scanningStrings<span class="token operator">: </span><a href="-scanning-strings/index.html">ScanningStrings</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>accessibilityStrings<span class="token operator">: </span><a href="-accessibility-strings/index.html">AccessibilityStrings</a></span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a></div><div class="brief "><p class="paragraph">Contains the common strings used by the shared scanning UX layer.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1376444504%2FClasslikes%2F1942635195" anchor-label="SdkTheme" id="1376444504%2FClasslikes%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-sdk-theme/index.html"><span>Sdk</span><wbr><span><span>Theme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1376444504%2FClasslikes%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">object </span><a href="-sdk-theme/index.html">SdkTheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="174334595%2FClasslikes%2F1942635195" anchor-label="UiColors" id="174334595%2FClasslikes%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-ui-colors/index.html"><span>Ui</span><wbr><span><span>Colors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="174334595%2FClasslikes%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-ui-colors/index.html">UiColors</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>helpButtonBackground<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>helpButton<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>helpTooltipBackground<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>helpTooltipText<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Data class contains all the text, button, and background colors used throughout the SDK scanning session. <a href="-ui-colors/-companion/-default.html">Default</a> can be used to keep the original theme colors if only some of the elements are to be changed.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-657088860%2FClasslikes%2F1942635195" anchor-label="UiTypography" id="-657088860%2FClasslikes%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-ui-typography/index.html"><span>Ui</span><wbr><span><span>Typography</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-657088860%2FClasslikes%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-ui-typography/index.html">UiTypography</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>onboardingTitle<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onboardingText<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onboardingButton<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>helpDialogTitle<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>helpDialogText<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>helpDialogButton<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>errorDialogTitle<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>errorDialogText<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>errorDialogButton<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scanningInstructions<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>helpTooltip<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>loadingScreen<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/TextStyle.html">TextStyle</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Defines the typography used in the verification UI.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="966444550%2FClasslikes%2F1942635195" anchor-label="VerifySdkStrings" id="966444550%2FClasslikes%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-verify-sdk-strings/index.html"><span>Verify</span><wbr><span>Sdk</span><wbr><span><span>Strings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="966444550%2FClasslikes%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-verify-sdk-strings/index.html">VerifySdkStrings</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>verifyScanningStrings<span class="token operator">: </span><a href="-scanning-strings/index.html">ScanningStrings</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>verifyHelpDialogsStrings<span class="token operator">: </span><a href="-help-dialogs-strings/index.html">HelpDialogsStrings</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>verifyAccessibilityStrings<span class="token operator">: </span><a href="-accessibility-strings/index.html">AccessibilityStrings</a></span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a>, <a href="-sdk-strings/index.html">SdkStrings</a></div><div class="brief "><p class="paragraph">Data class contains all the strings used throughout the SDK. <a href="-verify-sdk-strings/-companion/-default.html">Default</a> can be used to keep the original strings if only some of the elements are to be changed.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -118,33 +252,408 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
-        <div class="table"><a data-name="-1071915707%2FProperties%2F1050654948" anchor-label="LocalBaseVerifySdkStrings" id="-1071915707%2FProperties%2F1050654948" data-filterable-set=":blinkid-verify-ux:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-ux:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-ux:dokkaHtmlPartial/release">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-123120829%2FProperties%2F1942635195" anchor-label="Black" id="-123120829%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-local-base-verify-sdk-strings.html"><span>Local</span><wbr><span>Base</span><wbr><span>Verify</span><wbr><span>Sdk</span><wbr><span><span>Strings</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1071915707%2FProperties%2F1050654948"></span>
+                  <div><a href="-black.html"><span><span>Black</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-123120829%2FProperties%2F1942635195"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="-local-base-verify-sdk-strings.html">LocalBaseVerifySdkStrings</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/ProvidableCompositionLocal.html">ProvidableCompositionLocal</a><span class="token operator">&lt;</span><a href="-verify-sdk-strings/index.html">VerifySdkStrings</a><span class="token operator">&gt;</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-black.html">Black</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1376108235%2FProperties%2F1050654948" anchor-label="VerifyDefault" id="-1376108235%2FProperties%2F1050654948" data-filterable-set=":blinkid-verify-ux:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":blinkid-verify-ux:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-ux:dokkaHtmlPartial/release">
+<a data-name="-496745584%2FProperties%2F1942635195" anchor-label="BrandGray200" id="-496745584%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-verify-default.html"><span>Verify</span><wbr><span><span>Default</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1376108235%2FProperties%2F1050654948"></span>
+                  <div><a href="-brand-gray200.html"><span>Brand</span><wbr><span><span>Gray200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-496745584%2FProperties%2F1942635195"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../microblink-ux/com.microblink.ux.theme/-help-dialogs-strings/-companion/index.html">HelpDialogsStrings.Companion</a><span class="token punctuation">.</span><a href="-verify-default.html">VerifyDefault</a><span class="token operator">: </span><a href="../../microblink-ux/com.microblink.ux.theme/-help-dialogs-strings/index.html">HelpDialogsStrings</a></div><div class="symbol monospace"><span class="token keyword">val </span><a href="../../microblink-ux/com.microblink.ux.theme/-scanning-strings/-companion/index.html">ScanningStrings.Companion</a><span class="token punctuation">.</span><a href="-verify-default.html">VerifyDefault</a><span class="token operator">: </span><a href="../../microblink-ux/com.microblink.ux.theme/-scanning-strings/index.html">ScanningStrings</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-brand-gray200.html">BrandGray200</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1006218674%2FProperties%2F1942635195" anchor-label="BrandGray400" id="-1006218674%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brand-gray400.html"><span>Brand</span><wbr><span><span>Gray400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1006218674%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-brand-gray400.html">BrandGray400</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-855441507%2FProperties%2F1942635195" anchor-label="BrandGray50" id="-855441507%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brand-gray50.html"><span>Brand</span><wbr><span><span>Gray50</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-855441507%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-brand-gray50.html">BrandGray50</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1260955219%2FProperties%2F1942635195" anchor-label="BrandGray500" id="-1260955219%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brand-gray500.html"><span>Brand</span><wbr><span><span>Gray500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1260955219%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-brand-gray500.html">BrandGray500</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1515691764%2FProperties%2F1942635195" anchor-label="BrandGray600" id="-1515691764%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brand-gray600.html"><span>Brand</span><wbr><span><span>Gray600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1515691764%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-brand-gray600.html">BrandGray600</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1770428309%2FProperties%2F1942635195" anchor-label="BrandGray700" id="-1770428309%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brand-gray700.html"><span>Brand</span><wbr><span><span>Gray700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1770428309%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-brand-gray700.html">BrandGray700</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2025164854%2FProperties%2F1942635195" anchor-label="BrandGray800" id="-2025164854%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brand-gray800.html"><span>Brand</span><wbr><span><span>Gray800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2025164854%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-brand-gray800.html">BrandGray800</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2015065897%2FProperties%2F1942635195" anchor-label="BrandGray900" id="2015065897%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brand-gray900.html"><span>Brand</span><wbr><span><span>Gray900</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2015065897%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-brand-gray900.html">BrandGray900</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="329466021%2FProperties%2F1942635195" anchor-label="Cobalt" id="329466021%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-cobalt.html"><span><span>Cobalt</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="329466021%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-cobalt.html">Cobalt</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1570127311%2FProperties%2F1942635195" anchor-label="CobaltDark" id="1570127311%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-cobalt-dark.html"><span>Cobalt</span><wbr><span><span>Dark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1570127311%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-cobalt-dark.html">CobaltDark</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-10751073%2FProperties%2F1942635195" anchor-label="CobaltLight" id="-10751073%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-cobalt-light.html"><span>Cobalt</span><wbr><span><span>Light</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-10751073%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-cobalt-light.html">CobaltLight</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="825386704%2FProperties%2F1942635195" anchor-label="DarkColorScheme" id="825386704%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-color-scheme.html"><span>Dark</span><wbr><span>Color</span><wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="825386704%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-color-scheme.html">DarkColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-319772129%2FProperties%2F1942635195" anchor-label="DarkGray" id="-319772129%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-gray.html"><span>Dark</span><wbr><span><span>Gray</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-319772129%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-gray.html">DarkGray</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-846134123%2FProperties%2F1942635195" anchor-label="ElevatedDarkGray" id="-846134123%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-elevated-dark-gray.html"><span>Elevated</span><wbr><span>Dark</span><wbr><span><span>Gray</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-846134123%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-elevated-dark-gray.html">ElevatedDarkGray</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="225065391%2FProperties%2F1942635195" anchor-label="ErrorRed" id="225065391%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-error-red.html"><span>Error</span><wbr><span><span>Red</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="225065391%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-error-red.html">ErrorRed</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1444838539%2FProperties%2F1942635195" anchor-label="Gray" id="-1444838539%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-gray.html"><span><span>Gray</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1444838539%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-gray.html">Gray</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1195563078%2FProperties%2F1942635195" anchor-label="LightColorScheme" id="1195563078%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-color-scheme.html"><span>Light</span><wbr><span>Color</span><wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1195563078%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-color-scheme.html">LightColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1233104075%2FProperties%2F1942635195" anchor-label="LocalBaseBlinkIdSdkStrings" id="-1233104075%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-local-base-blink-id-sdk-strings.html"><span>Local</span><wbr><span>Base</span><wbr><span>Blink</span><wbr><span>Id</span><wbr><span>Sdk</span><wbr><span><span>Strings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1233104075%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">var </span><a href="-local-base-blink-id-sdk-strings.html">LocalBaseBlinkIdSdkStrings</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/ProvidableCompositionLocal.html">ProvidableCompositionLocal</a><span class="token operator">&lt;</span><a href="-blink-id-sdk-strings/index.html">BlinkIdSdkStrings</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1252109118%2FProperties%2F1942635195" anchor-label="LocalBaseSdkStrings" id="1252109118%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-local-base-sdk-strings.html"><span>Local</span><wbr><span>Base</span><wbr><span>Sdk</span><wbr><span><span>Strings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1252109118%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">var </span><a href="-local-base-sdk-strings.html">LocalBaseSdkStrings</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/ProvidableCompositionLocal.html">ProvidableCompositionLocal</a><span class="token operator">&lt;</span><a href="-sdk-strings/index.html">SdkStrings</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="670538946%2FProperties%2F1942635195" anchor-label="LocalBaseUiColors" id="670538946%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-local-base-ui-colors.html"><span>Local</span><wbr><span>Base</span><wbr><span>Ui</span><wbr><span><span>Colors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="670538946%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">var </span><a href="-local-base-ui-colors.html">LocalBaseUiColors</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/ProvidableCompositionLocal.html">ProvidableCompositionLocal</a><span class="token operator">&lt;</span><a href="-ui-colors/index.html">UiColors</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1071915707%2FProperties%2F1942635195" anchor-label="LocalBaseVerifySdkStrings" id="-1071915707%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-local-base-verify-sdk-strings.html"><span>Local</span><wbr><span>Base</span><wbr><span>Verify</span><wbr><span>Sdk</span><wbr><span><span>Strings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1071915707%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">var </span><a href="-local-base-verify-sdk-strings.html">LocalBaseVerifySdkStrings</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/ProvidableCompositionLocal.html">ProvidableCompositionLocal</a><span class="token operator">&lt;</span><a href="-verify-sdk-strings/index.html">VerifySdkStrings</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-867549990%2FProperties%2F1942635195" anchor-label="LocalTheme" id="-867549990%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-local-theme.html"><span>Local</span><wbr><span><span>Theme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-867549990%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">var </span><a href="-local-theme.html">LocalTheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/ProvidableCompositionLocal.html">ProvidableCompositionLocal</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="527479400%2FProperties%2F1942635195" anchor-label="LocalTypography" id="527479400%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-local-typography.html"><span>Local</span><wbr><span><span>Typography</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="527479400%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">var </span><a href="-local-typography.html">LocalTypography</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/ProvidableCompositionLocal.html">ProvidableCompositionLocal</a><span class="token operator">&lt;</span><a href="-ui-typography/index.html">UiTypography</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1386823559%2FProperties%2F1942635195" anchor-label="SdkTypography" id="-1386823559%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-sdk-typography.html"><span>Sdk</span><wbr><span><span>Typography</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1386823559%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-sdk-typography.html">SdkTypography</a><span class="token operator">: </span><span class="token punctuation">(</span>fontFamily<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/font/FontFamily.html">FontFamily</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="-ui-typography/index.html">UiTypography</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-291529624%2FProperties%2F1942635195" anchor-label="VerifyDefault" id="-291529624%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-verify-default.html"><span>Verify</span><wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-291529624%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-scanning-strings/-companion/index.html">ScanningStrings.Companion</a><span class="token punctuation">.</span><a href="-verify-default.html">VerifyDefault</a><span class="token operator">: </span><a href="-scanning-strings/index.html">ScanningStrings</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1419363751%2FProperties%2F1942635195" anchor-label="White" id="-1419363751%2FProperties%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-white.html"><span><span>White</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1419363751%2FProperties%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="-white.html">White</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -152,18 +661,33 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
-        <div class="table"><a data-name="-1103398495%2FFunctions%2F1050654948" anchor-label="BlinkIdVerifySdkTheme" id="-1103398495%2FFunctions%2F1050654948" data-filterable-set=":blinkid-verify-ux:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-ux:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-ux:dokkaHtmlPartial/release">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1155656950%2FFunctions%2F1942635195" anchor-label="BlinkIdSdkTheme" id="-1155656950%2FFunctions%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-blink-id-verify-sdk-theme.html"><span>Blink</span><wbr><span>Id</span><wbr><span>Verify</span><wbr><span>Sdk</span><wbr><span><span>Theme</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1103398495%2FFunctions%2F1050654948"></span>
+                  <div><a href="-blink-id-sdk-theme.html"><span>Blink</span><wbr><span>Id</span><wbr><span>Sdk</span><wbr><span><span>Theme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1155656950%2FFunctions%2F1942635195"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="-blink-id-verify-sdk-theme.html"><span class="token function">BlinkIdVerifySdkTheme</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">verifyUiSettings<span class="token operator">: </span><a href="../../microblink-ux/com.microblink.ux/-ui-settings/index.html">UiSettings</a><span class="token punctuation">, </span></span><span class="parameter ">darkTheme<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span>isSystemInDarkTheme()<span class="token punctuation">, </span></span><span class="parameter ">content<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a>&nbsp;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Theme used in the entire SDK. Defines colors and strings that are used for all the elements. The theme can be updated by defining <a href="../../microblink-ux/com.microblink.ux/-ui-settings/index.html">UiSettings</a> which customizes all the visual elements.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="-blink-id-sdk-theme.html"><span class="token function">BlinkIdSdkTheme</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">uiSettings<span class="token operator">: </span><a href="../com.microblink.blinkidverify.ux/-ui-settings/index.html">UiSettings</a><span class="token punctuation">, </span></span><span class="parameter ">darkTheme<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span>isSystemInDarkTheme()<span class="token punctuation">, </span></span><span class="parameter ">content<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a>&nbsp;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Theme used in the entire SDK. Defines colors and strings that are used for all the elements. The theme can be updated by defining <a href="../com.microblink.blinkidverify.ux/-ui-settings/index.html">UiSettings</a> which customizes all the visual elements.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="500230947%2FFunctions%2F1942635195" anchor-label="BlinkIdVerifySdkTheme" id="500230947%2FFunctions%2F1942635195" data-filterable-set=":blinkid-verify-ux/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-ux/productionRelease" data-filterable-set=":blinkid-verify-ux/productionRelease">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-blink-id-verify-sdk-theme.html"><span>Blink</span><wbr><span>Id</span><wbr><span>Verify</span><wbr><span>Sdk</span><wbr><span><span>Theme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="500230947%2FFunctions%2F1942635195"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-ux/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="-blink-id-verify-sdk-theme.html"><span class="token function">BlinkIdVerifySdkTheme</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">verifyUiSettings<span class="token operator">: </span><a href="../com.microblink.blinkidverify.ux/-ui-settings/index.html">UiSettings</a><span class="token punctuation">, </span></span><span class="parameter ">darkTheme<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span>isSystemInDarkTheme()<span class="token punctuation">, </span></span><span class="parameter ">content<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a>&nbsp;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Theme used in the entire SDK. Defines colors and strings that are used for all the elements. The theme can be updated by defining <a href="../com.microblink.blinkidverify.ux/-ui-settings/index.html">UiSettings</a> which customizes all the visual elements.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -174,17 +698,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2026 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

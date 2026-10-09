@@ -42,8 +42,8 @@ const val DefaultShowHelpButton = true
  *                                  device settings (dark or light mode). Setting this value will overwrite the
  *                                  default behavior and the user will be responsible for handling theming based
  *                                  on device settings. Defaults to `null`.
- * @property sdkStrings             The [SdkStrings] containing text strings for the scanning UI, such as scanning strings
- *                                  and help dialog strings. Defaults to [com.microblink.ux.theme.SdkStrings.Default].
+ * @property sdkStrings             The [SdkStrings] containing text strings for the scanning UI, such as scanning
+ *                                  instruction strings and accessibility strings. Defaults to [com.microblink.ux.theme.SdkStrings.Default].
  * @property showOnboardingDialog   A boolean indicating whether to show an onboarding dialog at the beginning
  *                                  of the scanning session. Defaults to [DefaultShowOnboardingDialog].
  * @property showHelpButton         A boolean indicating whether to show a help button and enable help screens

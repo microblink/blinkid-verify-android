@@ -1,42 +1,39 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>ImageQualitySettings</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
-<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
                     BlinkIDVerify
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
@@ -44,74 +41,76 @@
         <div class="library-version" id="library-version">
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":blinkid-verify-core:dokkaHtmlPartial/release">androidJvm</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":blinkid-verify-core/productionRelease">productionRelease</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
                         <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
                             <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":blinkid-verify-core:dokkaHtmlPartial/release" data-filter=":blinkid-verify-core:dokkaHtmlPartial/release">
+                                <input type="checkbox" class="checkbox--input" id=":blinkid-verify-core/productionRelease" data-filter=":blinkid-verify-core/productionRelease">
                                 <span class="checkbox--icon"></span>
-                                androidJvm
+                                productionRelease
                             </label>
                         </li>
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     BlinkIDVerify
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageids="blinkid-verify-core::com.microblink.blinkidverify.core.capture.session/ImageQualitySettings///PointingToDeclaration//-1004863576">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="blinkid-verify-core::com.microblink.blinkidverify.core.capture.session/ImageQualitySettings///PointingToDeclaration//-112883329">
   <div class="breadcrumbs"><a href="../../index.html">blinkid-verify-core</a><span class="delimiter">/</span><a href="../index.html">com.microblink.blinkidverify.core.capture.session</a><span class="delimiter">/</span><span class="current">ImageQualitySettings</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Image</span><wbr><span>Quality</span><wbr><span><span>Settings</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">ImageQualitySettings</a>&nbsp;<span><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a>&nbsp;</span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>blurMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>glareMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lightingMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sharpnessMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>handOcclusionMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>dpiMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>tiltMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>imageQualityInterpretation<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-image-quality-interpretation/index.html">ImageQualityInterpretation</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a></div><p class="paragraph">Class representing options for image quality settings. Stricter settings will provide better quality images as the scan will not complete until they are met. If nullable settings are not set, internal defaults will be used.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">ImageQualitySettings</a>&nbsp;<span><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a>&nbsp;</span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>blurMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>glareMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lightingMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sharpnessMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>handOcclusionMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>dpiMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>tiltMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>imageQualityInterpretation<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-image-quality-interpretation/index.html">ImageQualityInterpretation</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a></div><p class="paragraph">Class representing options for image quality settings. Stricter settings will provide better quality images as the scan will not complete until they are met. If nullable settings are not set, internal defaults will be used.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
-        <h2 class="">Constructors</h2>
-        <div class="table"><a data-name="1372372181%2FConstructors%2F-1004863576" anchor-label="ImageQualitySettings" id="1372372181%2FConstructors%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="1372372181%2FConstructors%2F-112883329" anchor-label="ImageQualitySettings" id="1372372181%2FConstructors%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-image-quality-settings.html"><span>Image</span><wbr><span>Quality</span><wbr><span><span>Settings</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1372372181%2FConstructors%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1372372181%2FConstructors%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">blurMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">glareMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">lightingMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">sharpnessMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">handOcclusionMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">dpiMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">tiltMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">imageQualityInterpretation<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-image-quality-interpretation/index.html">ImageQualityInterpretation</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">blurMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">glareMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">lightingMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">sharpnessMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">handOcclusionMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">dpiMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">tiltMatchLevel<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">imageQualityInterpretation<span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-image-quality-interpretation/index.html">ImageQualityInterpretation</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -119,123 +118,123 @@
         </div>
       </div>
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
-        <div class="table"><a data-name="400074200%2FProperties%2F-1004863576" anchor-label="blurMatchLevel" id="400074200%2FProperties%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="400074200%2FProperties%2F-112883329" anchor-label="blurMatchLevel" id="400074200%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="blur-match-level.html"><span>blur</span><wbr><span>Match</span><wbr><span><span>Level</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="400074200%2FProperties%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="400074200%2FProperties%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="blur-match-level.html">blurMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">Threshold for detecting blur. Higher levels provide stricter detection.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="blur-match-level.html">blurMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Threshold for detecting blur. Higher levels provide stricter detection.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-121944768%2FProperties%2F-1004863576" anchor-label="dpiMatchLevel" id="-121944768%2FProperties%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+<a data-name="-121944768%2FProperties%2F-112883329" anchor-label="dpiMatchLevel" id="-121944768%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="dpi-match-level.html"><span>dpi</span><wbr><span>Match</span><wbr><span><span>Level</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-121944768%2FProperties%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-121944768%2FProperties%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="dpi-match-level.html">dpiMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">Defines DPI match level.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="dpi-match-level.html">dpiMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Defines DPI match level.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="968976974%2FProperties%2F-1004863576" anchor-label="glareMatchLevel" id="968976974%2FProperties%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+<a data-name="968976974%2FProperties%2F-112883329" anchor-label="glareMatchLevel" id="968976974%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="glare-match-level.html"><span>glare</span><wbr><span>Match</span><wbr><span><span>Level</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="968976974%2FProperties%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="968976974%2FProperties%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="glare-match-level.html">glareMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">Threshold for detecting glare. Higher levels provide stricter detection.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="glare-match-level.html">glareMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Threshold for detecting glare. Higher levels provide stricter detection.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1518981537%2FProperties%2F-1004863576" anchor-label="handOcclusionMatchLevel" id="-1518981537%2FProperties%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+<a data-name="-1518981537%2FProperties%2F-112883329" anchor-label="handOcclusionMatchLevel" id="-1518981537%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="hand-occlusion-match-level.html"><span>hand</span><wbr><span>Occlusion</span><wbr><span>Match</span><wbr><span><span>Level</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1518981537%2FProperties%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1518981537%2FProperties%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="hand-occlusion-match-level.html">handOcclusionMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">Threshold for detecting hand covering the document. Higher levels provide stricter detection.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="hand-occlusion-match-level.html">handOcclusionMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Threshold for detecting hand covering the document. Higher levels provide stricter detection.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1935523502%2FProperties%2F-1004863576" anchor-label="imageQualityInterpretation" id="-1935523502%2FProperties%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+<a data-name="-1935523502%2FProperties%2F-112883329" anchor-label="imageQualityInterpretation" id="-1935523502%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="image-quality-interpretation.html"><span>image</span><wbr><span>Quality</span><wbr><span><span>Interpretation</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1935523502%2FProperties%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1935523502%2FProperties%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="image-quality-interpretation.html">imageQualityInterpretation</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-image-quality-interpretation/index.html">ImageQualityInterpretation</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">Defines image quality interpretation.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="image-quality-interpretation.html">imageQualityInterpretation</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-image-quality-interpretation/index.html">ImageQualityInterpretation</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Defines image quality interpretation.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1639567507%2FProperties%2F-1004863576" anchor-label="lightingMatchLevel" id="1639567507%2FProperties%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+<a data-name="1639567507%2FProperties%2F-112883329" anchor-label="lightingMatchLevel" id="1639567507%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="lighting-match-level.html"><span>lighting</span><wbr><span>Match</span><wbr><span><span>Level</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1639567507%2FProperties%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1639567507%2FProperties%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="lighting-match-level.html">lightingMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">Threshold for lighting level requirement. Higher levels provide stricter requirement.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="lighting-match-level.html">lightingMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Threshold for lighting level requirement. Higher levels provide stricter requirement.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1072992156%2FProperties%2F-1004863576" anchor-label="sharpnessMatchLevel" id="1072992156%2FProperties%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+<a data-name="1072992156%2FProperties%2F-112883329" anchor-label="sharpnessMatchLevel" id="1072992156%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="sharpness-match-level.html"><span>sharpness</span><wbr><span>Match</span><wbr><span><span>Level</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1072992156%2FProperties%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1072992156%2FProperties%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="sharpness-match-level.html">sharpnessMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">Threshold for sharpness requirement. Higher levels provide stricter requirement.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="sharpness-match-level.html">sharpnessMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Threshold for sharpness requirement. Higher levels provide stricter requirement.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1300902850%2FProperties%2F-1004863576" anchor-label="tiltMatchLevel" id="1300902850%2FProperties%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+<a data-name="1300902850%2FProperties%2F-112883329" anchor-label="tiltMatchLevel" id="1300902850%2FProperties%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="tilt-match-level.html"><span>tilt</span><wbr><span>Match</span><wbr><span><span>Level</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1300902850%2FProperties%2F-1004863576"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1300902850%2FProperties%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="tilt-match-level.html">tiltMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">Threshold for detecting tilt. Higher levels provide stricter detection.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">val </span><a href="tilt-match-level.html">tiltMatchLevel</a><span class="token operator">: </span><a href="../../com.microblink.blinkidverify.core.data.model.enums/-match-level/index.html">MatchLevel</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Threshold for detecting tilt. Higher levels provide stricter detection.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -243,33 +242,33 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
-        <div class="table"><a data-name="-1578325224%2FFunctions%2F-1004863576" anchor-label="describeContents" id="-1578325224%2FFunctions%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1578325224%2FFunctions%2F-112883329" anchor-label="describeContents" id="-1578325224%2FFunctions%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../../com.microblink.core.network/-request-timeout/index.html#-1578325224%2FFunctions%2F-1004863576"><span>describe</span><wbr><span><span>Contents</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1578325224%2FFunctions%2F-1004863576"></span>
+                  <div><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-use-case/index.html#-1578325224%2FFunctions%2F-112883329"><span>describe</span><wbr><span><span>Contents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1578325224%2FFunctions%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../../com.microblink.core.network/-request-timeout/index.html#-1578325224%2FFunctions%2F-1004863576"><span class="token function">describeContents</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-use-case/index.html#-1578325224%2FFunctions%2F-112883329"><span class="token function">describeContents</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1754457655%2FFunctions%2F-1004863576" anchor-label="writeToParcel" id="-1754457655%2FFunctions%2F-1004863576" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release"></a>
-          <div class="table-row" data-filterable-current=":blinkid-verify-core:dokkaHtmlPartial/release" data-filterable-set=":blinkid-verify-core:dokkaHtmlPartial/release">
+<a data-name="-1754457655%2FFunctions%2F-112883329" anchor-label="writeToParcel" id="-1754457655%2FFunctions%2F-112883329" data-filterable-set=":blinkid-verify-core/productionRelease"></a>
+          <div class="table-row table-row_content" data-filterable-current=":blinkid-verify-core/productionRelease" data-filterable-set=":blinkid-verify-core/productionRelease">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../../com.microblink.core.network/-request-timeout/index.html#-1754457655%2FFunctions%2F-1004863576"><span>write</span><wbr><span>To</span><wbr><span><span>Parcel</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1754457655%2FFunctions%2F-1004863576"></span>
+                  <div><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-use-case/index.html#-1754457655%2FFunctions%2F-112883329"><span>write</span><wbr><span>To</span><wbr><span><span>Parcel</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1754457655%2FFunctions%2F-112883329"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../../com.microblink.core.network/-request-timeout/index.html#-1754457655%2FFunctions%2F-1004863576"><span class="token function">writeToParcel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/os/Parcel.html">Parcel</a><span class="token punctuation">, </span></span><span class="parameter ">p1<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":blinkid-verify-core/productionRelease"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="../../com.microblink.blinkidverify.core.data.model.request/-blink-id-verify-processing-use-case/index.html#-1754457655%2FFunctions%2F-112883329"><span class="token function">writeToParcel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/os/Parcel.html">Parcel</a><span class="token punctuation">, </span></span><span class="parameter ">p1<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -280,17 +279,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2026 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

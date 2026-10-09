@@ -11,12 +11,17 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.microblink.ux.R
 import com.microblink.ux.theme.SdkStrings.Companion.Default
-import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 
 /**
- * Data class contains all the strings used throughout the SDK.
+ * Contains the common strings used by the shared scanning UX layer.
+ *
+ * Each SDK can extend the scanning strings to add SDK-specific instruction messages.
+ * Help dialog and onboarding strings are not included here as they are SDK-specific
+ * and are provided directly via [com.microblink.ux.components.HelpScreens] when
+ * constructing the scanning screen.
+ *
  * [Default] can be used to keep the original strings if only some of the elements are to be changed.
  *
  * This class shouldn't be modified, but rather a new instance should be
@@ -24,9 +29,6 @@ import kotlinx.parcelize.Parcelize
  *
  * @property scanningStrings Strings that appear as instruction messages during the scanning session.
  * These instructions are triggered by specific UX events and will appear on screen accordingly.
- * @property helpDialogsStrings Strings used in onboarding and help dialogs. These strings shouldn't
- * be customized as they provide adequate instructions tailored specifically to our scanning experience.
- * However, if the scanning experience is changed in any way, onboarding and help screen instructions may also be adjusted.
  * @property accessibilityStrings Strings that are used by accessibility TalkBack service for specific
  * buttons, labels, and actions.
  */
@@ -34,14 +36,12 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 open class SdkStrings(
     val scanningStrings: ScanningStrings,
-    val helpDialogsStrings: HelpDialogsStrings,
     val accessibilityStrings: AccessibilityStrings
 ) : Parcelable {
     companion object {
         val Default: SdkStrings =
             SdkStrings(
                 scanningStrings = ScanningStrings.Empty,
-                helpDialogsStrings = HelpDialogsStrings.Empty,
                 accessibilityStrings = AccessibilityStrings.Default
             )
     }
@@ -53,16 +53,16 @@ open class SdkStrings(
 @Immutable
 @Parcelize
 open class ScanningStrings(
-    @StringRes open val instructionsFirstSide: Int,
-    @StringRes open val instructionsSecondSide: Int,
-    @StringRes open val instructionsFlip: Int,
-    @StringRes open val instructionsNotFullyVisible: Int,
-    @StringRes open val instructionsTilted: Int,
-    @StringRes open val instructionsScanningWrongSide: Int,
-    @StringRes open val instructionsBlurDetected: Int,
-    @StringRes open val instructionsMoveFarther: Int,
-    @StringRes open val instructionsMoveCloser: Int,
-    @StringRes open val snackbarFlashlightWarning: Int
+    @param:StringRes @get:StringRes open val instructionsFirstSide: Int,
+    @param:StringRes @get:StringRes open val instructionsSecondSide: Int,
+    @param:StringRes @get:StringRes open val instructionsFlip: Int,
+    @param:StringRes @get:StringRes open val instructionsNotFullyVisible: Int,
+    @param:StringRes @get:StringRes open val instructionsTilted: Int,
+    @param:StringRes @get:StringRes open val instructionsScanningWrongSide: Int,
+    @param:StringRes @get:StringRes open val instructionsBlurDetected: Int,
+    @param:StringRes @get:StringRes open val instructionsMoveFarther: Int,
+    @param:StringRes @get:StringRes open val instructionsMoveCloser: Int,
+    @param:StringRes @get:StringRes open val snackbarFlashlightWarning: Int
 ) : Parcelable {
     companion object {
         @JvmStatic val Empty = ScanningStrings(
@@ -85,38 +85,17 @@ open class ScanningStrings(
  */
 @Immutable
 @Parcelize
-open class HelpDialogsStrings(
-    @StringRes val onboardingTitle: Int,
-    @StringRes val onboardingMessage: Int,
-    @StringRes val helpTitles: List<Int>,
-    @StringRes val helpMessages: List<Int>
-) : Parcelable {
-    companion object {
-        @JvmStatic val Empty = HelpDialogsStrings(
-            onboardingTitle = 0,
-            onboardingMessage = 0,
-            helpTitles = emptyList(),
-            helpMessages = emptyList()
-        )
-    }
-}
-
-/**
- * @see com.microblink.ux.theme.SdkStrings
- */
-@Immutable
-@Parcelize
 data class AccessibilityStrings(
-    @StringRes val scanCompleted: Int,
-    @StringRes val firstSideScanned: Int,
-    @StringRes val previousPage: Int,
-    @StringRes val nextPage: Int,
-    @StringRes val showHelpScreens: Int,
-    @StringRes val turnFlashlightOff: Int,
-    @StringRes val turnFlashlightOn: Int,
-    @StringRes val exitScanning: Int,
-    @StringRes val flashlightOff: Int,
-    @StringRes val flashlightOn: Int
+    @param:StringRes @get:StringRes val scanCompleted: Int,
+    @param:StringRes @get:StringRes val firstSideScanned: Int,
+    @param:StringRes @get:StringRes val previousPage: Int,
+    @param:StringRes @get:StringRes val nextPage: Int,
+    @param:StringRes @get:StringRes val showHelpScreens: Int,
+    @param:StringRes @get:StringRes val turnFlashlightOff: Int,
+    @param:StringRes @get:StringRes val turnFlashlightOn: Int,
+    @param:StringRes @get:StringRes val exitScanning: Int,
+    @param:StringRes @get:StringRes val flashlightOff: Int,
+    @param:StringRes @get:StringRes val flashlightOn: Int
 ) : Parcelable {
     companion object {
         @JvmStatic val Default: AccessibilityStrings = AccessibilityStrings(
@@ -134,6 +113,19 @@ data class AccessibilityStrings(
     }
 }
 
-var LocalBaseSdkStrings = staticCompositionLocalOf {
-    SdkStrings.Default
-}
+/**
+ * SDK-specific onboarding and help dialog strings.
+ *
+ * The number of [helpTitles] and [helpMessages] entries must match the number
+ * of help dialog pages for the SDK flow using these strings.
+ */
+@Immutable
+@Parcelize
+data class HelpDialogsStrings(
+    @param:StringRes @get:StringRes val onboardingTitle: Int,
+    @param:StringRes @get:StringRes val onboardingMessage: Int,
+    @param:StringRes @get:StringRes val helpTitles: List<Int>,
+    @param:StringRes @get:StringRes val helpMessages: List<Int>
+) : Parcelable
+
+var LocalBaseSdkStrings = staticCompositionLocalOf { Default }

@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="mb_camera_permission_required">Sunt necesare permisiile pentru camera foto.</string>
-  <string name="mb_close">Închide</string>
-  <string name="mb_dialog_back_button">Înapoi</string>
-  <string name="mb_dialog_done_button">Terminat</string>
-  <string name="mb_dialog_next_button">Următorul</string>
-  <string name="mb_dialog_skip_button">Săltați pasul</string>
-  <string name="mb_enable_camera">Activare cameră foto</string>
-  <string name="mb_enable_permission_help">Vor fi apelate setările de permisiuni, unde va trebui să activați accesul la camera foto pentru aplicație.</string>
-  <string name="mb_enable_permission_help_instant_app">Activați accesul la camera foto în setările de permisiuni ale aplicației.</string>
-  <string name="mb_license_locked">Scanarea nu e disponibilă</string>
-  <string name="mb_loading">Încărcare…</string>
-  <string name="mb_move_closer">Apropiați</string>
-  <string name="mb_move_farther">Îndepărtați</string>
-  <string name="mb_need_help_tooltip">Aveți nevoie de ajutor?</string>
-  <string name="mb_ok">Bine</string>
-  <string name="mb_retry">Reîncercare</string>
-  <string name="mb_warning">Avertizare</string>
+    <string name="mb_camera_permission_required">Sunt necesare permisiunile pentru camera foto.</string>
+    <string name="mb_close">Închide</string>
+    <string name="mb_consent_description">Stocarea și/sau accesarea datelor cu caracter personal în scopul verificării identității dumneavoastră.</string>
+    <string name="mb_consent_no">Nu sunt de acord</string>
+    <string name="mb_consent_privacy_link">Politica de confidențialitate</string>
+    <string name="mb_consent_privacy_notice">Opțiunile dumneavoastră ne ajută să vă protejăm informațiile cu caracter personal și să ne îmbunătățim tehnologia, menținând totodată cele mai înalte standarde de confidențialitate a datelor, astfel cum sunt descrise în %1$s.</string>
+    <string name="mb_consent_privacy_switch">Sunt de acord ca furnizorul să utilizeze datele mele cu caracter personal pentru optimizarea tehnologiei sale.</string>
+    <string name="mb_consent_title">Avem nevoie de consimțământul dumneavoastră pentru:</string>
+    <string name="mb_consent_yes">Sunt de acord</string>
+    <string name="mb_dialog_back_button">Înapoi</string>
+    <string name="mb_dialog_done_button">Terminat</string>
+    <string name="mb_dialog_next_button">Următorul</string>
+    <string name="mb_dialog_skip_button">Omiteți</string>
+    <string name="mb_enable_camera">Activare cameră foto</string>
+    <string name="mb_enable_permission_help">Veți fi direcționat către setările de permisiuni, unde va trebui să activați accesul la camera foto pentru aplicație.</string>
+    <string name="mb_enable_permission_help_instant_app">Activați accesul la camera foto în setările de permisiuni ale aplicației.</string>
+    <string name="mb_license_locked">Scanarea nu e disponibilă</string>
+    <string name="mb_loading">Încărcare…</string>
+    <string name="mb_move_closer">Apropiați</string>
+    <string name="mb_move_farther">Îndepărtați</string>
+    <string name="mb_need_help_tooltip">Aveți nevoie de ajutor?</string>
+    <string name="mb_ok">Bine</string>
+    <string name="mb_optional">Opțional</string>
+    <string name="mb_privacy_notice">Notificare privind confidențialitatea</string>
+    <string name="mb_retry">Reîncercare</string>
+    <string name="mb_warning">Avertizare</string>
 </resources>

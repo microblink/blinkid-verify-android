@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="mb_camera_permission_required">Potrebna je dozvola za pristup kameri.</string>
-  <string name="mb_close">Zatvori</string>
-  <string name="mb_dialog_back_button">Natrag</string>
-  <string name="mb_dialog_done_button">OK</string>
-  <string name="mb_dialog_next_button">Dalje</string>
-  <string name="mb_dialog_skip_button">Preskoči</string>
-  <string name="mb_enable_camera">Dozvolite pristup kameri</string>
-  <string name="mb_enable_permission_help">Bit ćete odvedeni na postavke sustava gdje morate aplikaciji dozvoliti pristup kameri.</string>
-  <string name="mb_enable_permission_help_instant_app">Dozvolite pristup kameri u postavkama aplikacije.</string>
-  <string name="mb_license_locked">Skeniranje nije dostupno</string>
-  <string name="mb_loading">Učitavanje…</string>
-  <string name="mb_move_closer">Približite dokument</string>
-  <string name="mb_move_farther">Udaljite dokument</string>
-  <string name="mb_need_help_tooltip">Trebate pomoć?</string>
-  <string name="mb_ok">U redu</string>
-  <string name="mb_retry">U redu</string>
-  <string name="mb_warning">Upozorenje</string>
+    <string name="mb_camera_permission_required">Potrebna je dozvola za pristup kameri.</string>
+    <string name="mb_close">Zatvori</string>
+    <string name="mb_consent_description">Pohranu i/ili pristup osobnim podacima u svrhu provjere vašeg identiteta.</string>
+    <string name="mb_consent_no">Ne prihvaćam</string>
+    <string name="mb_consent_privacy_link">Izjavi o zaštiti osobnih podataka</string>
+    <string name="mb_consent_privacy_notice">Vaši odabiri pomažu nam zaštititi vaše osobne podatke i unaprijediti našu tehnologiju uz održavanje najviših standarda privatnosti podataka, kako je opisano u %1$s.</string>
+    <string name="mb_consent_privacy_switch">Dajem privolu pružatelju usluge za upotrebu mojih osobnih podataka u svrhu optimizacije njegove tehnologije.</string>
+    <string name="mb_consent_title">Potrebna nam je vaša privola za:</string>
+    <string name="mb_consent_yes">Prihvaćam</string>
+    <string name="mb_dialog_back_button">Natrag</string>
+    <string name="mb_dialog_done_button">OK</string>
+    <string name="mb_dialog_next_button">Dalje</string>
+    <string name="mb_dialog_skip_button">Preskoči</string>
+    <string name="mb_enable_camera">Dozvolite pristup kameri</string>
+    <string name="mb_enable_permission_help">Bit ćete odvedeni na postavke sustava gdje morate aplikaciji dozvoliti pristup kameri.</string>
+    <string name="mb_enable_permission_help_instant_app">Dozvolite pristup kameri u postavkama aplikacije.</string>
+    <string name="mb_license_locked">Skeniranje nije dostupno</string>
+    <string name="mb_loading">Učitavanje…</string>
+    <string name="mb_move_closer">Približite dokument</string>
+    <string name="mb_move_farther">Udaljite dokument</string>
+    <string name="mb_need_help_tooltip">Trebate pomoć?</string>
+    <string name="mb_ok">U redu</string>
+    <string name="mb_optional">Neobavezno</string>
+    <string name="mb_privacy_notice">Izjava o zaštiti osobnih podataka</string>
+    <string name="mb_retry">U redu</string>
+    <string name="mb_warning">Upozorenje</string>
 </resources>

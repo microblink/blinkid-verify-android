@@ -129,6 +129,8 @@ enum class ErrorState {
     ErrorNetworkError,
     ErrorTimeoutExpired,
     ErrorDocumentClassFiltered,
+    ErrorInvalidSettings,
+    ErrorGetResult,
     ErrorUnsupportedDocument
 }
 
@@ -140,6 +142,14 @@ enum class HapticFeedbackState {
     VibrationOff,
     VibrationOneTimeShort,
     VibrationOneTimeLong
+}
+
+/**
+ * Current state of the scan success sound that activates during the scanning session.
+ */
+enum class ScanSoundState {
+    SoundOff,
+    PlayScanBeep
 }
 
 /**

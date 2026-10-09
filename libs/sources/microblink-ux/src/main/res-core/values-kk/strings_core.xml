@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="mb_camera_permission_required">Камера рұқсаты қажет.</string>
-  <string name="mb_close">Жабу</string>
-  <string name="mb_dialog_back_button">Артқа қайту</string>
-  <string name="mb_dialog_done_button">Дайын</string>
-  <string name="mb_dialog_next_button">Келесі</string>
-  <string name="mb_dialog_skip_button">Өткізу</string>
-  <string name="mb_enable_camera">Камераны қосу</string>
-  <string name="mb_enable_permission_help">Енді сізді камераға рұқсат беру үшін рұқсаттар баптауларына бағыттаймыз. Қолданбаға камераны қолдануға рұқсат беруіңіз керек.</string>
-  <string name="mb_enable_permission_help_instant_app">Қолданба рұқсатының параметрлерінен камераға рұқсат беріңіз.</string>
-  <string name="mb_license_locked">Сканерлеу қолжетімсіз</string>
-  <string name="mb_loading">Жүктелуде…</string>
-  <string name="mb_move_closer">Жақындатыңыз</string>
-  <string name="mb_move_farther">Алыстаңыз</string>
-  <string name="mb_need_help_tooltip">Көмек керек пе?</string>
-  <string name="mb_ok">OK</string>
-  <string name="mb_retry">Қайталау</string>
-  <string name="mb_warning">Ескерту</string>
+    <string name="mb_camera_permission_required">Камера рұқсаты қажет.</string>
+    <string name="mb_close">Жабу</string>
+    <string name="mb_consent_description">Жеке басыңызды растау мақсатында жеке ақпаратты сақтауға және/немесе оған қол жеткізуге.</string>
+    <string name="mb_consent_no">Келіспеймін</string>
+    <string name="mb_consent_privacy_link">Құпиялылық туралы хабарламада</string>
+    <string name="mb_consent_privacy_notice">Таңдауларыңыз %1$s сипатталғандай деректер құпиялылығының ең жоғары стандарттарын сақтай отырып, жеке ақпаратыңызды қорғауға және технологиямызды жақсартуға көмектеседі.</string>
+    <string name="mb_consent_privacy_switch">Қызмет көрсетушінің өз технологиясын оңтайландыру мақсатында менің жеке деректерімді пайдалануына келісім беремін.</string>
+    <string name="mb_consent_title">Келесі әрекеттерге келісіміңіз қажет:</string>
+    <string name="mb_consent_yes">Келісемін</string>
+    <string name="mb_dialog_back_button">Артқа қайту</string>
+    <string name="mb_dialog_done_button">Дайын</string>
+    <string name="mb_dialog_next_button">Келесі</string>
+    <string name="mb_dialog_skip_button">Өткізу</string>
+    <string name="mb_enable_camera">Камераны қосу</string>
+    <string name="mb_enable_permission_help">Енді сізді камераға рұқсат беру үшін рұқсаттар баптауларына бағыттаймыз. Қолданбаға камераны қолдануға рұқсат беруіңіз керек.</string>
+    <string name="mb_enable_permission_help_instant_app">Қолданба рұқсатының параметрлерінен камераға рұқсат беріңіз.</string>
+    <string name="mb_license_locked">Сканерлеу қолжетімсіз</string>
+    <string name="mb_loading">Жүктелуде…</string>
+    <string name="mb_move_closer">Жақындатыңыз</string>
+    <string name="mb_move_farther">Алыстаңыз</string>
+    <string name="mb_need_help_tooltip">Көмек керек пе?</string>
+    <string name="mb_ok">OK</string>
+    <string name="mb_optional">Міндетті емес</string>
+    <string name="mb_privacy_notice">Құпиялылық туралы хабарлама</string>
+    <string name="mb_retry">Қайталау</string>
+    <string name="mb_warning">Ескерту</string>
 </resources>

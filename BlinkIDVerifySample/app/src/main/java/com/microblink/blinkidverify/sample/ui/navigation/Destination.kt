@@ -1,6 +1,6 @@
 package com.microblink.blinkidverify.sample.ui.navigation
 
-import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyEndpointResponse
+import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyV3EndpointResponse
 import kotlinx.serialization.Serializable
 
 sealed interface Destination {
@@ -11,5 +11,5 @@ sealed interface Destination {
     data object DocumentCapture: Destination
 
     @Serializable
-    data class VerifyResult(val documentVerificationResult: BlinkIdVerifyEndpointResponse): Destination
+    data class VerifyResult(val documentVerificationResult: BlinkIdVerifyV3EndpointResponse): Destination
 }

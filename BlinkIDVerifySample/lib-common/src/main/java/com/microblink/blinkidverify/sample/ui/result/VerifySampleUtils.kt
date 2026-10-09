@@ -1,6 +1,7 @@
 package com.microblink.blinkidverify.sample.ui.result
 
 import androidx.annotation.StringRes
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
@@ -45,6 +46,7 @@ val ResultTitleText = TextStyle(
 )
 
 val ResultValueText = TextStyle(
+    color = Color.Black,
     fontWeight = FontWeight.Medium,
     fontSize = 20.sp,
     lineHeight = 24.sp,

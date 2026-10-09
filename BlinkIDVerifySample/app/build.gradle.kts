@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.microblink.blinkidverify.sample"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.microblink.blinkidverify.sample"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }
@@ -39,6 +39,17 @@ android {
 }
 
 dependencies {
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.material3)
+    // blinkid-verify-ux 4000.x is compiled against Compose UI 1.11+ (Painter.$stable)
+    val composeUi = libs.versions.composeUi.get()
+    implementation("androidx.compose.ui:ui:$composeUi")
+    implementation("androidx.compose.ui:ui-graphics:$composeUi")
+    implementation("androidx.compose.ui:ui-text:$composeUi")
+    implementation("androidx.compose.foundation:foundation:$composeUi")
+    implementation("androidx.compose.animation:animation:$composeUi")
+
     implementation(project(":lib-common"))
     implementation(libs.blinkid.verify.ux)
 /**

@@ -17,7 +17,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyEndpointResponse
+import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyV3EndpointResponse
 import com.microblink.blinkidverify.sample.ui.MainScreen
 import com.microblink.blinkidverify.sample.ui.navigation.BlinkIDVerifyCustomNavType
 import com.microblink.blinkidverify.sample.ui.result.VerifySampleResultScreen
@@ -89,6 +89,7 @@ class MainActivity : ComponentActivity() {
                         uiSettings = viewModel.blinkIDVerifyUiSettings,
                         cameraSettings = viewModel.cameraSettings,
                         sessionSettings = viewModel.sessionSettings,
+                        consentUxConfig = viewModel.consentUxConfig,
                         onCaptureSuccess = { result ->
                             viewModel.onCaptureResultAvailable(result)
                             navController.popBackStack(
@@ -113,7 +114,7 @@ class MainActivity : ComponentActivity() {
             }
             composable<Destination.VerifyResult>(
                 typeMap = mapOf(
-                    typeOf<BlinkIdVerifyEndpointResponse>() to BlinkIDVerifyCustomNavType.BlinkIDVerifyResultType
+                    typeOf<BlinkIdVerifyV3EndpointResponse>() to BlinkIDVerifyCustomNavType.BlinkIDVerifyResultType
                 )
             ) { backStackEntry ->
                 VerifySampleResultScreen(

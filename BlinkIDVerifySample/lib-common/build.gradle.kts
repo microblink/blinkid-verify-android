@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.microblink.blinkidverify.sample"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -42,6 +42,7 @@ dependencies {
 //    implementation(libs.androidx.ui.graphics)
 //    implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material.icons.extended)
     debugImplementation(libs.androidx.ui.tooling)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.blinkid.verify.core)

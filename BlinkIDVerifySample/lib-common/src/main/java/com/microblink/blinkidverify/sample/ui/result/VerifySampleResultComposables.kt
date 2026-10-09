@@ -48,7 +48,9 @@ import com.microblink.blinkidverify.core.data.model.checks.DetailedCheck
 import com.microblink.blinkidverify.core.data.model.checks.FieldCheck
 import com.microblink.blinkidverify.core.data.model.checks.TieredCheck
 import com.microblink.blinkidverify.core.data.model.checks.VerifyCheck
-import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyEndpointResponse
+import com.microblink.blinkidverify.core.data.model.result.BlinkIdVerifyV3EndpointResponse
+import com.microblink.blinkidverify.core.data.model.result.extractionProcessingStatus
+import com.microblink.blinkidverify.core.data.model.result.verifyVerdictOrRaw
 import com.microblink.blinkidverify.sample.ui.theme.Cobalt
 import com.microblink.blinkidverify.sample.ui.theme.Cobalt400
 import com.microblink.blinkidverify.sample.ui.theme.Cobalt50
@@ -58,82 +60,116 @@ import kotlinx.serialization.json.Json
 
 @Composable
 fun VerifySampleResultScreen(
-    result: BlinkIdVerifyEndpointResponse,
+    result: BlinkIdVerifyV3EndpointResponse,
     onNavigateUp: () -> Unit,
 ) {
     val json = Json {
         prettyPrint = true
         explicitNulls = false
     }
-    val checkList = mutableListOf<VerifyCheck>().apply {
-        result.verification?.let {
-            val verificationVerifyCheck = (result.verification as DetailedCheck).copy(
-                name = "Verification check"
-            )
-            this.add(verificationVerifyCheck)
-        }
-        result.checks?.let { this.addAll(it) }
-    }
 
     val resultList = mutableListOf<Result>().apply {
-        this.add(
+        result.pipeline.extraction?.status?.let { extractionPipelineStatus ->
+            add(
+                SampleResult(
+                    title = "Pipeline — extraction",
+                    value = extractionPipelineStatus,
+                )
+            )
+        }
+        result.pipeline.verification?.status?.let { verificationPipelineStatus ->
+            add(
+                SampleResult(
+                    title = "Pipeline — verification",
+                    value = verificationPipelineStatus,
+                )
+            )
+        }
+        result.extractionProcessingStatus()?.let { processingStatus ->
+            add(
+                SampleResult(
+                    title = "Extraction processing status",
+                    value = processingStatus,
+                )
+            )
+        }
+        add(
             SampleResult(
-                title = "Processing status",
-                value = result.processingStatus.name
+                title = "Verdict",
+                value = result.verification.verifyVerdictOrRaw(),
             )
         )
-        checkList.forEach {
-            this.add(it.toResultVerifyCheck())
-        }
-        result.processIndicators?.forEach {
-            this.add(
+        if (result.verification.failedChecks.isNotEmpty()) {
+            add(
                 SampleResult(
-                    title = it.name,
-                    value = it.type.name,
-                    subValue = it.result.name
+                    title = "Failed checks",
+                    value = result.verification.failedChecks.joinToString(separator = "\n"),
+                )
+            )
+        }
+        result.verification.checks?.let { checks ->
+            add(
+                SampleResult(
+                    title = "Verification checks",
+                    value = json.encodeToString(
+                        kotlinx.serialization.json.JsonElement.serializer(),
+                        checks,
+                    ),
                 )
             )
         }
         result.messages?.forEach {
-            this.add(
+            add(
                 SampleResult(
-                    title = "${it.code} ${it.status.name}",
-                    value = it.message
+                    title = it.code,
+                    value = it.message,
                 )
             )
         }
-        result.runtime?.let {
-            this.add(
+        result.images?.let { images ->
+            add(
                 SampleResult(
-                    title = "Verify runtime",
-                    value = json.encodeToString(it)
+                    title = "Images",
+                    value = buildString {
+                        if (images.face != null) appendLine("face: present")
+                        if (images.signature != null) appendLine("signature: present")
+                        if (images.firstSideCropped != null) appendLine("firstSideCropped: present")
+                        if (images.secondSideCropped != null) appendLine("secondSideCropped: present")
+                        if (images.barcode != null) append("barcode: present")
+                    }.ifBlank { "None" },
                 )
             )
         }
-        result.optionsUsed?.let {
-            this.add(
-                SampleResult(
-                    title = "Options used",
-                    value = json.encodeToString(it)
-                )
+        add(
+            SampleResult(
+                title = "Runtime",
+                value = json.encodeToString(result.runtime),
             )
-        }
-        result.useCaseUsed?.let {
-            this.add(
-                SampleResult(
-                    title = "Use case used",
-                    value = json.encodeToString(it)
-                )
+        )
+        add(
+            SampleResult(
+                title = "Extraction",
+                value = json.encodeToString(
+                    kotlinx.serialization.json.JsonElement.serializer(),
+                    result.extraction,
+                ),
             )
-        }
-        result.extraction?.let {
-            this.add(
-                SampleResult(
-                    title = "Extraction result",
-                    value = json.encodeToString(it)
-                )
+        )
+        add(
+            SampleResult(
+                title = "Configuration used",
+                value = json.encodeToString(
+                    kotlinx.serialization.json.JsonElement.serializer(),
+                    result.configurationUsed,
+                ),
             )
-        }
+        )
+        add(
+            SampleResult(
+                title = "Image assessment",
+                value = json.encodeToString(result.imageAssessment),
+            )
+        )
     }
 
     SampleResultScreen(
@@ -318,7 +354,11 @@ fun <T : VerifyCheck> SampleResultRowVerifyCheck(
                 } else if (check is FieldCheck) {
                     VerifyCheckRow("Field type", check.field.name)
                 } else if (check is TieredCheck) {
-                    VerifyCheckRow("Match level", check.matchLevel.name)
+                    check.passesAtOrBelowSensitivity?.let {
+                        VerifyCheckRow("Passes at or below sensitivity", it.name)
+                    } ?: check.matchLevel?.let {
+                        VerifyCheckRow("Match level", it.name)
+                    }
                 }
             }
 

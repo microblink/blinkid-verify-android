@@ -120,37 +120,37 @@ VerifyCameraScanningScreen(
 After the document capture session is finished, the SDK returns an object of type [BlinkIdVerifyCaptureResult](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core.data.model.result/-blink-id-verify-capture-result/index.html).
 The object contains images of the front and back sides of the document. Additionally, if the barcode is present on the document, the camera frame containing a visible barcode will also be available.
 
-`BlinkIdVerifyCaptureResult.toBlinkIdVerifyRequest` helper method should be used to prepare `BlinkIdVerifyRequest` for the verification API call described in the following section.
+After capture, use the native multipart payload on [BlinkIdVerifyCaptureResult](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core.data.model.result/-blink-id-verify-capture-result/index.html) (`serializedVerifyPayload`). It is built from the same [BlinkIdVerifySessionSettings](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core.capture.session/-blink-id-verify-session-settings/index.html) used during scanning, so on-device and cloud configuration stay aligned.
 
 ### Launching the document verification API call and obtaining the results
 
-1. You need to create a `BlinkIdVerifyRequest` by using `BlinkIdVerifyCaptureResult`:
+1. Read the v3 payload from the capture result:
 ```kotlin
-val blinkIdVerifyRequest = captureResult.toBlinkIdVerifyRequest()
+val payload = captureResult.serializedVerifyPayload
+    ?: error("Native verify payload missing from capture result")
 ```
-The `toBlinkIdVerifyRequest()` method automatically derives shared on-device and backend options from the session settings used during capture, ensuring consistent configuration.
 
-2. You also need to create a [BlinkIdVerifyClient](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core/-blink-id-verify-client/index.html) for the document verification service providing your API token.
+2. Create a [BlinkIdVerifyClient](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core/-blink-id-verify-client/index.html) for Verify Cloud (v3) with your API token:
 ```kotlin
 val client = BlinkIdVerifyClient(
     BlinkIdVerifyServiceSettings(
         // if using self-hosted solution, set appropriate base URL
-        verificationServiceBaseUrl = "https://us-east.verify.microblink.com/api/v2",
+        verificationServiceBaseUrl = "https://us-east.verify.microblink.com/api/v3",
         token = "your_API_token",
     )
 )
 ```
 If you don't already have the API token, contact us at [help.microblink.com](https://help.microblink.com/).
 
-3. Finally use `val response = client.verify(blinkIdVerifyRequest)` to send the request and fetch the response that will contain either an error reason or the results of the verification process:
+3. Submit the payload with `client.verify(payload)`:
 ```kotlin
 CoroutineScope(IO).launch {
-    when (val response = client.verify(blinkIdVerifyRequest)) {
+    when (val response = client.verify(payload)) {
         is Response.Error -> {
             // check `response.errorReason` to check why the request failed
         }
         is Response.Success -> {
-            // check `response.endpointResponse` for final result
+            // check `response.endpointResponse` for the v3 result
         }
     }
 }
@@ -158,7 +158,7 @@ CoroutineScope(IO).launch {
 
 ### Document verification results
 
-The final result from the document verification service is of type [BlinkIdVerifyEndpointResponse](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core.data.model.result/-blink-id-verify-endpoint-response/index.html), and it contains both extraction and verification results.
+The final result from Verify Cloud v3 is of type [BlinkIdVerifyV3EndpointResponse](https://microblink.github.io/blinkid-verify-android/blinkid-verify-core/com.microblink.blinkidverify.core.data.model.result/-blink-id-verify-v3-endpoint-response/index.html), and it contains pipeline status, verification verdict, extraction JSON, and related metadata.
 
 
 # <a name="device-requirements"></a> Device requirements
@@ -532,8 +532,8 @@ Here is the SDK size, calculated for supported ABIs:
 
 | ABI | Download size | Install size |
 | --- |:-------------:|:------------:|
-| armeabi-v7a |    4.21 MB    |   6.34 MB    |
-| arm64-v8a |    4.38 MB    |   7.71 MB    |
+| armeabi-v7a |    5.45 MB    |   8.11 MB    |
+| arm64-v8a |    5.83 MB    |   10.19 MB   |
 
 SDK size is calculated as application size increases when _BlinkID Verify_ SDK is added, with all its dependencies included.
 

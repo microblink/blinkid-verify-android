@@ -1,5 +1,5 @@
 [versions]
-blinkidVerifySdkVersion = "4000.0.0"
+blinkidVerifySdkVersion = "4000.0.1"
 
 agp = "8.9.1"
 kotlin = "2.2.21"

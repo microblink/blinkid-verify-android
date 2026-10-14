@@ -76,7 +76,7 @@ import com.microblink.blinkidverify.ux.R
 import com.microblink.blinkidverify.ux.UiSettings
 import com.microblink.blinkidverify.ux.components.drawScrollbar
 import com.microblink.blinkidverify.ux.theme.BlinkIdVerifySdkTheme
-import com.microblink.blinkidverify.ux.theme.SdkTheme
+import com.microblink.blinkidverify.ux.theme.VerifyTheme
 
 private const val TAG = "MicroblinkConsentScreen"
 
@@ -140,7 +140,7 @@ internal data class ConsentScreenContent(
 private object ConsentTypography {
     val title: TextStyle
         @Composable
-        get() = SdkTheme.sdkTypography.onboardingTitle.copy(
+        get() = VerifyTheme.sdkTypography.onboardingTitle.copy(
             fontWeight = FontWeight.Medium,
             fontSize = 24.sp,
             lineHeight = 32.sp,
@@ -148,7 +148,7 @@ private object ConsentTypography {
 
     val message: TextStyle
         @Composable
-        get() = SdkTheme.sdkTypography.onboardingText.copy(
+        get() = VerifyTheme.sdkTypography.onboardingText.copy(
             fontWeight = FontWeight.Medium,
             fontSize = 14.sp,
             lineHeight = 20.sp,
@@ -157,7 +157,7 @@ private object ConsentTypography {
 
     val supportingText: TextStyle
         @Composable
-        get() = SdkTheme.sdkTypography.helpTooltip.copy(
+        get() = VerifyTheme.sdkTypography.helpTooltip.copy(
             fontWeight = FontWeight.Normal,
             fontSize = 12.sp,
             lineHeight = 16.sp,
@@ -176,7 +176,7 @@ private object ConsentTypography {
 
     val button: TextStyle
         @Composable
-        get() = SdkTheme.sdkTypography.onboardingButton.copy(letterSpacing = 0.1.sp)
+        get() = VerifyTheme.sdkTypography.onboardingButton.copy(letterSpacing = 0.1.sp)
 }
 
 /**
@@ -218,95 +218,99 @@ internal fun MicroblinkConsentScreen(
             usePlatformDefaultWidth = false,
         )
     ) {
-        val density = LocalResources.current.displayMetrics.density
-        val maxHeight =
-            (LocalWindowInfo.current.containerSize.height / density * ConsentDialogMaxHeightRatio).dp
-        Card(
-            modifier = modifier
-                .padding(horizontal = ConsentDialogHorizontalMargin)
-                .widthIn(max = ConsentDialogMaxWidth)
-                .fillMaxWidth()
-                .heightIn(max = maxHeight),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
-            shape = RoundedCornerShape(ConsentDialogCornerRadius)
-        ) {
-            val contentColor = MaterialTheme.colorScheme.onBackground
-            Column {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = ConsentCloseButtonInset, end = ConsentCloseButtonInset),
-                    horizontalArrangement = Arrangement.End,
-                ) {
-                    IconButton(onClick = onConsentDeclined) {
-                        Icon(
-                            painter = painterResource(R.drawable.mb_blinkidverify_icon_exit),
-                            contentDescription = stringResource(R.string.mb_blinkidverify_close),
-                            modifier = Modifier.size(36.dp),
-                            tint = contentColor,
+        // Dialog is rendered in a separate window; pin SDK colors instead of the host MaterialTheme.
+        MaterialTheme(colorScheme = VerifyTheme.sdkTheme) {
+            val density = LocalResources.current.displayMetrics.density
+            val maxHeight =
+                (LocalWindowInfo.current.containerSize.height / density * ConsentDialogMaxHeightRatio).dp
+            val colors = VerifyTheme.sdkTheme
+            Card(
+                modifier = modifier
+                    .padding(horizontal = ConsentDialogHorizontalMargin)
+                    .widthIn(max = ConsentDialogMaxWidth)
+                    .fillMaxWidth()
+                    .heightIn(max = maxHeight),
+                colors = CardDefaults.cardColors(containerColor = colors.background),
+                shape = RoundedCornerShape(ConsentDialogCornerRadius)
+            ) {
+                val contentColor = colors.onSurface
+                Column {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = ConsentCloseButtonInset, end = ConsentCloseButtonInset),
+                        horizontalArrangement = Arrangement.End,
+                    ) {
+                        IconButton(onClick = onConsentDeclined) {
+                            Icon(
+                                painter = painterResource(R.drawable.mb_blinkidverify_icon_exit),
+                                contentDescription = stringResource(R.string.mb_blinkidverify_close),
+                                modifier = Modifier.size(36.dp),
+                                tint = contentColor,
+                            )
+                        }
+                    }
+
+                    Spacer(Modifier.height(ConsentCloseToHeadlineSpacing))
+
+                    Column(
+                        Modifier
+                            .drawScrollbar(rememberScrollState())
+                            .weight(1f, fill = false)
+                            .padding(horizontal = ConsentContentHorizontalPadding)
+                    ) {
+                        Text(
+                            modifier = Modifier.semantics { heading() },
+                            text = title,
+                            style = ConsentTypography.title,
+                            color = contentColor,
+                        )
+                        Spacer(Modifier.height(ConsentHeadlineToMessageSpacing))
+                        Text(
+                            text = message,
+                            color = contentColor,
+                            style = ConsentTypography.message,
+                        )
+                        Spacer(Modifier.height(ConsentMessageToInfoPanelSpacing))
+                        ConsentInfoPanel(
+                            messageTemplate = infoMessageTemplate,
+                            linkLabel = documentLinkLabel,
+                            onLinkClick = { openConsentDocument(context, content.documentUrl) },
+                        )
+                        Spacer(Modifier.height(ConsentInfoPanelToToggleSpacing))
+                        ConsentOptionalToggleRow(
+                            checked = optionalConsentGiven,
+                            onCheckedChange = { optionalConsentGiven = it },
+                            message = optionalToggleMessage,
+                            hint = optionalToggleHint,
                         )
                     }
-                }
 
-                Spacer(Modifier.height(ConsentCloseToHeadlineSpacing))
-
-                Column(
-                    Modifier
-                        .drawScrollbar(rememberScrollState())
-                        .weight(1f, fill = false)
-                        .padding(horizontal = ConsentContentHorizontalPadding)
-                ) {
-                    Text(
-                        modifier = Modifier.semantics { heading() },
-                        text = title,
-                        style = ConsentTypography.title,
-                        color = contentColor,
-                    )
-                    Spacer(Modifier.height(ConsentHeadlineToMessageSpacing))
-                    Text(
-                        text = message,
-                        color = contentColor,
-                        style = ConsentTypography.message,
-                    )
-                    Spacer(Modifier.height(ConsentMessageToInfoPanelSpacing))
-                    ConsentInfoPanel(
-                        messageTemplate = infoMessageTemplate,
-                        linkLabel = documentLinkLabel,
-                        onLinkClick = { openConsentDocument(context, content.documentUrl) },
-                    )
-                    Spacer(Modifier.height(ConsentInfoPanelToToggleSpacing))
-                    ConsentOptionalToggleRow(
-                        checked = optionalConsentGiven,
-                        onCheckedChange = { optionalConsentGiven = it },
-                        message = optionalToggleMessage,
-                        hint = optionalToggleHint,
-                    )
-                }
-
-                Column(
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(ConsentActionsPadding),
-                    verticalArrangement = Arrangement.spacedBy(ConsentButtonSpacing),
-                ) {
-                    ConsentOutlinedActionButton(
-                        text = stringResource(content.acceptButton),
-                        onClick = {
-                            onConsentAccepted(
-                                buildConsentNote(
-                                    title = title,
-                                    message = message,
-                                    infoMessage = infoMessage,
-                                    optionalToggleMessage = optionalToggleMessage,
-                                    optionalConsentGiven = optionalConsentGiven,
+                    Column(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(ConsentActionsPadding),
+                        verticalArrangement = Arrangement.spacedBy(ConsentButtonSpacing),
+                    ) {
+                        ConsentOutlinedActionButton(
+                            text = stringResource(content.acceptButton),
+                            onClick = {
+                                onConsentAccepted(
+                                    buildConsentNote(
+                                        title = title,
+                                        message = message,
+                                        infoMessage = infoMessage,
+                                        optionalToggleMessage = optionalToggleMessage,
+                                        optionalConsentGiven = optionalConsentGiven,
+                                    )
                                 )
-                            )
-                        },
-                    )
-                    ConsentOutlinedActionButton(
-                        text = stringResource(content.declineButton),
-                        onClick = onConsentDeclined,
-                    )
+                            },
+                        )
+                        ConsentOutlinedActionButton(
+                            text = stringResource(content.declineButton),
+                            onClick = onConsentDeclined,
+                        )
+                    }
                 }
             }
         }
@@ -319,7 +323,8 @@ private fun ConsentInfoPanel(
     linkLabel: String,
     onLinkClick: () -> Unit,
 ) {
-    val linkColor = MaterialTheme.colorScheme.primary
+    val colors = VerifyTheme.sdkTheme
+    val linkColor = colors.primary
     val annotatedText = buildClickableLinkAnnotatedString(
         messageTemplate = messageTemplate,
         linkLabel = linkLabel,
@@ -330,13 +335,13 @@ private fun ConsentInfoPanel(
 
     Surface(
         modifier = Modifier.fillMaxWidth(),
-        color = MaterialTheme.colorScheme.surfaceContainerHigh,
+        color = colors.surfaceContainerHigh,
         shape = RoundedCornerShape(ConsentInfoPanelCornerRadius),
     ) {
         Text(
             modifier = Modifier.padding(ConsentInfoPanelPadding),
             text = annotatedText,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = colors.onSurfaceVariant,
             style = ConsentTypography.supportingText,
         )
     }
@@ -357,15 +362,16 @@ private fun ConsentSwitch(
         label = "consentSwitchThumbOffset",
     )
     val trackShape = RoundedCornerShape(percent = 50)
+    val colors = VerifyTheme.sdkTheme
     val trackColor = if (checked) {
-        MaterialTheme.colorScheme.primary
+        colors.primary
     } else {
-        MaterialTheme.colorScheme.surfaceContainerHighest
+        colors.surfaceContainerHighest
     }
     val thumbColor = if (checked) {
-        MaterialTheme.colorScheme.background
+        colors.background
     } else {
-        MaterialTheme.colorScheme.outline
+        colors.outline
     }
 
     Box(
@@ -381,7 +387,7 @@ private fun ConsentSwitch(
                 if (!checked) {
                     Modifier.border(
                         ConsentButtonBorderWidth,
-                        MaterialTheme.colorScheme.outline,
+                        colors.outline,
                         trackShape,
                     )
                 } else {
@@ -428,7 +434,7 @@ private fun ConsentOptionalToggleRow(
                     append(')')
                 }
             },
-            color = MaterialTheme.colorScheme.onSurface,
+            color = VerifyTheme.sdkTheme.onSurface,
             style = ConsentTypography.toggleLabel,
         )
     }
@@ -439,14 +445,15 @@ private fun ConsentOutlinedActionButton(
     text: String,
     onClick: () -> Unit,
 ) {
+    val colors = VerifyTheme.sdkTheme
     OutlinedButton(
         modifier = Modifier.fillMaxWidth(),
         onClick = onClick,
         shape = RoundedCornerShape(ConsentButtonCornerRadius),
         colors = ButtonDefaults.outlinedButtonColors(
-            contentColor = MaterialTheme.colorScheme.primary,
+            contentColor = colors.primary,
         ),
-        border = BorderStroke(ConsentButtonBorderWidth, MaterialTheme.colorScheme.primary),
+        border = BorderStroke(ConsentButtonBorderWidth, colors.primary),
     ) {
         Text(
             text = text,
